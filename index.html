@@ -1,1 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>مكتبة القرآن الصوتية | استمع للقرآن الكريم بأصوات كبار القراء</title>
+  <meta name="description" content="مكتبة صوتية للقرآن الكريم تجمع مختلف القراء بعدة روايات (حفص، ورش، قالون). استمع وحمّل السور بجودة عالية مجانًا.">
+  <meta name="theme-color" content="#0b1220">
+  <meta property="og:title" content="مكتبة القرآن الصوتية">
+  <meta property="og:description" content="استمع للقرآن الكريم بأصوات كبار القراء بعدة روايات">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ar_AR">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1220'/%3E%3Cpath d='M32 12c-8 0-14 5-14 12v18l14-8 14 8V24c0-7-6-12-14-12z' fill='%2310b981'/%3E%3Cpath d='M24 24h16M24 30h16' stroke='%230b1220' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- ═══ Google AdSense — ضع معرف الناشر الخاص بك هنا ═══ -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+</head>
+<body>
 
+  <!-- ================= الهيدر ================= -->
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <svg class="brand-logo" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#10b981"/><path d="M32 12c-8 0-14 5-14 12v18l14-8 14 8V24c0-7-6-12-14-12z" fill="#0b1220"/><path d="M24 24h16M24 30h16" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <span class="brand-text">مكتبة القرآن <b>الصوتية</b></span>
+      </a>
+      <nav class="main-nav" id="mainNav" aria-label="التنقل الرئيسي">
+        <a href="#library">المكتبة</a>
+        <a href="#reciters">القراء</a>
+        <a href="#about">عن الموقع</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="فتح القائمة" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ================= الواجهة الرئيسية ================= -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="container hero-inner">
+      <p class="bism">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <h1>مكتبة القرآن الصوتية</h1>
+      <p class="hero-sub">استمع إلى القرآن الكريم كاملًا بأصوات كبار قراء العالم، بعدة روايات متواترة، مجانًا وبدون تسجيل.</p>
+
+      <form class="search-box" id="searchForm" role="search">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="searchInput" placeholder="ابحث عن سورة أو قارئ أو رقم… (مثال: الفاتحة، العفاسي، 36)" autocomplete="off" aria-label="بحث">
+        <button type="button" class="search-clear" id="searchClear" aria-label="مسح البحث" hidden>&times;</button>
+      </form>
+
+      <div class="hero-stats">
+        <div class="stat"><b id="statSurahs">١١٤</b><span>سورة</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><b id="statReciters">٠</b><span>قارئًا</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><b id="statRiwayat">٠</b><span>روايات</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- حاوية إعلان علوية -->
+  <div class="container">
+    <div class="ad-slot ad-leaderboard">
+      <span class="ad-tag">إعلان</span>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </div>
+
+  <!-- ================= المكتبة ================= -->
+  <main class="container library" id="library">
+
+    <!-- الشريط الجانبي: الفلاتر -->
+    <aside class="filters-panel" id="filtersPanel" aria-label="أدوات التصفية">
+      <div class="filters-head">
+        <h2>القراء والروايات</h2>
+        <button class="filters-reset" id="resetFilters" type="button">إعادة تعيين</button>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="riwayaSelect">الرواية</label>
+        <select id="riwayaSelect" class="select">
+          <option value="">كل الروايات</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <span class="filter-label">القارئ</span>
+        <div class="reciter-list" id="reciterList"></div>
+      </div>
+
+      <div class="ad-slot ad-rect">
+        <span class="ad-tag">إعلان</span>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="2222222222" data-ad-format="rectangle"></ins>
+      </div>
+    </aside>
+
+    <!-- المحتوى -->
+    <section class="content">
+      <div class="toolbar">
+        <div class="toolbar-info" id="toolbarInfo" aria-live="polite"></div>
+        <div class="toolbar-actions">
+          <button class="chip-btn" id="playAllBtn" type="button" title="تشغيل المكتبة كاملة ابتداءً من أول سورة">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg> تشغيل الكل
+          </button>
+          <select id="sortSelect" class="select select-sm" aria-label="ترتيب">
+            <option value="tartil">ترتيب المصحف</option>
+            <option value="alpha">أبجديًا</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="surah-grid" id="surahGrid"></div>
+
+      <div class="empty-state" id="emptyState" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M8.5 11h5"/></svg>
+        <p>لا توجد نتائج مطابقة لبحثك.</p>
+        <button class="chip-btn" id="emptyReset" type="button">عرض كل السور</button>
+      </div>
+
+      <!-- حاوية إعلان داخل المحتوى -->
+      <div class="ad-slot ad-infeed">
+        <span class="ad-tag">إعلان</span>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="3333333333" data-ad-format="fluid" data-ad-layout-key="-6t+ed+2i-1n-4w"></ins>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= عن الموقع ================= -->
+  <section class="about" id="about">
+    <div class="container about-inner">
+      <h2>عن المكتبة</h2>
+      <p>مكتبة القرآن الصوتية موقع مجاني يجمع روابط التلاوات الصوتية لكبار القراء من خوادم موثوقة، مع دعم روايات متعددة (حفص عن عاصم، ورش عن نافع، قالون عن نافع). اختر قارئك المفضل، ابحث عن السورة، واستمع أو حمّل بضغطة واحدة.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>مكتبة القرآن الصوتية — جميع التلاوات ملك لخوادم المصادر الخارجية الموثوقة.</p>
+      <p class="footer-small">صُمم بإتقان لخدمة كتاب الله</p>
+    </div>
+    <div class="ad-slot ad-footer">
+      <span class="ad-tag">إعلان</span>
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="4444444444" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+  </footer>
+
+  <!-- ================= مشغّل الصوت ================= -->
+  <div class="player" id="player" aria-label="مشغل الصوت">
+    <div class="player-track">
+      <div class="player-thumb" aria-hidden="true"><span>﴿</span></div>
+      <div class="player-meta">
+        <div class="player-surah" id="playerSurah">اختر سورة للاستماع</div>
+        <div class="player-reciter" id="playerReciter"></div>
+      </div>
+      <div class="player-actions">
+        <button class="pbtn" id="prevBtn" aria-label="السورة السابقة" title="السابقة">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14L9.5 12z"/></svg>
+        </button>
+        <button class="pbtn pbtn-play" id="playBtn" aria-label="تشغيل / إيقاف" title="تشغيل / إيقاف">
+          <svg id="iconPlay" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          <svg id="iconPause" viewBox="0 0 24 24" fill="currentColor" hidden><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+        </button>
+        <button class="pbtn" id="nextBtn" aria-label="السورة التالية" title="التالية">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l10.5-7z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="player-bar">
+      <span class="ptime" id="curTime">0:00</span>
+      <input type="range" id="seekBar" min="0" max="1000" value="0" aria-label="شريط التقدم">
+      <span class="ptime" id="durTime">0:00</span>
+      <div class="player-side">
+        <a class="pbtn" id="downloadBtn" aria-label="تحميل السورة" title="تحميل MP3" download hidden>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        </a>
+        <button class="pbtn" id="volumeBtn" aria-label="كتم الصوت" title="كتم / تشغيل الصوت">
+          <svg id="iconVolOn" viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          <svg id="iconVolOff" viewBox="0 0 24 24" fill="currentColor" hidden><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="m16 9 6 6m0-6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </button>
+        <input type="range" id="volumeBar" min="0" max="100" value="100" aria-label="مستوى الصوت">
+      </div>
+    </div>
+    <audio id="audio" preload="metadata"></audio>
+  </div>
+
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    /* دفع طلبات الإعلانات عند توفر معرف ناشر صحيح */
+    document.querySelectorAll('ins.adsbygoogle').forEach(function () {
+      if (this.getAttribute('data-ad-client') !== 'ca-pub-XXXXXXXXXXXXXXXX') {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }
+    });
+  </script>
+</body>
+</html>
