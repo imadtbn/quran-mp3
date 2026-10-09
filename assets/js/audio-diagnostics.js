@@ -45,7 +45,7 @@ catalogReady.then(info=>{
 $('#start').addEventListener('click',async()=>{
  if(state.running)return;
  state.running=true;state.cancelled=false;state.results=[];draw();$('#start').disabled=true;$('#stop').disabled=false;
- const count=Number($('#sample').value),tasks=RECITERS.flatMap(r=>samples(r,count).map(n=>({r,n,url:QuranAudio.url(r,n)}))).filter(x=>x.url);
+ const count=Number($('#sample').value),tasks=RECITERS.slice(0,12).flatMap(r=>samples(r,count).map(n=>({r,n,url:QuranAudio.url(r,n)}))).filter(x=>x.url);
  $('#summary').textContent='جارٍ فحص '+tasks.length+' روابط بالتتابع…';
  for(const task of tasks){
   if(state.cancelled)break;
