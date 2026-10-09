@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://imadtbn.github.io/quran-mp3/sitemap.xml
