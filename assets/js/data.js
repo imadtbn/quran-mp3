@@ -31,7 +31,7 @@ function catalogEntry(reader,moshaf){
 const catalogReady=(async()=>{
   try{
     const ctrl=new AbortController();
-    const timer=setTimeout(()=>ctrl.abort(),8500);
+    const timer=setTimeout(()=>ctrl.abort(),4500);
     let response;
     try{response=await fetch('https://www.mp3quran.net/api/v3/reciters?language=ar',{signal:ctrl.signal,cache:'no-store'});}
     finally{clearTimeout(timer);}
