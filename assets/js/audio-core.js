@@ -14,7 +14,7 @@ window.QuranAudio={
     const status=(key)=>{if(typeof handlers.status==='function')handlers.status(key)};
     const clear=()=>{if(timer){clearTimeout(timer);timer=null}};
     const failure=()=>{clear();status('error')};
-    audio.addEventListener('loadstart',()=>status('loading'));
+    audio.addEventListener('loadstart',()=>{status('loading');clear();timer=setTimeout(()=>{if(audio.readyState<2&&audio.networkState!==HTMLMediaElement.NETWORK_EMPTY){audio.pause();failure()}},20000)});
     audio.addEventListener('waiting',()=>status('buffering'));
     audio.addEventListener('stalled',()=>status('buffering'));
     audio.addEventListener('canplay',()=>{clear();status('ready')});
@@ -29,7 +29,6 @@ window.QuranAudio={
         ++playToken;clear();audio.pause();
         if(!src){audio.removeAttribute('src');audio.load();status('unavailable');return false}
         audio.src=src;audio.load();status('loading');
-        timer=setTimeout(()=>{if(audio.readyState<2&&audio.networkState!==HTMLMediaElement.NETWORK_EMPTY){audio.pause();failure()}},20000);
         if(autoplay)this.play();
         return true;
       },
