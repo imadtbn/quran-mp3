@@ -28,7 +28,7 @@ async function main(){
   for(const m of reader.moshaf){
    const mid=asId(m.id),server=String(m.server||'');
    let host;try{host=new URL(server)}catch{continue}
-   if(!mid||host.protocol!=='https:'||!host.hostname.endsWith('mp3quran.net'))continue;
+   if(!mid||host.protocol!=='https:'||!(host.hostname==='mp3quran.net'||host.hostname.endsWith('.mp3quran.net')))continue;
    const surahs=[...new Set(String(m.surah_list||'').split(',').map(Number).filter(n=>Number.isInteger(n)&&n>=1&&n<=114))].sort((a,b)=>a-b);
    if(!surahs.length)continue;
    const recording={id:'mp3-'+id+'-'+mid,reader:id,name,riwaya:riwaya(m.name),moshaf:String(m.name||''),surahs,server};
@@ -56,6 +56,7 @@ async function main(){
   const relative='mushafs/'+m.id+'.html';manifest.mushafs[m.id]='catalog/'+relative;
   await write(relative,html(m.name+' — '+m.moshaf,'تلاوات '+m.name+' برواية '+m.riwaya+'، عدد السور المتاحة: '+m.surahs.length,'catalog/'+relative,m.surahs.map(n=>({title:'سورة '+n,sub:'استماع',href:'../../mushaf.html?id='+encodeURIComponent(m.id)+'&surah='+n})),'CollectionPage'));
  }
+ await fs.writeFile(path.join(tmp,'recordings.json'),JSON.stringify({version:1,source:ENDPOINT,recordings},null,2));
  await fs.writeFile(path.join(tmp,'manifest.json'),JSON.stringify(manifest,null,2));
  await fs.writeFile(path.join(tmp,'sitemap.xml'),'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+pages.map(p=>'<url><loc>'+ORIGIN+p+'</loc></url>').join('')+'</urlset>');
  await fs.rm(OUTPUT,{recursive:true,force:true});await fs.rename(tmp,OUTPUT);
