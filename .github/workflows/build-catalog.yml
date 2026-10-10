@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - 'scripts/build-catalog.cjs'
+      - 'scripts/check-catalog.cjs'
       - '.github/workflows/build-catalog.yml'
   workflow_dispatch:
   schedule:
@@ -25,6 +26,8 @@ jobs:
           node-version: '22'
       - name: Generate validated pages and sitemap
         run: node scripts/build-catalog.cjs
+      - name: Audit generated links and metadata
+        run: node scripts/check-catalog.cjs
       - name: Commit generated changes
         run: |
           git config user.name "github-actions[bot]"
