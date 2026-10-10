@@ -34,13 +34,14 @@ async function sendPrayerAlarm(id,label,mode,date=currentDate){
  if(lastTrigger.has(ident))return false;
  try{if(localStorage.getItem(storageKey))return false}catch{}
  const title=mode==='before'?'اقترب وقت صلاة '+label:'حان وقت صلاة '+label;
- await showPrayerNotification(title,'مواقيت الصلاة — '+loc()[0],'prayer-'+ident);
+ if('Notification' in window&&Notification.permission==='granted')await showPrayerNotification(title,'مواقيت الصلاة — '+loc()[0],'prayer-'+ident);
+ if(mode==='at')window.dispatchEvent(new CustomEvent('prayer-adhan-due',{detail:{id,label,date}}));
  lastTrigger.add(ident);
  try{localStorage.setItem(storageKey,String(Date.now()))}catch{}
  return true;
 }
 function checkAlarms(){
- if(!day||!('Notification' in window)||Notification.permission!=='granted')return;
+ if(!day)return;
  const now=clockMinutes();
  for(const [id,label] of prayers){
   if(!alarmNames.has(id)||!settings.enabled.includes(id))continue;
