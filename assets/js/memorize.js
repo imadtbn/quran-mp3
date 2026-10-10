@@ -73,7 +73,7 @@ audio.addEventListener('error',()=>{if(active)message('تعذر تحميل ال�
 audio.addEventListener('loadedmetadata',()=>clearTimeout(loadId));
 $('#reviewForm').addEventListener('submit',e=>{
  e.preventDefault();const next=getPlan();if(!next)return;
- stop(false);plan=next;verseIndex=0;verseRound=0;segmentRound=0;active=true;paused=false;
+ stop(false);try{localStorage.removeItem(progressKey)}catch{};plan=next;verseIndex=0;verseRound=0;segmentRound=0;active=true;paused=false;
  playVerse(run);
 });
 $('#pauseReview').addEventListener('click',()=>{
@@ -91,7 +91,7 @@ function readSharedPlan(){
  if(!keys.every(k=>q.has(k)))return null;
  const p=Object.fromEntries(keys.map(k=>[k,Number(q.get(k))]));
  const max=SURAHS[p.surah-1]?.ayahs;
- if(!max||!keys.every(k=>Number.isInteger(p[k]))||p.from<1||p.to>max||p.from>p.to||p.to-p.from+1>60||![1,2,3,5,10].includes(p.verseRepeat)||![1,2,3,5].includes(p.segmentRepeat)||![0,2,5,10].includes(p.gap))return null;
+ if(!max||!keys.every(k=>q.get(k)!==''&&Number.isInteger(p[k]))||p.from<1||p.to>max||p.from>p.to||p.to-p.from+1>60||![1,2,3,5,10].includes(p.verseRepeat)||![1,2,3,5].includes(p.segmentRepeat)||![0,2,5,10].includes(p.gap))return null;
  return p;
 }
 function applyPlan(p){for(const [id,v] of Object.entries({verseSurah:p.surah,fromVerse:p.from,toVerse:p.to,verseRepeat:p.verseRepeat,segmentRepeat:p.segmentRepeat,pauseBetween:p.gap}))$('#'+id).value=String(v);syncBounds()}
