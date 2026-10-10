@@ -128,6 +128,7 @@ $('#sleepTimer').addEventListener('change',()=>{
   },1000);
 });
 renderListenQueue();
+if('ResizeObserver' in window){new ResizeObserver(entries=>{const h=Math.ceil(entries[0].contentRect.height);if(h>0)document.documentElement.style.setProperty('--player-h',h+20+'px')}).observe($('#player'))}
 function step(dir){if(!state.queue.length)return;let available=state.queue.filter(s=>QuranAudio.url(reciter(),s.n));if(!available.length)return;let i=available.findIndex(s=>s.n===state.current);selectSurah(available[(i+dir+available.length)%available.length].n)}
 function playState(){$('#iconPlay').hidden=!audio.paused;$('#iconPause').hidden=audio.paused;renderGrid()}
 function renderResume(){let b=$('#resumeBanner');if(!state.last||!SURAHS.find(s=>s.n===state.last.n)){b.hidden=true;return}let s=SURAHS.find(x=>x.n===state.last.n),r=RECITERS.find(x=>x.id===state.last.reciterId)||RECITERS[0];$('#resumeTitle').textContent='سورة '+s.name;$('#resumeMeta').textContent=`${r.short} · توقفت عند ${time(state.last.time)}`;b.hidden=false}
