@@ -13,7 +13,11 @@
       ],
       "source": "القرآن الكريم، سورة الإخلاص (112:1–4). تكرار المعوذات والإخلاص ثلاثًا: سنن أبي داود 5082، والترمذي 3575",
       "sourceUrl": "https://sunnah.com/abudawud:5082",
-      "audioUrl": "surah.html?surah=112"
+      "audioUrl": "surah.html?surah=112",
+      "quran": {
+        "surah": 112,
+        "ayah": 1
+      }
     },
     {
       "id": "falaq",
@@ -26,7 +30,11 @@
       ],
       "source": "القرآن الكريم، سورة الفلق (113:1–5). التكرار: سنن أبي داود 5082",
       "sourceUrl": "https://sunnah.com/abudawud:5082",
-      "audioUrl": "surah.html?surah=113"
+      "audioUrl": "surah.html?surah=113",
+      "quran": {
+        "surah": 113,
+        "ayah": 1
+      }
     },
     {
       "id": "nas",
@@ -39,7 +47,11 @@
       ],
       "source": "القرآن الكريم، سورة الناس (114:1–6). التكرار: سنن أبي داود 5082",
       "sourceUrl": "https://sunnah.com/abudawud:5082",
-      "audioUrl": "surah.html?surah=114"
+      "audioUrl": "surah.html?surah=114",
+      "quran": {
+        "surah": 114,
+        "ayah": 1
+      }
     },
     {
       "id": "istighfar",
@@ -128,7 +140,11 @@
       ],
       "source": "القرآن الكريم، البقرة: 255؛ حصن المسلم، رقم 75",
       "sourceUrl": "https://sunnah.com/hisn:75",
-      "audioUrl": null
+      "audioUrl": null,
+      "quran": {
+        "surah": 2,
+        "ayah": 255
+      }
     },
     {
       "id": "witness-m",
