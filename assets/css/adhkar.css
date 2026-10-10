@@ -50,3 +50,6 @@
  .adhkar-page .adhkar-return{padding:8px 10px;font-size:.77rem}
 }
 @media(prefers-reduced-motion:reduce){.adhkar-page :is(button,.adhkar-actions a,.adhkar-return){transition:none}}
+
+/* Keep the prayer dhikr controls legible at very narrow widths */
+.adhkar-page .adhkar-layout,.adhkar-page .adhkar-list,.adhkar-page .adhkar-card{min-width:0;max-width:100%}.adhkar-page .adhkar-text{overflow-wrap:anywhere}.adhkar-page .adhkar-progress>div{flex-wrap:wrap;gap:8px}.adhkar-page .adhkar-aside a{overflow-wrap:anywhere}@media(max-width:440px){.adhkar-page .adhkar-tools input{max-width:100%;width:100%}.adhkar-page .adhkar-actions button,.adhkar-page .adhkar-actions a{min-height:44px}}
