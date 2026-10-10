@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "reviewStatus": "selected-authenticated-examples",
+  "notes": "مجموعة ابتدائية منتقاة من أذكار وأدعية مأثورة وليست استيعابًا لجميع الباب. التنبيه إلى تعدد صيغ الأذكار وأعدادها.",
+  "categories": {
+    "sleep": {
+      "title": "أذكار النوم والاستيقاظ",
+      "image": "sleep",
+      "items": [
+        {
+          "id": "wake-1",
+          "title": "عند الاستيقاظ",
+          "text": "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+          "repeat": 1,
+          "source": "hisn:1",
+          "sourceUrl": "https://sunnah.com/hisn:1"
+        },
+        {
+          "id": "sleep-1",
+          "title": "عند وضع الجنب",
+          "text": "بِاسْمِكَ رَبِّي وَضَعْتُ جَنْبِي، وَبِكَ أَرْفَعُهُ، فَإِنْ أَمْسَكْتَ نَفْسِي فَارْحَمْهَا، وَإِنْ أَرْسَلْتَهَا فَاحْفَظْهَا بِمَا تَحْفَظُ بِهِ عِبَادَكَ الصَّالِحِينَ",
+          "repeat": 1,
+          "source": "hisn:102",
+          "sourceUrl": "https://sunnah.com/hisn:102"
+        },
+        {
+          "id": "sleep-2",
+          "title": "باسمك اللهم أموت وأحيا",
+          "text": "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا",
+          "repeat": 1,
+          "source": "bukhari:6324",
+          "sourceUrl": "https://sunnah.com/bukhari:6324"
+        }
+      ]
+    },
+    "prayer": {
+      "title": "أذكار ما بعد الصلاة",
+      "image": "prayer",
+      "items": [
+        {
+          "id": "prayer-1",
+          "title": "الاستغفار بعد السلام",
+          "text": "أَسْتَغْفِرُ اللَّهَ",
+          "repeat": 3,
+          "source": "muslim:591",
+          "sourceUrl": "https://sunnah.com/muslim:591"
+        },
+        {
+          "id": "prayer-2",
+          "title": "اللهم أنت السلام",
+          "text": "اللَّهُمَّ أَنْتَ السَّلَامُ وَمِنْكَ السَّلَامُ، تَبَارَكْتَ يَا ذَا الْجَلَالِ وَالْإِكْرَامِ",
+          "repeat": 1,
+          "source": "muslim:591",
+          "sourceUrl": "https://sunnah.com/muslim:591"
+        },
+        {
+          "id": "prayer-3",
+          "title": "التسبيح بعد الصلاة",
+          "text": "سُبْحَانَ اللَّهِ",
+          "repeat": 33,
+          "source": "muslim:597a",
+          "sourceUrl": "https://sunnah.com/muslim:597a"
+        },
+        {
+          "id": "prayer-4",
+          "title": "التحميد بعد الصلاة",
+          "text": "الْحَمْدُ لِلَّهِ",
+          "repeat": 33,
+          "source": "muslim:597a",
+          "sourceUrl": "https://sunnah.com/muslim:597a"
+        },
+        {
+          "id": "prayer-5",
+          "title": "التكبير بعد الصلاة",
+          "text": "اللَّهُ أَكْبَرُ",
+          "repeat": 33,
+          "source": "muslim:597a",
+          "sourceUrl": "https://sunnah.com/muslim:597a"
+        }
+      ]
+    },
+    "duaa": {
+      "title": "الأدعية النبوية",
+      "image": "duaa",
+      "items": [
+        {
+          "id": "duaa-1",
+          "title": "سيد الاستغفار",
+          "text": "اللَّهُمَّ أَنْتَ رَبِّي لَا إِلَهَ إِلَّا أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي، فَاغْفِرْ لِي، فَإِنَّهُ لَا يَغْفِرُ الذُّنُوبَ إِلَّا أَنْتَ",
+          "repeat": 1,
+          "source": "bukhari:6306",
+          "sourceUrl": "https://sunnah.com/bukhari:6306"
+        },
+        {
+          "id": "duaa-2",
+          "title": "ربنا آتنا في الدنيا حسنة",
+          "text": "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+          "repeat": 1,
+          "source": "bukhari:6389",
+          "sourceUrl": "https://sunnah.com/bukhari:6389"
+        },
+        {
+          "id": "duaa-3",
+          "title": "اللهم آتنا في الدنيا حسنة",
+          "text": "اللَّهُمَّ آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+          "repeat": 1,
+          "source": "muslim:2690a",
+          "sourceUrl": "https://sunnah.com/muslim:2690a"
+        }
+      ]
+    }
+  }
+}
