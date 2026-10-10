@@ -10,9 +10,9 @@
   "theme_color": "#18332d",
   "icons": [
     {
-      "src": "./assets/icons/quran-icon.svg",
+      "src": "./assets/icons/quran.png",
       "sizes": "any",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any"
     }
   ],
