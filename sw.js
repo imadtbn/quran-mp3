@@ -1,4 +1,4 @@
-const VERSION='quran-mp3-shell-v5';
+const VERSION='quran-mp3-shell-v6';
 const BASE=new URL(self.registration.scope);
 const SHELL=['','index.html','offline.html','memorize.html','readers.html','riwayat.html','mushafs.html','manifest.webmanifest','assets/icons/quran-icon.svg','assets/css/style.css','assets/css/details.css','assets/css/memorize.css','assets/js/data.js','assets/js/app.js','assets/js/audio-core.js','assets/js/ads.js','assets/js/memorize.js','assets/js/directory.js'];
 const appUrl=p=>new URL(p,BASE).href;
