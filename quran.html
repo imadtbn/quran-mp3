@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ar" dir="rtl"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>المصحف الرقمي | مكتبة القرآن الصوتية</title><meta name="description" content="اقرأ القرآن الكريم برواية حفص، تنقل بين صفحات المصحف وسوره، وابحث واحفظ علامات القراءة.">
+<link rel="canonical" href="https://imadtbn.github.io/quran-mp3/quran.html">
+<link rel="stylesheet" href="assets/css/quran.css">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet"></head>
+<body><a class="skip" href="#verses">الانتقال إلى الآيات</a>
+<header class="top"><a class="brand" href="index.html">❖ مكتبة القرآن الصوتية</a><nav aria-label="التنقل"><a href="index.html">الرئيسية</a><a href="mushafs.html">المصاحف الصوتية</a></nav></header>
+<main class="layout"><section class="intro"><div><small>المكتبة الصوتية • القراءة</small><h1>المصحف الرقمي</h1><p>رواية حفص عن عاصم · قراءة هادئة وتصفح آمن للآيات</p></div><a class="back" href="index.html">العودة إلى المكتبة ←</a></section>
+<section class="controls" aria-label="أدوات المصحف">
+<label>السورة <select id="surah" aria-label="اختر سورة"></select></label><label>الصفحة <input id="pageInput" type="number" inputmode="numeric" min="1" max="604" value="1" aria-label="رقم الصفحة"></label>
+<label>طريقة العرض <select id="mode"><option value="page">صفحات المصحف</option><option value="surah">قراءة متدفقة</option></select></label>
+<label>حجم الخط <input type="range" min="24" max="48" step="2" id="fontSize" value="32" aria-label="حجم الخط"></label>
+<button id="resume" type="button">متابعة القراءة</button><button id="bookmarksToggle" type="button">علاماتي المرجعية</button>
+</section>
+<section class="search-panel" aria-label="البحث في القرآن"><form id="searchForm" role="search"><label for="searchInput">البحث في الآيات</label><div class="search-line"><input id="searchInput" type="search" placeholder="اكتب كلمة أو جزءًا من آية..." minlength="2"><button type="submit">بحث في المصحف</button></div></form><p class="note">البحث يتجاهل الحركات لغرض المطابقة فقط، ولا يغيّر نص الآيات المعروض.</p><div id="searchResults" class="results" hidden></div></section>
+<section class="reading"><div class="reading-head"><strong id="readingTitle">سورة الفاتحة</strong><span id="readingMeta">الصفحة 1</span></div><p id="status" class="status" role="status" aria-live="polite">جارٍ تحميل النص القرآني…</p><article id="verses" class="verses" aria-label="الآيات القرآنية"></article>
+<div class="reading-foot"><button id="prev" type="button">الصفحة السابقة</button><span id="counter">1 / 604</span><button id="next" type="button">الصفحة التالية</button></div></section>
+<aside id="bookmarks" class="bookmark-panel" hidden><h2>العلامات المرجعية</h2><div id="bookmarkItems"></div></aside>
+<p class="source">مصدر النص العثماني: <a href="https://alquran.cloud/api" target="_blank" rel="noopener noreferrer">AlQuran Cloud</a> (quran-uthmani). يعتمد عرض الصفحات على بيانات الفهرسة التي يوفرها المصدر؛ ولا يدّعي مطابقة إخراج الصفحة المطبعية حرفيًا.</p>
+</main><footer>المكتبة الصوتية للقرآن الكريم · النص القرآني للقراءة والتدبر</footer><script src="assets/js/quran.js" defer></script></body></html>
