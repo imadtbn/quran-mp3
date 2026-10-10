@@ -8,21 +8,18 @@ const audio=$('#audio'),audioController=QuranAudio.attach(audio,{status:code=>{c
 function renderHeroStats(){$('#statSurahs').textContent=toAr(114);$('#statReciters').textContent=toAr(RECITERS.length);$('#statRiwayat').textContent=toAr(new Set(RECITERS.map(r=>r.riwaya)).size)}
 let reciterLimit=24,reciterMatches=[];
 function renderReciters(){
-  const q=norm($('#reciterSearch').value);
-  const global=norm(state.query);
-  const matched=RECITERS.filter(r=>
-    (!state.riwaya||r.riwaya===state.riwaya)&&
-    (!$('#styleSelect').value||r.style===$('#styleSelect').value)&&
-    (!q||norm(r.name+' '+r.riwaya+' '+r.moshafName).includes(q))&&
-    (!global||!state.searchReciters||norm(r.name+' '+r.riwaya+' '+r.moshafName).includes(global))
-  );
-  reciterMatches=matched;
-  $('#reciterList').innerHTML=matched.length?matched.slice(0,reciterLimit).map(r=>`<button class="reciter-item ${r.id===state.reciterId?'active':''}" data-reciter="${r.id}" type="button"><span class="reciter-avatar">${r.short[0]}</span><span class="reciter-body"><strong>${r.name}</strong><small>${r.riwaya} · ${r.style}</small></span><span class="reciter-check">✓</span></button>`).join(''):'<p class="muted-note">لا يوجد قارئ مطابق.</p>';
-  const more=$('#moreRecitersBtn');more.hidden=matched.length<=reciterLimit;
+ const matched=eligibleReciters();
+ reciterMatches=matched;
+ $('#reciterList').innerHTML=matched.length?matched.slice(0,reciterLimit).map(r=>`<button class="reciter-item ${r.id===state.reciterId?'active':''}" data-reciter="${r.id}" type="button"><span class="reciter-avatar">${r.short[0]}</span><span class="reciter-body"><strong>${r.name}</strong><small>${r.riwaya} · ${r.style}</small></span><span class="reciter-check">✓</span></button>`).join(''):'<p class="muted-note">لا توجد تسجيلات تطابق الفلاتر.</p>';
+ $('#moreRecitersBtn').hidden=matched.length<=reciterLimit;
+ if(matched.length>reciterLimit)$('#moreRecitersBtn').textContent='عرض المزيد ('+toAr(matched.length-reciterLimit)+')';
+ const info=$('#filterResultInfo');if(info)info.textContent='التسجيلات المطابقة: '+toAr(matched.length);
+}
+$('#moreRecitersBtn');more.hidden=matched.length<=reciterLimit;
   if(!more.hidden)more.textContent='عرض المزيد من القراء ('+toAr(matched.length-reciterLimit)+')';
 }
 $('#moreRecitersBtn').addEventListener('click',()=>{reciterLimit+=24;renderReciters()});
-$('#styleSelect').addEventListener('change',()=>{reciterLimit=24;renderReciters()});
+$('#styleSelect').addEventListener('change',()=>{reciterLimit=24;applyMainSearch()});
 function searchNumber(value){
   const plain=String(value).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
   return /^\d+$/.test(plain.trim())?Number(plain.trim()):null;
@@ -35,18 +32,14 @@ function matchRecitersByMainQuery(){
   const q=norm(state.query);
   return q?RECITERS.filter(r=>norm(r.name+' '+r.short+' '+r.riwaya+' '+(r.moshafName||'')).includes(q)):[];
 }
+function eligibleReciters(){const q=norm($('#reciterSearch').value),main=norm(state.query);const matchSurah=SURAHS.some(matching);return RECITERS.filter(r=>(!state.riwaya||r.riwaya===state.riwaya)&&(!$('#styleSelect').value||r.style===$('#styleSelect').value)&&(!q||norm(r.name+' '+r.riwaya+' '+(r.moshafName||'')).includes(q))&&(!main||matchSurah||norm(r.name+' '+r.riwaya+' '+(r.moshafName||'')).includes(main)));}
 function applyMainSearch(){
-  const matches=matchRecitersByMainQuery();
-  const hasSurah=SURAHS.some(matching);
-  if(state.query.trim()&&!hasSurah&&matches.length){
-    const eligible=matches.filter(r=>(!state.riwaya||r.riwaya===state.riwaya)&&(!$('#styleSelect').value||r.style===$('#styleSelect').value));
-    state.searchReciters=true;
-    if(eligible.length&&!eligible.some(r=>r.id===state.reciterId)){
-      state.reciterId=eligible[0].id;localStorage.setItem('qmp3-reciter',state.reciterId);
-    }
-  }else state.searchReciters=false;
-  renderReciters();
-  renderGrid();
+ const matches=eligibleReciters(),hasSurah=SURAHS.some(matching);
+ state.searchReciters=!!state.query.trim()&&!hasSurah;
+ if(matches.length&&!matches.some(r=>r.id===state.reciterId)){
+   state.reciterId=matches[0].id;localStorage.setItem('qmp3-reciter',state.reciterId);
+ }
+ renderReciters();renderGrid();
 }
 function list(){let a=SURAHS.filter(s=>(state.searchReciters||matching(s))&&(!reciter().surahs||reciter().surahs.includes(s.n))&&(!state.favoritesOnly||state.favorites.has(s.n)));return state.sort==='alpha'?a.sort((x,y)=>x.name.localeCompare(y.name,'ar')):a}
 const svg=(path,fill='none')=>`<svg viewBox="0 0 24 24" fill="${fill}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
@@ -142,7 +135,7 @@ async function shareCurrent(){let n=state.current||state.queue[0]?.n;if(!n)retur
 function setTheme(dark){document.body.classList.toggle('dark',dark);localStorage.setItem('qmp3-theme',dark?'dark':'light');$('#themeToggle').textContent=dark?'☀':'◐';$('#themeToggle').setAttribute('aria-label',dark?'تفعيل الوضع النهاري':'تفعيل الوضع الليلي')}
 $('#reciterList').addEventListener('click',e=>{let b=e.target.closest('[data-reciter]');if(!b)return;state.reciterId=b.dataset.reciter;localStorage.setItem('qmp3-reciter',state.reciterId);renderReciters();renderGrid();if(state.current&&QuranAudio.url(reciter(),state.current))selectSurah(state.current,false);else if(state.current){audio.pause();audio.removeAttribute('src');audio.load();state.current=null}});
 $('#surahGrid').addEventListener('click',e=>{let f=e.target.closest('[data-favorite]'),p=e.target.closest('[data-play]'),a=e.target.closest('[data-add-playlist]'),c=e.target.closest('[data-n]');if(f)return favorite(+f.dataset.favorite);let q=e.target.closest('[data-queue]');if(q)return enqueue(+q.dataset.queue);if(p)return selectSurah(+p.dataset.play);if(a)return openPlaylists(+a.dataset.addPlaylist);if(c&&!e.target.closest('a,button'))selectSurah(+c.dataset.n)});
-$('#viewSelect').addEventListener('change',e=>{state.view=e.target.value;state.playQueue=null;renderGrid()});$('#trendingList').addEventListener('click',e=>{let b=e.target.closest('[data-trend]');if(b)selectSurah(+b.dataset.trend)});$('#repeatBtn').addEventListener('click',()=>{$('#repeatCount').value=$('#repeatCount').value==='0'?'-1':'0';$('#repeatCount').dispatchEvent(new Event('change'))});$('#searchInput').addEventListener('input',e=>{state.playQueue=null;state.view='surahs';$('#viewSelect').value='surahs';state.query=e.target.value;reciterLimit=24;$('#searchClear').hidden=!state.query;applyMainSearch()});$('#searchClear').addEventListener('click',()=>{$('#searchInput').value='';state.query='';state.searchReciters=false;$('#searchClear').hidden=true;applyMainSearch();$('#searchInput').focus()});$('#reciterSearch').addEventListener('input',renderReciters);$('#riwayaSelect').addEventListener('change',e=>{state.riwaya=e.target.value;reciterLimit=24;renderReciters();renderGrid()});$('#sortSelect').addEventListener('change',e=>{state.playQueue=null;state.sort=e.target.value;renderGrid()});$('#favoritesToggle').addEventListener('click',e=>{state.view='surahs';$('#viewSelect').value='surahs';state.playQueue=null;state.favoritesOnly=!state.favoritesOnly;e.currentTarget.classList.toggle('active',state.favoritesOnly);renderGrid()});
+$('#viewSelect').addEventListener('change',e=>{state.view=e.target.value;state.playQueue=null;renderGrid()});$('#trendingList').addEventListener('click',e=>{let b=e.target.closest('[data-trend]');if(b)selectSurah(+b.dataset.trend)});$('#repeatBtn').addEventListener('click',()=>{$('#repeatCount').value=$('#repeatCount').value==='0'?'-1':'0';$('#repeatCount').dispatchEvent(new Event('change'))});$('#searchInput').addEventListener('input',e=>{state.playQueue=null;state.view='surahs';$('#viewSelect').value='surahs';state.query=e.target.value;reciterLimit=24;$('#searchClear').hidden=!state.query;applyMainSearch()});$('#searchClear').addEventListener('click',()=>{$('#searchInput').value='';state.query='';state.searchReciters=false;$('#searchClear').hidden=true;applyMainSearch();$('#searchInput').focus()});$('#reciterSearch').addEventListener('input',()=>{reciterLimit=24;applyMainSearch()});$('#riwayaSelect').addEventListener('change',e=>{state.riwaya=e.target.value;reciterLimit=24;applyMainSearch()});$('#sortSelect').addEventListener('change',e=>{state.playQueue=null;state.sort=e.target.value;renderGrid()});$('#favoritesToggle').addEventListener('click',e=>{state.view='surahs';$('#viewSelect').value='surahs';state.playQueue=null;state.favoritesOnly=!state.favoritesOnly;e.currentTarget.classList.toggle('active',state.favoritesOnly);renderGrid()});
 function reset(){state.playQueue=null;state.view='surahs';$('#viewSelect').value='surahs';state.query='';state.searchReciters=false;state.riwaya='';state.favoritesOnly=false;$('#searchInput').value='';$('#reciterSearch').value='';$('#riwayaSelect').value='';$('#styleSelect').value='';reciterLimit=24;$('#favoritesToggle').classList.remove('active');$('#searchClear').hidden=true;renderReciters();renderGrid()}$('#resetFilters').addEventListener('click',reset);$('#emptyReset').addEventListener('click',reset);$('#searchForm').addEventListener('submit',e=>{e.preventDefault();if(state.queue[0])selectSurah(state.queue[0].n)});$('#playAllBtn').addEventListener('click',()=>state.queue[0]&&selectSurah(state.queue[0].n));$('#shareBtn').addEventListener('click',shareCurrent);$('#sharePageBtn').addEventListener('click',shareCurrent);$('#playBtn').addEventListener('click',()=>{if(!audio.src)return state.queue[0]&&selectSurah(state.queue[0].n);audio.paused?(audioController.failed()?audioController.retry():audioController.play()):audio.pause()});$('#nextBtn').addEventListener('click',()=>step(1));$('#prevBtn').addEventListener('click',()=>step(-1));$('#resumeBtn').addEventListener('click',()=>{if(state.last){state.reciterId=state.last.reciterId||state.reciterId;localStorage.setItem('qmp3-reciter',state.reciterId);renderReciters();selectSurah(state.last.n,true,true)}});
 let lastRecordedTrack='';audio.addEventListener('playing',()=>{const key=state.reciterId+':'+state.current+':'+audio.currentSrc;if(state.current&&key!==lastRecordedTrack){lastRecordedTrack=key;recordPlay(state.current)}});audio.addEventListener('play',()=>{statTick=performance.now();playState()});audio.addEventListener('pause',()=>{statTick=0;playState()});audio.addEventListener('ended',onTrackEnd);let statTick=0;audio.addEventListener('timeupdate',()=>{let now=performance.now();if(!audio.paused&&statTick){state.stats.seconds+=Math.min(5,Math.max(0,(now-statTick)/1000));if(Math.floor(state.stats.seconds)%10===0)localStorage.setItem('qmp3-stats',JSON.stringify(state.stats));renderStatsDashboard()}statTick=now;let p=audio.duration?audio.currentTime/audio.duration*1000:0;$('#seekBar').style.setProperty('--fill',p/10+'%');$('#curTime').textContent=time(audio.currentTime);saveLast()});audio.addEventListener('loadedmetadata',()=>$('#durTime').textContent=time(audio.duration));$('#seekBar').addEventListener('input',e=>{if(audio.duration)audio.currentTime=e.target.value/1000*audio.duration});$('#volumeBar').addEventListener('input',e=>{audio.volume=e.target.value/100});$('#volumeBtn').addEventListener('click',()=>audio.muted=!audio.muted);
 $('#themeToggle').addEventListener('click',()=>setTheme(!document.body.classList.contains('dark')));$('#playlistsBtn').addEventListener('click',()=>openPlaylists());$('#closePlaylist').addEventListener('click',closePlaylists);$('#playlistModal').addEventListener('click',e=>{if(e.target.id==='playlistModal')closePlaylists();let add=e.target.closest('[data-playlist-add]'),playBtn=e.target.closest('[data-playlist-play]'),del=e.target.closest('[data-playlist-delete]');if(add)addToPlaylist(add.dataset.playlistAdd);if(playBtn)playPlaylist(playBtn.dataset.playlistPlay);if(del){state.playlists=state.playlists.filter(p=>p.id!==del.dataset.playlistDelete);savePlaylists();renderPlaylists()}});$('#playlistForm').addEventListener('submit',e=>{e.preventDefault();let name=$('#playlistName').value.trim();if(!name)return;state.playlists.push({id:Date.now().toString(36),name,surahs:[]});savePlaylists();$('#playlistName').value='';renderPlaylists()});
