@@ -50,6 +50,11 @@
           "type": "image/png"
         }
       ]
+    },
+    {
+      "name": "مواقيت الصلاة",
+      "short_name": "الصلاة",
+      "url": "./prayer-times.html"
     }
   ]
 }
