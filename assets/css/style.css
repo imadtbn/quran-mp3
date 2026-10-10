@@ -28,3 +28,29 @@
 .queue-item span{min-width:0;overflow:hidden;text-overflow:ellipsis}
 .queue-item button,.queue-heading button{flex:none;border-color:var(--line)}
 @media(max-width:640px){.listening-tools{gap:5px;padding:4px 6px;font-size:.69rem}.listening-tools select,.listening-tools button{padding:3px 5px}.queue-panel{inset-inline:5px}}
+
+/* Unified mobile filtering and consistent touch targets */
+.mobile-filter-toolbar{display:none}
+#moreRecitersBtn{margin-top:10px;min-height:40px}
+#moreRecitersBtn[hidden]{display:none}
+.reciter-item,.chip-btn,.nav-toggle,.pbtn{touch-action:manipulation}
+@media(max-width:780px){
+ .mobile-filter-toolbar{display:block;padding-top:16px}
+ .mobile-filter-toolbar button{display:block;width:100%;min-height:44px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--brand);font-weight:700}
+ .library{display:flex;flex-direction:column;gap:14px;padding-top:15px}
+ .library .filters-panel{display:none;position:static;max-height:none;width:100%}
+ .library .filters-panel.mobile-open{display:block}
+ .library .content{min-width:0;width:100%}
+ .toolbar-actions{max-width:100%}
+ .surah-grid{min-width:0}
+ .site-header .header-inner{gap:8px}
+ .header-tools{flex-shrink:0}
+ .main-nav.open{max-height:min(70vh,480px);overflow-y:auto}
+}
+@media(max-width:430px){
+ .brand-text{font-size:.86rem}
+ .toolbar-actions>*{max-width:100%}
+ .player{max-width:100vw}
+ .player-bar{min-width:0}
+ .player-side{min-width:0}
+}
