@@ -1,4 +1,4 @@
-const VERSION='quran-mp3-shell-v8';
+const VERSION='quran-mp3-shell-v9';
 const BASE=new URL(self.registration.scope);
 const SHELL=['','index.html','offline.html','memorize.html','adhkar.html','assets/css/adhkar.css','assets/js/adhkar.js','assets/data/adhkar.json','readers.html','riwayat.html','mushafs.html','manifest.webmanifest','assets/icons/quran-icon.svg','assets/css/style.css','assets/css/details.css','assets/css/memorize.css','assets/js/data.js','assets/js/app.js','assets/js/audio-core.js','assets/js/ads.js','assets/js/memorize.js','assets/js/directory.js','quran.html','assets/css/quran.css','assets/js/quran.js','assets/js/quran-audio.js','assets/js/quran-offline.js','assets/js/quran-sync.js','assets/data/quran/timings.json'];
 const appUrl=p=>new URL(p,BASE).href;
@@ -15,6 +15,7 @@ self.addEventListener('fetch',e=>{
  const req=e.request;if(req.method!=='GET')return;
  const u=new URL(req.url);
  if(u.origin!==self.location.origin||!u.pathname.startsWith(BASE.pathname))return;
+ if(req.destination==='audio'||req.headers.has('range'))return;
  if(u.pathname.includes('/catalog/')||u.pathname.endsWith('/recordings.json'))return;
  const isNav=req.mode==='navigate';
  e.respondWith((async()=>{
