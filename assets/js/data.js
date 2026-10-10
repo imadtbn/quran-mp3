@@ -29,6 +29,20 @@ function catalogEntry(reader,moshaf){
   return {id:'mp3-'+reader.id+'-'+moshaf.id,name,short:name,riwaya:catalogRiwaya(moshaf.name),style:catalogStyle(moshaf.name),base:String(moshaf.server).replace(/\/?$/,'/'),surahs,source:'mp3quran',moshafName:String(moshaf.name||'')};
 }
 const catalogReady=(async()=>{
+  // Prefer the same validated snapshot used to generate canonical pages.
+  try{
+    const snapshot=await fetch('catalog/recordings.json',{cache:'no-store'});
+    if(snapshot.ok){
+      const body=await snapshot.json();
+      if(body.version===1&&Array.isArray(body.recordings)&&body.recordings.length>=10){
+        const entries=body.recordings.map(item=>catalogEntry(
+          {id:item.reader,name:item.name},
+          {id:String(item.id).split('-').pop(),server:item.server,surah_list:item.surahs.join(','),name:item.moshaf}
+        )).filter(Boolean);
+        if(entries.length>=10){RECITERS.splice(0,RECITERS.length,...entries);return {online:true,count:entries.length,snapshot:true};}
+      }
+    }
+  }catch(error){console.warn('Static catalog unavailable',error.message)}
   try{
     const ctrl=new AbortController();
     const timer=setTimeout(()=>ctrl.abort(),4500);
