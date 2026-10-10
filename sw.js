@@ -1,4 +1,4 @@
-const VERSION='quran-mp3-shell-v17';
+const VERSION='quran-mp3-shell-v18';
 const BASE=new URL(self.registration.scope);
 const SHELL=['','index.html','offline.html','memorize.html','adhkar.html','prayer-times.html','assets/css/prayer-times.css','assets/js/prayer-times.js','assets/css/adhkar.css','assets/js/adhkar.js','assets/data/adhkar.json','assets/img/adhkar-morning.svg','assets/img/adhkar-sleep.svg','assets/img/adhkar-prayer.svg','assets/img/adhkar-duaa.svg','adhkar-sleep.html','adhkar-prayer.html','adhkar-duaa.html','assets/data/adhkar-categories.json','assets/js/adhkar-categories.js','assets/js/adhkar-search.js','readers.html','riwayat.html','mushafs.html','manifest.webmanifest','assets/icons/quran-icon.svg','assets/css/style.css','assets/css/details.css','assets/css/memorize.css','assets/js/data.js','assets/js/app.js','assets/js/audio-core.js','assets/js/ads.js','assets/js/memorize.js','assets/js/directory.js','quran.html','assets/css/quran.css','assets/js/quran.js','assets/js/quran-audio.js','assets/js/quran-offline.js','assets/js/quran-sync.js','assets/data/quran/timings.json'];
 const appUrl=p=>new URL(p,BASE).href;
@@ -31,3 +31,5 @@ self.addEventListener('fetch',e=>{
    }
  })());
 });
+
+self.addEventListener('notificationclick',event=>{event.notification.close();event.waitUntil((async()=>{const url=new URL('prayer-times.html',BASE).href;const clientsList=await self.clients.matchAll({type:'window',includeUncontrolled:true});const match=clientsList.find(c=>c.url.startsWith(BASE.href));if(match){await match.focus();if('navigate' in match&& !match.url.includes('prayer-times.html'))await match.navigate(url)}else await self.clients.openWindow(url)})())});
