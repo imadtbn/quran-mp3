@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "https://www.mp3quran.net/api/v3/reciters?language=ar",
-  "createdAt": "2026-10-10T05:22:09.244Z",
+  "createdAt": "2026-10-10T06:13:12.330Z",
   "readers": {
     "إبراهيم الأخضر": "catalog/readers/1.html",
     "أكرم العلاقمي": "catalog/readers/10.html",
