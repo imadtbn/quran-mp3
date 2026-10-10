@@ -362,3 +362,67 @@ body .review-actions button:hover:not(:disabled){background:var(--brand-soft);bo
 .explore-readers-btn:hover .explore-readers-arrow{transform:translateX(-3px)}
 @media(max-width:640px){.stats-panel .section-heading{align-items:center;flex-wrap:wrap;gap:12px}.explore-readers-btn{padding:9px 12px;font-size:.8rem}}
 @media(prefers-reduced-motion:reduce){.explore-readers-btn,.explore-readers-btn .explore-readers-arrow{transition:none}}
+
+
+/* Button refinement: clear hierarchy, consistent touch targets, no layout shifts */
+:root{--control-radius:12px;--control-shadow:0 3px 10px rgba(16,55,44,.075)}
+:where(.chip-btn,.text-action,.favorites-toggle,.filters-reset,.install-toggle,.directory-nav a,.duaa-share-button,.explore-readers-btn){
+  font-family:'Tajawal',system-ui,sans-serif;
+  letter-spacing:0;
+  touch-action:manipulation;
+}
+:where(.chip-btn,.text-action,.favorites-toggle,.install-toggle,.directory-nav a){
+  border-radius:var(--control-radius);
+  min-height:44px;
+  font-weight:700;
+}
+:where(.chip-btn,.text-action,.favorites-toggle,.install-toggle,.directory-nav a):focus-visible{
+  outline:3px solid var(--gold);
+  outline-offset:3px;
+}
+:where(.chip-btn,.text-action,.favorites-toggle,.install-toggle,.directory-nav a):active:not(:disabled){
+  transform:translateY(0);
+  box-shadow:none;
+}
+.chip-btn:not(.secondary-chip){border-color:var(--brand);background:var(--brand);color:#fff}
+.chip-btn:not(.secondary-chip):hover:not(:disabled){background:var(--ink-2);border-color:var(--ink-2)}
+.secondary-chip,.text-action{background:var(--surface);border-color:var(--line);color:var(--brand)}
+.secondary-chip:hover:not(:disabled),.text-action:hover:not(:disabled){background:var(--brand-soft);border-color:var(--brand);color:var(--ink-2)}
+.filters-reset{padding:7px 9px;border-radius:9px}
+.filters-reset:hover{background:var(--brand-soft)}
+/* Main readers/narrations CTA */
+.stats-panel .explore-readers-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  width:max-content;max-width:100%;min-height:46px;
+  padding:10px 17px;
+  border:1px solid var(--brand);
+  border-radius:13px;
+  background:linear-gradient(125deg,var(--ink-2),var(--brand));
+  color:#fff;
+  font-size:.9rem;font-weight:800;line-height:1.4;
+  box-shadow:0 5px 14px rgba(16,55,44,.15);
+  text-decoration:none;
+}
+.stats-panel .explore-readers-btn .explore-readers-icon{
+  display:inline-grid;place-items:center;flex:none;
+  width:28px;height:28px;border-radius:9px;
+  background:rgba(255,255,255,.14);color:#f1cf83;font-size:17px;
+}
+.stats-panel .explore-readers-btn .explore-readers-arrow{font-size:1.13rem;line-height:1}
+.stats-panel .explore-readers-btn:hover{
+  background:linear-gradient(125deg,#102b25,#0e665c);
+  color:#fff;border-color:var(--brand);
+  box-shadow:0 8px 18px rgba(16,55,44,.2);
+}
+.stats-panel .explore-readers-btn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(max-width:640px){
+ .stats-panel .section-heading{align-items:center;gap:10px}
+ .stats-panel .explore-readers-btn{min-height:44px;padding:8px 12px;font-size:.81rem;gap:8px}
+ .stats-panel .explore-readers-btn .explore-readers-icon{width:25px;height:25px}
+ .toolbar-actions .chip-btn{white-space:normal;text-align:center;line-height:1.35}
+ .utility-actions .text-action{padding-inline:12px}
+}
+@media(prefers-reduced-motion:reduce){
+ .stats-panel .explore-readers-btn,
+ .stats-panel .explore-readers-btn *{transition:none!important;transform:none!important}
+}
