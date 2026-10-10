@@ -12,7 +12,7 @@ function eligibleReciters(){
  return RECITERS.filter(r=>(!state.riwaya||r.riwaya===state.riwaya)&&(!$('#styleSelect').value||r.style===$('#styleSelect').value)&&(!q||norm(r.name+' '+r.riwaya+' '+(r.moshafName||'')).includes(q)));
 }
 function renderReciters(){
- const matched=eligibleReciters();
+ const matched=eligibleReciters().filter(r=>!state.searchReciters||norm([r.name,r.riwaya,r.moshafName||''].join(' ')).includes(norm(state.query)));
  reciterMatches=matched;
  $('#reciterList').innerHTML=matched.length?matched.slice(0,reciterLimit).map(r=>`<button class="reciter-item ${r.id===state.reciterId?'active':''}" data-reciter="${r.id}" type="button"><span class="reciter-avatar">${r.short[0]}</span><span class="reciter-body"><strong>${r.name}</strong><small>${r.riwaya} · ${r.style}</small></span><span class="reciter-check">✓</span></button>`).join(''):'<p class="muted-note">لا توجد تسجيلات مطابقة.</p>';
  $('#moreRecitersBtn').hidden=matched.length<=reciterLimit;
@@ -34,19 +34,16 @@ function matchRecitersByMainQuery(){
   return q?RECITERS.filter(r=>norm(r.name+' '+r.short+' '+r.riwaya+' '+(r.moshafName||'')).includes(q)):[];
 }
 function applyMainSearch(){
-  const matches=matchRecitersByMainQuery();
-  const hasSurah=SURAHS.some(matching);
-  if(state.query.trim()&&!hasSurah&&matches.length){
-    const eligible=matches.filter(r=>(!state.riwaya||r.riwaya===state.riwaya)&&(!$('#styleSelect').value||r.style===$('#styleSelect').value));
-    state.searchReciters=true;
-    if(eligible.length&&!eligible.some(r=>r.id===state.reciterId)){
-      state.reciterId=eligible[0].id;localStorage.setItem('qmp3-reciter',state.reciterId);
-    }
-  }else state.searchReciters=false;
-  renderReciters();
-  renderGrid();
+ const q=norm(state.query);
+ const hasSurah=SURAHS.some(matching);
+ state.searchReciters=!!q&&!hasSurah;
+ const matches=eligibleReciters().filter(r=>!state.searchReciters||norm([r.name,r.riwaya,r.moshafName||''].join(' ')).includes(q));
+ if(matches.length&&!matches.some(r=>r.id===state.reciterId)){
+  state.reciterId=matches[0].id;localStorage.setItem('qmp3-reciter',state.reciterId);
+ }
+ renderReciters();renderGrid();
 }
-function syncFilters(){const matches=eligibleReciters();if(matches.length&&!matches.some(r=>r.id===state.reciterId)){state.reciterId=matches[0].id;localStorage.setItem('qmp3-reciter',state.reciterId)}renderReciters();renderGrid()}
+function syncFilters(){const matches=eligibleReciters().filter(r=>!state.searchReciters||norm([r.name,r.riwaya,r.moshafName||''].join(' ')).includes(norm(state.query)));if(matches.length&&!matches.some(r=>r.id===state.reciterId)){state.reciterId=matches[0].id;localStorage.setItem('qmp3-reciter',state.reciterId)}renderReciters();renderGrid()}
 function list(){let a=SURAHS.filter(s=>(state.searchReciters||matching(s))&&(!reciter().surahs||reciter().surahs.includes(s.n))&&(!state.favoritesOnly||state.favorites.has(s.n)));return state.sort==='alpha'?a.sort((x,y)=>x.name.localeCompare(y.name,'ar')):a}
 const svg=(path,fill='none')=>`<svg viewBox="0 0 24 24" fill="${fill}" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
 function renderJuz(){state.queue=JUZ.filter(j=>!reciter().surahs||reciter().surahs.includes(j.surah)).map(j=>({n:j.surah,name:j.title,ayahs:j.range,isJuz:true,juz:j.n}));$('#toolbarInfo').innerHTML=`عرض <b>${toAr(30)}</b> جزءاً · اختر جزءاً للبدء`;$('#emptyState').hidden=true;$('#surahGrid').innerHTML=JUZ.filter(j=>!reciter().surahs||reciter().surahs.includes(j.surah)).map(j=>`<article class="surah-card juz-card" data-n="${j.surah}"><div class="surah-number">${toAr(j.n)}</div><div class="surah-card-top"><span class="surah-kicker">جزء</span><span class="juz-mark">۞</span></div><h3>${j.title}</h3><p>يبدأ من سورة ${j.range}</p><div class="card-actions"><button class="btn-play" data-play="${j.surah}" type="button"><span>${svg('<path d="M8 5.5v13l11-6.5z"/>','currentColor')} استماع من البداية</span></button></div></article>`).join('')}
