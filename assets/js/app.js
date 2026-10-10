@@ -25,7 +25,7 @@ $('#moreRecitersBtn').addEventListener('click',()=>{reciterLimit+=24;renderRecit
 $('#styleSelect').addEventListener('change',()=>{reciterLimit=24;renderReciters()});
 function searchNumber(value){
   const plain=String(value).replace(/[٠-٩]/g,d=>'٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
-  return /^\\d+$/.test(plain.trim())?Number(plain.trim()):null;
+  return /^\d+$/.test(plain.trim())?Number(plain.trim()):null;
 }
 function matching(s){
   const q=norm(state.query),n=searchNumber(state.query);
