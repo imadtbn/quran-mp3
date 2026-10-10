@@ -198,3 +198,17 @@
   .stats-cards > div { padding: 14px; }
   .trending-box { margin-top: 14px; padding: 14px 18px; }
 }
+
+
+/* Unified prayer and sharing footer */
+.duaa-footer{padding:32px 20px calc(32px + env(safe-area-inset-bottom));background:var(--ink-2,#18332d);color:#f4f7f1;text-align:center;line-height:1.85}
+.duaa-footer-inner{max-width:850px;margin-inline:auto}
+.duaa-heading{font-family:'Amiri',serif;font-size:clamp(1.35rem,2vw,1.75rem);font-weight:700;color:#e0b961;margin-bottom:12px}
+.duaa-text{font-family:'Amiri',serif;font-size:clamp(1.08rem,1.7vw,1.3rem);line-height:2.05;margin:0 auto 12px;max-width:780px}
+.duaa-share{display:flex;flex-direction:column;gap:9px;align-items:center;margin:18px auto}
+.duaa-share-button{max-width:100%;padding:10px 22px;border:1px solid #e0b961;background:#e0b961;color:#18332d;border-radius:999px;font:700 1rem 'Tajawal',sans-serif;min-height:44px;transition:filter .2s,transform .2s}
+.duaa-share-button:hover{filter:brightness(1.08);transform:translateY(-1px)}
+.duaa-share-button:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.duaa-share-status{font-size:.9rem;color:#f5dfad;overflow-wrap:anywhere}
+.duaa-credit{font-size:.84rem;opacity:.75;border-top:1px solid rgba(255,255,255,.18);padding-top:12px;margin-top:18px}
+@media(max-width:480px){.duaa-footer{padding-inline:16px}.duaa-share-button{width:100%}}
