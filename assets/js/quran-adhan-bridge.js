@@ -1,21 +1,27 @@
+/* Coordinates adhan with Quran players across open tabs; no background audio guarantee. */
 (()=>{'use strict';
-const audio=document.getElementById('audio');if(!audio)return;
+const audio=['audio','qaAudio','detailsAudio'].map(id=>document.getElementById(id)).find(Boolean);
+if(!audio)return;
 const channel=typeof BroadcastChannel==='function'?new BroadcastChannel('quran-adhan-audio-v1'):null;
-let suspended=false,resume=false,session='',timer=null;
-function onMessage(m){if(!m||m.source!=='adhan')return;
+const statusIds={audio:'playerStatus',qaAudio:'qaStatus',detailsAudio:'nowPlaying'};
+let pausedForAdhan=false,session='',wasPlaying=false,manualOverride=false;
+const status=message=>{const el=document.getElementById(statusIds[audio.id]);if(el)el.textContent=message};
+async function message(m){
+ if(!m||m.source!=='adhan'||!m.session)return;
  if(m.type==='start'){
-  if(suspended)return;
-  resume=!audio.paused&&!audio.ended;
-  if(resume){audio.pause();suspended=true;session=m.session||'';setStatus('أُوقفت التلاوة مؤقتًا أثناء الأذان');}
- }else if(m.type==='end'&&suspended&&m.session===session){
-  const shouldResume=resume&&m.resume===true;
-  suspended=false;resume=false;session='';
-  if(shouldResume){audio.play().then(()=>setStatus('استؤنفت التلاوة بعد الأذان')).catch(()=>setStatus('اضغط تشغيل لاستئناف التلاوة'))}
-  else setStatus('انتهى الأذان؛ يمكنك استئناف التلاوة يدويًا');
- }}
-function setStatus(msg){const el=document.getElementById('playerStatus');if(el)el.textContent=msg}
-channel?.addEventListener('message',e=>onMessage(e.data));
-window.addEventListener('storage',e=>{if(e.key==='quran-adhan-audio-message'&&e.newValue){try{onMessage(JSON.parse(e.newValue))}catch{}}});
-// User playback while suspended cancels automatic resume.
-audio.addEventListener('play',()=>{if(suspended){suspended=false;resume=false;session=''}});
+  if(pausedForAdhan){if(session!==m.session){session=m.session;manualOverride=false}return}
+  if(audio.paused||audio.ended)return;
+  wasPlaying=true;manualOverride=false;pausedForAdhan=true;session=m.session;
+  audio.pause();status('توقفت التلاوة مؤقتًا أثناء الأذان');
+ }else if(m.type==='end'&&pausedForAdhan&&session===m.session){
+  const resume=wasPlaying&&m.resume===true&&!manualOverride;
+  pausedForAdhan=false;wasPlaying=false;session='';
+  if(resume){try{await audio.play();status('استؤنفت التلاوة بعد الأذان')}catch{status('اضغط تشغيل لاستئناف التلاوة')}}
+  else status('انتهى الأذان. يمكنك متابعة التلاوة يدويًا');
+ }
+}
+channel?.addEventListener('message',event=>message(event.data));
+window.addEventListener('storage',event=>{if(event.key==='quran-adhan-audio-message'&&event.newValue){try{message(JSON.parse(event.newValue))}catch{}}});
+audio.addEventListener('play',()=>{if(pausedForAdhan){manualOverride=true;pausedForAdhan=false;wasPlaying=false;session=''}});
+audio.addEventListener('emptied',()=>{if(pausedForAdhan){manualOverride=true;pausedForAdhan=false;wasPlaying=false;session=''}});
 })();
