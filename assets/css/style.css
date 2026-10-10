@@ -344,3 +344,21 @@ body .review-actions button:hover:not(:disabled){background:var(--brand-soft);bo
 @media(prefers-reduced-motion:reduce){
  :where(button,a,.chip-btn,.text-action,.favorites-toggle){transition:none!important}
 }
+
+
+/* Explore reciters: compact branded CTA beside listening statistics */
+.explore-readers-btn{
+ display:inline-flex;align-items:center;justify-content:center;gap:9px;
+ min-height:44px;padding:8px 15px;border:1px solid var(--brand);
+ border-radius:12px;background:var(--brand);color:#fff;
+ font-size:.87rem;font-weight:800;line-height:1.3;text-decoration:none;
+ box-shadow:0 5px 14px rgba(15,118,110,.14);
+ transition:background-color .2s,transform .2s,box-shadow .2s;
+ white-space:nowrap;
+}
+.explore-readers-btn:hover{background:var(--ink-2);color:#fff;box-shadow:0 8px 19px rgba(15,118,110,.2);transform:translateY(-1px)}
+.explore-readers-btn .explore-readers-icon{font:19px/1 system-ui,sans-serif;color:#e0b961}
+.explore-readers-btn .explore-readers-arrow{font-size:1.1rem;transition:transform .2s}
+.explore-readers-btn:hover .explore-readers-arrow{transform:translateX(-3px)}
+@media(max-width:640px){.stats-panel .section-heading{align-items:center;flex-wrap:wrap;gap:12px}.explore-readers-btn{padding:9px 12px;font-size:.8rem}}
+@media(prefers-reduced-motion:reduce){.explore-readers-btn,.explore-readers-btn .explore-readers-arrow{transition:none}}
