@@ -32,7 +32,19 @@ function matchRecitersByMainQuery(){
   const q=norm(state.query);
   return q?RECITERS.filter(r=>norm(r.name+' '+r.short+' '+r.riwaya+' '+(r.moshafName||'')).includes(q)):[];
 }
-function eligibleReciters(){const q=norm($('#reciterSearch').value),main=norm(state.query);const matchSurah=SURAHS.some(matching);return RECITERS.filter(r=>(!state.riwaya||r.riwaya===state.riwaya)&&(!$('#styleSelect').value||r.style===$('#styleSelect').value)&&(!q||norm(r.name+' '+r.riwaya+' '+(r.moshafName||'')).includes(q))&&(!main||matchSurah||norm(r.name+' '+r.riwaya+' '+(r.moshafName||'')).includes(main)));}
+function eligibleReciters(){
+ const local=norm($('#reciterSearch').value);
+ const global=norm(state.query);
+ const isSurahQuery=SURAHS.some(matching);
+ return RECITERS.filter(r=>{
+   if(state.riwaya&&r.riwaya!==state.riwaya)return false;
+   if($('#styleSelect').value&&r.style!==$('#styleSelect').value)return false;
+   const label=norm([r.name,r.riwaya,r.moshafName||''].join(' '));
+   if(local&&!label.includes(local))return false;
+   if(global&&!isSurahQuery&&!label.includes(global))return false;
+   return true;
+ });
+}
 function applyMainSearch(){
  const matches=eligibleReciters(),hasSurah=SURAHS.some(matching);
  state.searchReciters=!!state.query.trim()&&!hasSurah;
