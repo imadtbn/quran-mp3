@@ -27,11 +27,37 @@ async function loadTomorrow(seq){try{const d=await loadDate(addDate(currentDate,
 function nextEvent(){if(!day)return null;const now=clockMinutes(),list=prayers.filter(p=>alarmNames.has(p[0]));for(const [id,label] of list){const t=adjusted(day.timings[id]);if(Number.isFinite(t)&&t>now)return{id,label,t,remaining:(t-now)*60}}if(tomorrow){const t=adjusted(tomorrow.timings.Fajr);if(Number.isFinite(t))return{id:'Fajr',label:'الفجر',t,remaining:(1440-now+t)*60,tomorrow:true}}return null}
 function render(){if(!day)return;const grid=$('prayerGrid');grid.replaceChildren();const next=nextEvent();for(const [id,label] of prayers){const card=document.createElement('div');card.className='prayer-card'+(next&&!next.tomorrow&&next.id===id?' is-next':'');const name=document.createElement('span');name.textContent=label;const time=document.createElement('strong');time.textContent=clockText(adjusted(day.timings[id]));card.append(name,time);grid.append(card)}$('todayLabel').textContent='التاريخ: '+currentDate;tick()}
 function tick(){if(!day)return;if(dateInZone()!==currentDate){refresh();return}const n=nextEvent();if(!n){$('nextName').textContent='جارٍ تجهيز مواقيت الغد';$('nextTime').textContent='--:--';$('countdown').textContent='--:--:--';return}$('nextName').textContent=n.label+(n.tomorrow?' (غدًا)':'');$('nextTime').textContent=String(Math.floor(n.t/60)).padStart(2,'0')+':'+String(Math.floor(n.t%60)).padStart(2,'0');let s=Math.max(0,Math.ceil(n.remaining));$('countdown').textContent=[Math.floor(s/3600),Math.floor(s%3600/60),s%60].map(x=>String(x).padStart(2,'0')).join(':');document.querySelectorAll('.prayer-card').forEach((c,i)=>c.classList.toggle('is-next',!n.tomorrow&&prayers[i][0]===n.id));checkAlarms()}
-function checkAlarms(){if(!day||document.visibilityState!=='visible')return;const now=clockMinutes(),date=currentDate;for(const [id,label] of prayers){if(!alarmNames.has(id)||!settings.enabled.includes(id))continue;const target=adjusted(day.timings[id])-Number(settings.lead);const ident=date+'-'+id+'-'+settings.lead;if(Number.isFinite(target)&&now>=target&&now<target+1&&!lastTrigger.has(ident)){lastTrigger.add(ident);if('Notification' in window&&Notification.permission==='granted'&&document.visibilityState==='visible'){const title=settings.lead?'اقترب وقت صلاة '+label:'حان وقت صلاة '+label;showPrayerNotification(title,'مواقيت الصلاة — '+loc()[0],'prayer-'+ident).catch(()=>{$('notificationStatus').textContent='تعذر عرض إشعار الصلاة. افتح اختبار الإشعارات للتحقق من الجهاز.'})}}}}
+async function sendPrayerAlarm(id,label,mode,date=currentDate){
+ const ident=[date,id,mode,settings.city,settings.method,settings.offset].join('-');
+ const storageKey='quran-prayer-alert-'+ident;
+ if(lastTrigger.has(ident))return false;
+ try{if(localStorage.getItem(storageKey))return false}catch{}
+ const title=mode==='before'?'اقترب وقت صلاة '+label:'حان وقت صلاة '+label;
+ await showPrayerNotification(title,'مواقيت الصلاة — '+loc()[0],'prayer-'+ident);
+ lastTrigger.add(ident);
+ try{localStorage.setItem(storageKey,String(Date.now()))}catch{}
+ return true;
+}
+function checkAlarms(){
+ if(!day||!('Notification' in window)||Notification.permission!=='granted')return;
+ const now=clockMinutes();
+ for(const [id,label] of prayers){
+  if(!alarmNames.has(id)||!settings.enabled.includes(id))continue;
+  const t=adjusted(day.timings[id]);if(!Number.isFinite(t))continue;
+  // The entry-time reminder and optional early reminder are independent.
+  const alarms=[{mode:'at',target:t}];
+  if(Number(settings.lead)>0)alarms.push({mode:'before',target:t-Number(settings.lead)});
+  for(const a of alarms){
+   if(now>=a.target&&now<a.target+2){
+    sendPrayerAlarm(id,label,a.mode).catch(()=>{$('notificationStatus').textContent='تعذر إرسال إشعار الصلاة، يرجى تشغيل الاختبار التجريبي.'});
+   }
+  }
+ }
+}
 $('citySelect').addEventListener('change',()=>{if($('citySelect').value==='other'&&!settings.coords){$('citySelect').value=settings.city;$('locationStatus').textContent='اضغط على تحديد موقعي أولًا للحصول على الإحداثيات.';return}settings.city=$('citySelect').value;save();refresh()});
 $('methodSelect').addEventListener('change',()=>{settings.method=$('methodSelect').value;save();refresh()});
 $('locateBtn').addEventListener('click',()=>{if(!navigator.geolocation){$('locationStatus').textContent='المتصفح لا يدعم تحديد الموقع.';return}$('locationStatus').textContent='جارٍ تحديد موقعك…';navigator.geolocation.getCurrentPosition(p=>{settings.coords=['موقعي الحالي',p.coords.latitude,p.coords.longitude];settings.city='other';$('citySelect').value='other';save();refresh()},()=>{$('locationStatus').textContent='تعذر تحديد الموقع؛ يمكنك اختيار المدينة يدويًا.'},{enableHighAccuracy:false,timeout:11000,maximumAge:300000})});
-$('saveSettings').addEventListener('click',()=>{settings.lead=Number($('reminderLead').value);settings.offset=Number($('minuteOffset').value);settings.enabled=[...document.querySelectorAll('[data-prayer]:checked')].map(el=>el.dataset.prayer);save();$('notificationStatus').textContent='حُفظت الإعدادات على الجهاز. سيعمل التنبيه أثناء بقاء الصفحة مفتوحة.'});
+$('saveSettings').addEventListener('click',()=>{settings.lead=Number($('reminderLead').value);settings.offset=Number($('minuteOffset').value);settings.enabled=[...document.querySelectorAll('[data-prayer]:checked')].map(el=>el.dataset.prayer);save();render();$('notificationStatus').textContent='حُفظت الإعدادات على الجهاز. سيعمل التنبيه أثناء بقاء الصفحة مفتوحة.'});
 $('enableNotifications').addEventListener('click',async()=>{if(!('Notification' in window)){$('notificationStatus').textContent='هذا المتصفح لا يدعم إشعارات الويب.';return}try{const permission=await Notification.requestPermission();$('notificationStatus').textContent=permission==='granted'?'تم السماح بالإشعارات أثناء فتح الصفحة.':permission==='denied'?'الإشعارات محظورة من إعدادات المتصفح.':'لم يتم منح الإذن.'}catch{$('notificationStatus').textContent='تعذر طلب إذن الإشعارات.'}});
 
 async function showPrayerNotification(title,body,tag){
@@ -52,6 +78,16 @@ async function runNotificationTest(delayed=false){
  }
  try{await showPrayerNotification('اختبار منبّه الصلاة','هذا إشعار تجريبي لا يرتبط بموعد صلاة.','prayer-test-now-'+Date.now());status.textContent='نجح طلب عرض الإشعار. تحقق من استلامه في لوحة إشعارات الهاتف.'}catch(e){status.textContent='فشل طلب الإشعار: '+e.message}
 }
+$('testPrayerAlarms').addEventListener('click',async()=>{
+ const status=$('prayerTestStatus');
+ if(!('Notification' in window)||Notification.permission!=='granted'){status.textContent='يرجى السماح بالإشعارات أولًا.';return}
+ try{
+  // Different tags prevent the two test notifications from replacing one another.
+  await showPrayerNotification('اختبار: اقترب وقت صلاة الفجر','محاكاة التنبيه المسبق — ليس وقت صلاة فعليًا.','prayer-before-test-'+Date.now());
+  await showPrayerNotification('اختبار: حان وقت صلاة الفجر','محاكاة دخول الوقت — ليس وقت صلاة فعليًا.','prayer-at-test-'+Date.now());
+  status.textContent='تم طلب إشعارين: تنبيه مسبق ودخول وقت الصلاة. تأكد من استلام كليهما على الهاتف.';
+ }catch(e){status.textContent='تعذر اختبار إشعارات الصلاة: '+e.message}
+});
 $('testNotification').addEventListener('click',()=>runNotificationTest(false));
 $('testDelayedNotification').addEventListener('click',()=>runNotificationTest(true));
 
