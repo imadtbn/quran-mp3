@@ -16,18 +16,18 @@ const status=$('adhanStatus');
 const channel=typeof BroadcastChannel==='function'?new BroadcastChannel('quran-adhan-audio-v1'):null;
 let activeSession='';
 function broadcast(type,session,resume=false){const value={source:'adhan',type,session,resume,at:Date.now()};channel?.postMessage(value);try{localStorage.setItem('quran-adhan-audio-message',JSON.stringify(value))}catch{}}
-function finish(){if(!activeSession)return;broadcast('end',activeSession,!!prefs.resume);activeSession=''}
+function finish(natural=false){if(!activeSession)return;broadcast('end',activeSession,natural&&!!prefs.resume);activeSession=''}
 function url(){return base+encodeURIComponent(sources[prefs.voice])}
 function sync(){ $('adhanVoice').value=prefs.voice;$('adhanVolume').value=String(prefs.volume);$('adhanVolumeValue').textContent=prefs.volume+'%';$('adhanAuto').checked=!!prefs.auto;$('adhanResume').checked=!!prefs.resume;document.querySelectorAll('[data-adhan-prayer]').forEach(el=>el.checked=prefs.enabled.includes(el.dataset.adhanPrayer));audio.volume=Number(prefs.volume)/100 }
-function stop(){audio.pause();audio.removeAttribute('src');audio.load();finish();status.textContent='تم إيقاف الأذان.'}
+function stop(){audio.pause();audio.removeAttribute('src');audio.load();finish(false);status.textContent='تم إيقاف الأذان.'}
 async function play(){stop();const session=String(Date.now())+'-'+Math.random().toString(36).slice(2);activeSession=session;broadcast('start',session);try{audio.src=url();audio.volume=Number(prefs.volume)/100;await audio.play();status.textContent='جارٍ تشغيل الأذان.'}catch{finish();status.textContent='تعذر تشغيل التسجيل. تحقق من الاتصال أو اسمح بتشغيل الصوت من المتصفح.'}}
 $('adhanPreview').addEventListener('click',()=>{prefs.voice=$('adhanVoice').value;play()});
 $('adhanStop').addEventListener('click',stop);
 $('adhanVolume').addEventListener('input',()=>{audio.volume=Number($('adhanVolume').value)/100;$('adhanVolumeValue').textContent=$('adhanVolume').value+'%'});
 $('adhanSave').addEventListener('click',()=>{prefs.voice=$('adhanVoice').value;prefs.volume=Number($('adhanVolume').value);prefs.auto=$('adhanAuto').checked;prefs.resume=$('adhanResume').checked;prefs.enabled=[...document.querySelectorAll('[data-adhan-prayer]:checked')].map(x=>x.dataset.adhanPrayer);try{localStorage.setItem(key,JSON.stringify(prefs))}catch{}audio.volume=prefs.volume/100;status.textContent='تم حفظ إعدادات الأذان على هذا الجهاز.'});
 window.addEventListener('prayer-adhan-due',e=>{if(!prefs.auto||!prefs.enabled.includes(e.detail.id)||document.visibilityState!=='visible')return;play()});
-audio.addEventListener('ended',()=>{finish();status.textContent='انتهى الأذان.'});
-audio.addEventListener('error',()=>{finish();status.textContent='تعذر تحميل التسجيل الصوتي من المصدر الخارجي.'});
-document.addEventListener('visibilitychange',()=>{if(document.hidden&& !audio.paused)stop()});
+audio.addEventListener('ended',()=>{finish(true);status.textContent='انتهى الأذان.'});
+audio.addEventListener('error',()=>{finish(false);status.textContent='تعذر تحميل التسجيل الصوتي من المصدر الخارجي.'});
+// Keep an already started adhan running when switching tabs; browser may still suspend audio itself.
 sync();
 })();
