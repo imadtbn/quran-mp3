@@ -13,9 +13,16 @@
 <label>حجم الخط <input type="range" min="24" max="48" step="2" id="fontSize" value="32" aria-label="حجم الخط"></label>
 <button id="resume" type="button">متابعة القراءة</button><button id="bookmarksToggle" type="button">علاماتي المرجعية</button>
 </section>
+<section class="quran-audio" aria-label="مشغل التلاوة داخل المصحف">
+<div class="qa-heading"><div><strong>استمع وأنت تقرأ</strong><small id="qaTrack">اختر القارئ وابدأ تلاوة السورة الحالية</small></div><button id="qaCollapse" type="button" aria-expanded="true" aria-controls="qaBody">تصغير المشغل</button></div>
+<div id="qaBody"><div class="qa-options"><label>القارئ برواية حفص <select id="qaReciter" aria-label="اختر قارئًا برواية حفص"></select></label><label>السورة الصوتية <select id="qaSurah" aria-label="اختر سورة للاستماع"></select></label></div>
+<div class="qa-actions"><button id="qaPrev" type="button" aria-label="السورة السابقة">السورة السابقة</button><button id="qaPlay" type="button" aria-label="تشغيل التلاوة">تشغيل التلاوة</button><button id="qaNext" type="button" aria-label="السورة التالية">السورة التالية</button></div>
+<div class="qa-progress"><span id="qaCurrent">0:00</span><input type="range" min="0" max="1000" value="0" id="qaSeek" aria-label="تقدم التلاوة"><span id="qaDuration">0:00</span></div>
+<div class="qa-foot"><label>الصوت <input id="qaVolume" type="range" min="0" max="100" value="100" aria-label="مستوى الصوت"></label><label><input id="qaFollow" type="checkbox" checked> تغيير التلاوة عند تغيير السورة المقروءة</label></div>
+<div id="qaStatus" role="status" aria-live="polite">جاهز للاستماع</div><audio id="qaAudio" preload="metadata"></audio></div></section>
 <section class="search-panel" aria-label="البحث في القرآن"><form id="searchForm" role="search"><label for="searchInput">البحث في الآيات</label><div class="search-line"><input id="searchInput" type="search" placeholder="اكتب كلمة أو جزءًا من آية..." minlength="2"><button type="submit">بحث في المصحف</button></div></form><p class="note">البحث يتجاهل الحركات لغرض المطابقة فقط، ولا يغيّر نص الآيات المعروض.</p><div id="searchResults" class="results" hidden></div></section>
 <section class="reading"><div class="reading-head"><strong id="readingTitle">سورة الفاتحة</strong><span id="readingMeta">الصفحة 1</span></div><p id="status" class="status" role="status" aria-live="polite">جارٍ تحميل النص القرآني…</p><article id="verses" class="verses" aria-label="الآيات القرآنية"></article>
 <div class="reading-foot"><button id="prev" type="button">الصفحة السابقة</button><span id="counter">1 / 604</span><button id="next" type="button">الصفحة التالية</button></div></section>
 <aside id="bookmarks" class="bookmark-panel" hidden><h2>العلامات المرجعية</h2><div id="bookmarkItems"></div></aside>
 <p class="source">مصدر النص العثماني: <a href="https://alquran.cloud/api" target="_blank" rel="noopener noreferrer">AlQuran Cloud</a> (quran-uthmani). يعتمد عرض الصفحات على بيانات الفهرسة التي يوفرها المصدر؛ ولا يدّعي مطابقة إخراج الصفحة المطبعية حرفيًا.</p>
-</main><footer>المكتبة الصوتية للقرآن الكريم · النص القرآني للقراءة والتدبر</footer><script src="assets/js/quran.js" defer></script></body></html>
+</main><footer>المكتبة الصوتية للقرآن الكريم · النص القرآني للقراءة والتدبر</footer><script src="assets/js/data.js" defer></script><script src="assets/js/audio-core.js" defer></script><script src="assets/js/quran-audio.js" defer></script><script src="assets/js/quran.js" defer></script></body></html>
