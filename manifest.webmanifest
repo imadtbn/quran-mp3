@@ -38,6 +38,18 @@
       "name": "المصاحف الصوتية",
       "short_name": "المصاحف",
       "url": "./mushafs.html"
+    },
+    {
+      "name": "أذكار الصباح والمساء",
+      "short_name": "الأذكار",
+      "url": "./adhkar.html",
+      "icons": [
+        {
+          "src": "./assets/icons/quran.png",
+          "sizes": "any",
+          "type": "image/png"
+        }
+      ]
     }
   ]
 }
