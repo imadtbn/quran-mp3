@@ -5,3 +5,30 @@
 .prayer-test{min-width:0}.prayer-test-actions{display:grid;grid-template-columns:1fr;gap:9px;margin-top:12px}.prayer-test-steps{padding-inline-start:22px;color:var(--muted);font-size:.85rem;line-height:1.7;margin-top:12px}.prayer-test-steps li{margin-block:6px}.prayer-test .prayer-btn{width:100%;white-space:normal}
 
 .adhan-settings{display:grid;gap:12px;min-width:0}.adhan-settings a{color:var(--brand)}.adhan-settings .prayer-setting-field output{font-variant-numeric:tabular-nums}.adhan-settings input[type=range]{width:100%;height:7px;accent-color:var(--brand);background:var(--line)}.adhan-auto{display:flex;gap:9px;align-items:flex-start;font-size:.9rem}.adhan-auto input{margin-top:6px;accent-color:var(--brand)}.adhan-settings fieldset{margin:0}.adhan-settings .prayer-test-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.adhan-settings #adhanSave{grid-column:1/-1}@media(max-width:380px){.adhan-settings .prayer-test-actions{grid-template-columns:1fr}}
+
+/* Prayer page: compact mobile-first section navigation */
+.prayer-page{scroll-behavior:smooth}
+.prayer-page :is(#prayerToday,#prayerAdhan,#prayerReminders){scroll-margin-top:94px}
+.prayer-shortcuts{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding-top:18px}
+.prayer-shortcuts a{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:0;padding:9px 16px;border:1px solid var(--line);border-radius:999px;background:var(--surface);color:var(--brand);font-size:.91rem;font-weight:800;text-decoration:none;transition:background .2s,border-color .2s}
+.prayer-shortcuts a:hover{background:var(--brand-soft);border-color:var(--brand)}
+.prayer-bottom-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.prayer-bottom-links>.prayer-btn{width:100%;white-space:normal}
+.prayer-page .prayer-btn:active{transform:translateY(1px)}
+.prayer-page .prayer-settings .prayer-btn{white-space:normal}
+.prayer-page .prayer-settings :is(select,button,input){touch-action:manipulation}
+.prayer-page .prayer-settings :is(select,button){min-height:44px}
+@media(max-width:850px){.prayer-settings{position:static}.prayer-shortcuts{padding-top:14px}}
+@media(max-width:540px){
+ .prayer-shortcuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ .prayer-shortcuts a{padding:8px 5px;font-size:.78rem;line-height:1.3;text-align:center}
+ .prayer-page .prayer-layout{padding-top:14px}
+ .prayer-page .prayer-panel{border-radius:15px}
+ .prayer-page .prayer-next{padding:20px 12px}
+ .prayer-page .prayer-settings>h2{margin-bottom:0}
+ .prayer-page .prayer-settings fieldset label{min-height:44px}
+ .prayer-page .prayer-settings input[type=checkbox]{width:20px;height:20px;flex:none}
+ .prayer-page :is(#prayerToday,#prayerAdhan,#prayerReminders){scroll-margin-top:74px}
+}
+@media(max-width:360px){.prayer-shortcuts{grid-template-columns:1fr 1fr}.prayer-shortcuts a:last-child{grid-column:1/-1}.prayer-bottom-links{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.prayer-page{scroll-behavior:auto}.prayer-page .prayer-btn{transition:none}}
