@@ -1,0 +1,38 @@
+/* Unified Quran library site chrome; independent from page-specific styles. */
+.qmp3-site-header{position:sticky!important;inset-block-start:0;z-index:1000;background:rgba(246,248,243,.97)!important;border-bottom:1px solid #dbe7dd;backdrop-filter:blur(14px)}
+.qmp3-site-header .header-inner{width:min(1180px,calc(100% - 32px));margin-inline:auto;min-height:66px;height:auto!important;display:flex;align-items:center;justify-content:space-between;gap:14px;padding-block:9px}
+.qmp3-site-header .brand{flex:0 0 auto;display:flex;gap:9px;align-items:center;min-width:0;text-decoration:none;color:#18332d}
+.qmp3-brand-icon{width:38px;height:38px;object-fit:contain;flex:none;border-radius:9px}
+.qmp3-site-header .brand-text{font-family:Tajawal,Arial,sans-serif;font-size:clamp(.88rem,1.2vw,1.02rem);font-weight:800;white-space:nowrap}
+.qmp3-site-header .brand-text b{color:#0f766e}
+.qmp3-site-header .main-nav{display:flex;align-items:center;justify-content:flex-end;gap:2px;min-width:0;flex-wrap:wrap}
+.qmp3-site-header .main-nav a{display:inline-flex;align-items:center;gap:5px;padding:7px 8px;min-height:38px;text-decoration:none;border-radius:9px;color:#365747;font-family:Tajawal,Arial,sans-serif;font-size:.82rem;font-weight:700;white-space:nowrap}
+.qmp3-site-header .main-nav a:hover,.qmp3-site-header .main-nav a:focus-visible,.qmp3-site-header .main-nav a[aria-current=page]{color:#0f6251;background:#e3f3ed}
+.qmp3-site-header .nav-icon{font-family:Arial,sans-serif}
+.qmp3-site-header .nav-toggle{display:none;align-items:center;justify-content:center;flex:0 0 43px;width:43px;height:43px;background:white;color:#18332d;border:1px solid #dbe7dd;border-radius:11px;font-size:1.15rem}
+.qmp3-unified-hero{box-sizing:border-box;max-width:1180px;margin:18px auto 25px!important;padding:clamp(22px,4vw,48px)!important;border-radius:22px!important;background:linear-gradient(125deg,#173c33,#195d50)!important;color:#fff!important;overflow:hidden;min-height:0!important;box-shadow:0 12px 35px rgba(18,55,46,.12)}
+.qmp3-unified-hero h1{font-family:Amiri,Tajawal,serif;color:#fff!important;font-size:clamp(1.8rem,3.6vw,3rem)!important;line-height:1.4!important;margin:0 0 8px!important}
+.qmp3-unified-hero p,.qmp3-unified-hero small,.qmp3-unified-hero .eyebrow,.qmp3-unified-hero .rq-eyebrow{color:#e3f3ed!important}
+.qmp3-unified-hero p{max-width:760px;line-height:1.8}
+.qmp3-unified-hero .container{width:100%;max-width:100%}
+.qmp3-unified-hero a{max-width:100%}
+.qmp3-unified-hero .hero-inner{padding:0}
+.qmp3-unified-hero::before,.qmp3-unified-hero::after{pointer-events:none}
+.qmp3-generated-hero + section{margin-top:20px}
+html{overflow-x:clip}
+@media(max-width:1050px){
+.qmp3-site-header .header-inner{min-height:62px;flex-wrap:nowrap}
+.qmp3-site-header .nav-toggle{display:inline-flex;position:relative;z-index:2}
+.qmp3-site-header .main-nav{position:absolute;inset-inline:12px;top:calc(100% + 4px);max-height:min(72vh,540px);overflow-y:auto;display:none;flex-direction:column;flex-wrap:nowrap;align-items:stretch;padding:10px;background:#fff;border:1px solid #dbe7dd;border-radius:14px;box-shadow:0 16px 30px rgba(15,40,30,.18)}
+.qmp3-site-header .main-nav.qmp3-open{display:flex}
+.qmp3-site-header .main-nav a{width:100%;min-height:43px;font-size:.92rem;padding-inline:13px}
+}
+@media(max-width:600px){
+.qmp3-site-header .header-inner{width:calc(100% - 24px);min-height:58px;padding-block:7px}
+.qmp3-brand-icon{width:34px;height:34px}
+.qmp3-site-header .brand-text{font-size:.87rem}
+.qmp3-unified-hero{margin:12px 12px 18px!important;padding:20px 16px!important;border-radius:16px!important}
+.qmp3-unified-hero h1{font-size:1.75rem!important}
+.qmp3-unified-hero .hero-stats{flex-wrap:wrap;gap:10px}
+.qmp3-unified-hero .search-box{width:100%}
+}
