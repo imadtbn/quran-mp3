@@ -9,6 +9,8 @@ function href(path){return new URL(path,base).href}
 function active(path){if(catalog)return location.pathname.includes('/readers/')?path==='readers.html':location.pathname.includes('/riwayat/')?path==='riwayat.html':path==='mushafs.html';return page===path}
 function initialize(){
  if(document.documentElement.dataset.shellReady)return;
+ // Existing interactive headers own their controls and handlers; never replace them.
+ if(document.querySelector('.site-header #mainNav'))return;
  document.documentElement.dataset.shellReady='1';
  const css=document.createElement('link');css.rel='stylesheet';css.href=href('assets/css/site-shell.css');document.head.append(css);
  let header=document.querySelector('.site-header,header.top');
