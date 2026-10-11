@@ -426,3 +426,127 @@ body .review-actions button:hover:not(:disabled){background:var(--brand-soft);bo
  .stats-panel .explore-readers-btn,
  .stats-panel .explore-readers-btn *{transition:none!important;transform:none!important}
 }
+
+/* Audio mushaf catalogue: surah name, number and play affordance. */
+.surah-grid>a.surah-card[href*="mushaf.html?"]{position:relative;display:flex!important;flex-direction:column;justify-content:center;align-items:flex-start;min-height:88px;padding:15px 52px 15px 16px;transition:border-color .2s,box-shadow .2s,transform .2s}
+.surah-grid>a.surah-card[href*="mushaf.html?"] h2{font-size:0!important;line-height:1.4}
+.surah-grid>a.surah-card[href*="mushaf.html?"] h2:after{font-size:1rem;font-weight:800;color:var(--ink)}
+.surah-grid>a.surah-card[href*="mushaf.html?"] p{font-size:.79rem;color:var(--muted);margin:3px 0 0}
+.surah-grid>a.surah-card[href*="mushaf.html?"]:before{content:"▶";position:absolute;right:12px;top:50%;transform:translateY(-50%);display:grid;place-items:center;width:31px;height:31px;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-size:12px}
+.surah-grid>a.surah-card[href*="mushaf.html?"]:hover{border-color:var(--brand);box-shadow:0 7px 18px rgba(15,118,110,.12);transform:translateY(-2px)}
+.surah-grid>a.surah-card[href*="mushaf.html?"]:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(max-width:520px){.surah-grid>a.surah-card[href*="mushaf.html?"]{min-height:76px;padding:12px 48px 12px 10px}}
+.surah-grid>a.surah-card[href$="surah=1"] h2:after{content:"الفاتحة — 1"}
+.surah-grid>a.surah-card[href$="surah=2"] h2:after{content:"البقرة — 2"}
+.surah-grid>a.surah-card[href$="surah=3"] h2:after{content:"آل عمران — 3"}
+.surah-grid>a.surah-card[href$="surah=4"] h2:after{content:"النساء — 4"}
+.surah-grid>a.surah-card[href$="surah=5"] h2:after{content:"المائدة — 5"}
+.surah-grid>a.surah-card[href$="surah=6"] h2:after{content:"الأنعام — 6"}
+.surah-grid>a.surah-card[href$="surah=7"] h2:after{content:"الأعراف — 7"}
+.surah-grid>a.surah-card[href$="surah=8"] h2:after{content:"الأنفال — 8"}
+.surah-grid>a.surah-card[href$="surah=9"] h2:after{content:"التوبة — 9"}
+.surah-grid>a.surah-card[href$="surah=10"] h2:after{content:"يونس — 10"}
+.surah-grid>a.surah-card[href$="surah=11"] h2:after{content:"هود — 11"}
+.surah-grid>a.surah-card[href$="surah=12"] h2:after{content:"يوسف — 12"}
+.surah-grid>a.surah-card[href$="surah=13"] h2:after{content:"الرعد — 13"}
+.surah-grid>a.surah-card[href$="surah=14"] h2:after{content:"إبراهيم — 14"}
+.surah-grid>a.surah-card[href$="surah=15"] h2:after{content:"الحجر — 15"}
+.surah-grid>a.surah-card[href$="surah=16"] h2:after{content:"النحل — 16"}
+.surah-grid>a.surah-card[href$="surah=17"] h2:after{content:"الإسراء — 17"}
+.surah-grid>a.surah-card[href$="surah=18"] h2:after{content:"الكهف — 18"}
+.surah-grid>a.surah-card[href$="surah=19"] h2:after{content:"مريم — 19"}
+.surah-grid>a.surah-card[href$="surah=20"] h2:after{content:"طه — 20"}
+.surah-grid>a.surah-card[href$="surah=21"] h2:after{content:"الأنبياء — 21"}
+.surah-grid>a.surah-card[href$="surah=22"] h2:after{content:"الحج — 22"}
+.surah-grid>a.surah-card[href$="surah=23"] h2:after{content:"المؤمنون — 23"}
+.surah-grid>a.surah-card[href$="surah=24"] h2:after{content:"النور — 24"}
+.surah-grid>a.surah-card[href$="surah=25"] h2:after{content:"الفرقان — 25"}
+.surah-grid>a.surah-card[href$="surah=26"] h2:after{content:"الشعراء — 26"}
+.surah-grid>a.surah-card[href$="surah=27"] h2:after{content:"النمل — 27"}
+.surah-grid>a.surah-card[href$="surah=28"] h2:after{content:"القصص — 28"}
+.surah-grid>a.surah-card[href$="surah=29"] h2:after{content:"العنكبوت — 29"}
+.surah-grid>a.surah-card[href$="surah=30"] h2:after{content:"الروم — 30"}
+.surah-grid>a.surah-card[href$="surah=31"] h2:after{content:"لقمان — 31"}
+.surah-grid>a.surah-card[href$="surah=32"] h2:after{content:"السجدة — 32"}
+.surah-grid>a.surah-card[href$="surah=33"] h2:after{content:"الأحزاب — 33"}
+.surah-grid>a.surah-card[href$="surah=34"] h2:after{content:"سبأ — 34"}
+.surah-grid>a.surah-card[href$="surah=35"] h2:after{content:"فاطر — 35"}
+.surah-grid>a.surah-card[href$="surah=36"] h2:after{content:"يس — 36"}
+.surah-grid>a.surah-card[href$="surah=37"] h2:after{content:"الصافات — 37"}
+.surah-grid>a.surah-card[href$="surah=38"] h2:after{content:"ص — 38"}
+.surah-grid>a.surah-card[href$="surah=39"] h2:after{content:"الزمر — 39"}
+.surah-grid>a.surah-card[href$="surah=40"] h2:after{content:"غافر — 40"}
+.surah-grid>a.surah-card[href$="surah=41"] h2:after{content:"فصلت — 41"}
+.surah-grid>a.surah-card[href$="surah=42"] h2:after{content:"الشورى — 42"}
+.surah-grid>a.surah-card[href$="surah=43"] h2:after{content:"الزخرف — 43"}
+.surah-grid>a.surah-card[href$="surah=44"] h2:after{content:"الدخان — 44"}
+.surah-grid>a.surah-card[href$="surah=45"] h2:after{content:"الجاثية — 45"}
+.surah-grid>a.surah-card[href$="surah=46"] h2:after{content:"الأحقاف — 46"}
+.surah-grid>a.surah-card[href$="surah=47"] h2:after{content:"محمد — 47"}
+.surah-grid>a.surah-card[href$="surah=48"] h2:after{content:"الفتح — 48"}
+.surah-grid>a.surah-card[href$="surah=49"] h2:after{content:"الحجرات — 49"}
+.surah-grid>a.surah-card[href$="surah=50"] h2:after{content:"ق — 50"}
+.surah-grid>a.surah-card[href$="surah=51"] h2:after{content:"الذاريات — 51"}
+.surah-grid>a.surah-card[href$="surah=52"] h2:after{content:"الطور — 52"}
+.surah-grid>a.surah-card[href$="surah=53"] h2:after{content:"النجم — 53"}
+.surah-grid>a.surah-card[href$="surah=54"] h2:after{content:"القمر — 54"}
+.surah-grid>a.surah-card[href$="surah=55"] h2:after{content:"الرحمن — 55"}
+.surah-grid>a.surah-card[href$="surah=56"] h2:after{content:"الواقعة — 56"}
+.surah-grid>a.surah-card[href$="surah=57"] h2:after{content:"الحديد — 57"}
+.surah-grid>a.surah-card[href$="surah=58"] h2:after{content:"المجادلة — 58"}
+.surah-grid>a.surah-card[href$="surah=59"] h2:after{content:"الحشر — 59"}
+.surah-grid>a.surah-card[href$="surah=60"] h2:after{content:"الممتحنة — 60"}
+.surah-grid>a.surah-card[href$="surah=61"] h2:after{content:"الصف — 61"}
+.surah-grid>a.surah-card[href$="surah=62"] h2:after{content:"الجمعة — 62"}
+.surah-grid>a.surah-card[href$="surah=63"] h2:after{content:"المنافقون — 63"}
+.surah-grid>a.surah-card[href$="surah=64"] h2:after{content:"التغابن — 64"}
+.surah-grid>a.surah-card[href$="surah=65"] h2:after{content:"الطلاق — 65"}
+.surah-grid>a.surah-card[href$="surah=66"] h2:after{content:"التحريم — 66"}
+.surah-grid>a.surah-card[href$="surah=67"] h2:after{content:"الملك — 67"}
+.surah-grid>a.surah-card[href$="surah=68"] h2:after{content:"القلم — 68"}
+.surah-grid>a.surah-card[href$="surah=69"] h2:after{content:"الحاقة — 69"}
+.surah-grid>a.surah-card[href$="surah=70"] h2:after{content:"المعارج — 70"}
+.surah-grid>a.surah-card[href$="surah=71"] h2:after{content:"نوح — 71"}
+.surah-grid>a.surah-card[href$="surah=72"] h2:after{content:"الجن — 72"}
+.surah-grid>a.surah-card[href$="surah=73"] h2:after{content:"المزمل — 73"}
+.surah-grid>a.surah-card[href$="surah=74"] h2:after{content:"المدثر — 74"}
+.surah-grid>a.surah-card[href$="surah=75"] h2:after{content:"القيامة — 75"}
+.surah-grid>a.surah-card[href$="surah=76"] h2:after{content:"الإنسان — 76"}
+.surah-grid>a.surah-card[href$="surah=77"] h2:after{content:"المرسلات — 77"}
+.surah-grid>a.surah-card[href$="surah=78"] h2:after{content:"النبأ — 78"}
+.surah-grid>a.surah-card[href$="surah=79"] h2:after{content:"النازعات — 79"}
+.surah-grid>a.surah-card[href$="surah=80"] h2:after{content:"عبس — 80"}
+.surah-grid>a.surah-card[href$="surah=81"] h2:after{content:"التكوير — 81"}
+.surah-grid>a.surah-card[href$="surah=82"] h2:after{content:"الانفطار — 82"}
+.surah-grid>a.surah-card[href$="surah=83"] h2:after{content:"المطففين — 83"}
+.surah-grid>a.surah-card[href$="surah=84"] h2:after{content:"الانشقاق — 84"}
+.surah-grid>a.surah-card[href$="surah=85"] h2:after{content:"البروج — 85"}
+.surah-grid>a.surah-card[href$="surah=86"] h2:after{content:"الطارق — 86"}
+.surah-grid>a.surah-card[href$="surah=87"] h2:after{content:"الأعلى — 87"}
+.surah-grid>a.surah-card[href$="surah=88"] h2:after{content:"الغاشية — 88"}
+.surah-grid>a.surah-card[href$="surah=89"] h2:after{content:"الفجر — 89"}
+.surah-grid>a.surah-card[href$="surah=90"] h2:after{content:"البلد — 90"}
+.surah-grid>a.surah-card[href$="surah=91"] h2:after{content:"الشمس — 91"}
+.surah-grid>a.surah-card[href$="surah=92"] h2:after{content:"الليل — 92"}
+.surah-grid>a.surah-card[href$="surah=93"] h2:after{content:"الضحى — 93"}
+.surah-grid>a.surah-card[href$="surah=94"] h2:after{content:"الشرح — 94"}
+.surah-grid>a.surah-card[href$="surah=95"] h2:after{content:"التين — 95"}
+.surah-grid>a.surah-card[href$="surah=96"] h2:after{content:"العلق — 96"}
+.surah-grid>a.surah-card[href$="surah=97"] h2:after{content:"القدر — 97"}
+.surah-grid>a.surah-card[href$="surah=98"] h2:after{content:"البينة — 98"}
+.surah-grid>a.surah-card[href$="surah=99"] h2:after{content:"الزلزلة — 99"}
+.surah-grid>a.surah-card[href$="surah=100"] h2:after{content:"العاديات — 100"}
+.surah-grid>a.surah-card[href$="surah=101"] h2:after{content:"القارعة — 101"}
+.surah-grid>a.surah-card[href$="surah=102"] h2:after{content:"التكاثر — 102"}
+.surah-grid>a.surah-card[href$="surah=103"] h2:after{content:"العصر — 103"}
+.surah-grid>a.surah-card[href$="surah=104"] h2:after{content:"الهمزة — 104"}
+.surah-grid>a.surah-card[href$="surah=105"] h2:after{content:"الفيل — 105"}
+.surah-grid>a.surah-card[href$="surah=106"] h2:after{content:"قريش — 106"}
+.surah-grid>a.surah-card[href$="surah=107"] h2:after{content:"الماعون — 107"}
+.surah-grid>a.surah-card[href$="surah=108"] h2:after{content:"الكوثر — 108"}
+.surah-grid>a.surah-card[href$="surah=109"] h2:after{content:"الكافرون — 109"}
+.surah-grid>a.surah-card[href$="surah=110"] h2:after{content:"النصر — 110"}
+.surah-grid>a.surah-card[href$="surah=111"] h2:after{content:"المسد — 111"}
+.surah-grid>a.surah-card[href$="surah=112"] h2:after{content:"الإخلاص — 112"}
+.surah-grid>a.surah-card[href$="surah=113"] h2:after{content:"الفلق — 113"}
+.surah-grid>a.surah-card[href$="surah=114"] h2:after{content:"الناس — 114"}
