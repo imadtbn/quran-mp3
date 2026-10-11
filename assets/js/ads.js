@@ -30,7 +30,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 /* Catalogue pages share the main navigation and breadcrumb with the home page. */
 function mountMushafNavigation(){
- if(!/\\/catalog\\/mushafs\\/[^/]+\\.html$/.test(location.pathname))return;
+ if(!/\/catalog\/mushafs\/[^/]+\.html$/.test(location.pathname))return;
  const header=document.querySelector('.site-header');
  if(!header||header.dataset.catalogNavReady)return;
  header.dataset.catalogNavReady='1';
