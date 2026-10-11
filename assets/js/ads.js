@@ -11,7 +11,11 @@ function mount(){
   for(const entry of entries){if(!entry.isIntersecting)continue;observer.unobserve(entry.target);show(entry.target)}
  },{rootMargin:'350px 0px'}):null;
  function show(el){
-  if(el.dataset.loaded)return;el.dataset.loaded='1';
+  if(el.dataset.loaded)return;
+  // AdSense responsive units cannot size narrow columns (e.g. 81px).
+  const width=Math.floor(el.getBoundingClientRect().width);
+  if(width<300){el.dataset.skipped='narrow';return;}
+  el.dataset.loaded='1';
   const index=Number(el.dataset.quranAd),slot=slots[index],ins=document.createElement('ins');
   ins.className='adsbygoogle';ins.style.display='block';ins.dataset.adClient=client;ins.dataset.adSlot=slot.id;ins.dataset.adFormat=slot.format;
   if(slot.layout)ins.dataset.adLayoutKey=slot.layout;
@@ -21,7 +25,7 @@ function mount(){
  }
  targets.forEach((target,i)=>{
   if(!target||!slots[i])return;
-  const aside=document.createElement('aside');aside.className='quran-ad-placement';aside.dataset.quranAd=String(i);aside.setAttribute('aria-label','مساحة إعلانية');
+  const aside=document.createElement('aside');aside.className='quran-ad-placement';aside.style.cssText='width:100%;min-width:300px;max-width:100%;';aside.dataset.quranAd=String(i);aside.setAttribute('aria-label','مساحة إعلانية');
   target.insertAdjacentElement('afterend',aside);
   observer?observer.observe(aside):show(aside);
  });
