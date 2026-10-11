@@ -1,0 +1,7 @@
+/* Shared, nonintrusive navigation styles */
+.qmp3-global-nav{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:12px max(16px,calc((100vw - 1180px)/2));background:#f6faf7;border-bottom:1px solid #d8e5dc;font-family:Tajawal,Arial,sans-serif;direction:rtl}
+.qmp3-global-nav a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:8px 12px;border-radius:11px;text-decoration:none;color:#224c3d;font-size:.9rem;font-weight:700;white-space:nowrap}
+.qmp3-global-nav a:hover,.qmp3-global-nav a:focus-visible,.qmp3-global-nav a[aria-current=page]{background:#e4eee7;color:#143b2d;outline-offset:2px}
+.qmp3-global-nav .nav-icon,.main-nav .nav-icon{font-family:Arial,sans-serif;display:inline-flex;align-items:center;justify-content:center;min-width:18px;font-size:1.08em;line-height:1}
+.main-nav a{display:inline-flex;align-items:center;gap:5px}
+@media(max-width:760px){.qmp3-global-nav{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:thin;padding:9px 14px;max-width:100%;-webkit-overflow-scrolling:touch}.qmp3-global-nav a{flex:none;min-height:44px}.qmp3-global-nav::-webkit-scrollbar{height:3px}}
