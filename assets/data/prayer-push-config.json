@@ -1,4 +1,4 @@
 {
-  "apiBaseUrl": "",
-  "enabled": false
+  "apiBaseUrl": "https://quran-prayer-push.imadtbn-prayer.workers.dev",
+  "enabled": true
 }
