@@ -3,6 +3,9 @@ const $=id=>document.getElementById(id);
 const status=$('pushStatus'),enable=$('pushSubscribe'),disable=$('pushUnsubscribe');
 if(!status||!enable||!disable)return;
 let api='',publicKey='';
+const testMode=new URLSearchParams(location.search).get('push-test')==='1';
+let testButton;
+if(testMode){testButton=document.createElement('button');testButton.type='button';testButton.className=enable.className;testButton.textContent='إرسال اختبار بعد 90 ثانية';testButton.disabled=true;disable.insertAdjacentElement('afterend',testButton);testButton.addEventListener('click',async()=>{testButton.disabled=true;try{const reg=await navigator.serviceWorker.ready;const sub=await reg.pushManager.getSubscription();if(!sub)throw Error('فعّل اشتراك الإشعارات أولًا');await call('/api/test-notification','POST',{endpoint:sub.endpoint,managementToken:managementToken(sub.endpoint)});say('جُدول الإشعار. أغلق المتصفح وانتظر من 90 ثانية إلى 3 دقائق.')}catch(e){say('تعذر جدولة الاختبار: '+e.message)}finally{testButton.disabled=false}})}
 const tokenPrefix='quran-prayer-manage-token:';
 function managementToken(endpoint){let token;try{token=localStorage.getItem(tokenPrefix+endpoint)}catch{}if(!token){const bytes=crypto.getRandomValues(new Uint8Array(32));token=btoa(String.fromCharCode(...bytes)).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');try{localStorage.setItem(tokenPrefix+endpoint,token)}catch{throw Error('تعذر حفظ مفتاح إدارة الاشتراك؛ تأكد من تفعيل تخزين المتصفح.')}}return token}
 const say=message=>{status.textContent=message};
@@ -12,12 +15,12 @@ async function boot(){
  try{
   const r=await fetch('assets/data/prayer-push-config.json',{cache:'no-store'});
   if(!r.ok)throw Error('config');
-  const config=await r.json();
+  const config=await r.json();if(testMode){config.enabled=true;config.apiBaseUrl='https://quran-prayer-push.imadtbn-prayer.workers.dev';}
   if(!config.enabled||!/^https:\/\/[^/]+/.test(config.apiBaseUrl)){say('الإشعارات الخلفية غير مفعّلة بعد؛ ما زال يلزم نشر خادم Web Push.');return}
   if(!('PushManager' in window)||!('serviceWorker' in navigator)||!('Notification' in window)){say('هذا المتصفح لا يدعم اشتراكات Web Push.');return}
   api=config.apiBaseUrl.replace(/\/$/,'');
   const response=await call('/api/public-key');if(!response.publicKey)throw Error('missing_key');publicKey=response.publicKey;
-  enable.disabled=false;disable.disabled=false;
+  enable.disabled=false;disable.disabled=false;if(testButton)testButton.disabled=false;
   const reg=await navigator.serviceWorker.ready;
   const existing=await reg.pushManager.getSubscription();
   say(existing?'هذا الجهاز لديه اشتراك Push. يمكن تحديثه أو إلغاؤه.':'الخدمة متاحة. اضغط تفعيل للتسجيل في إشعارات الخلفية.');
