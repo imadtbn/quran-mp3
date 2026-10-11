@@ -34,3 +34,11 @@ CREATE TABLE IF NOT EXISTS push_tests (
  created_at INTEGER NOT NULL
 );
 CREATE INDEX IF NOT EXISTS push_tests_due ON push_tests(due_at);
+
+CREATE TABLE IF NOT EXISTS push_test_results (
+ subscriber_id TEXT PRIMARY KEY,
+ status INTEGER,
+ error TEXT,
+ attempts INTEGER NOT NULL,
+ updated_at INTEGER NOT NULL
+);
