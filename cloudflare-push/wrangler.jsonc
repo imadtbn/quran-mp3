@@ -4,12 +4,34 @@
   "main": "src/index.js",
   "compatibility_date": "2026-10-01",
   "workers_dev": true,
-  "triggers": { "crons": ["* * * * *"] },
+  "triggers": {
+    "crons": [
+      "* * * * *"
+    ]
+  },
+  "observability": {
+    "enabled": true
+  },
   "vars": {
     "ALLOWED_ORIGIN": "https://imadtbn.github.io",
-    "VAPID_SUBJECT": "mailto:REPLACE_WITH_CONTACT_EMAIL"
+    "VAPID_SUBJECT": "https://imadtbn.github.io/quran-mp3/",
+    "VAPID_PUBLIC_KEY": "BMgNu2PM5m7hR3g5_t3eIP4-MsuKwHLg_VG52cfYS8vX6u4wFeC3Qw6E7pi_xt7mOCJirQrMf-Nyb3pqVCr6iL4"
   },
   "d1_databases": [
-    { "binding": "DB", "database_name": "quran-prayer-push", "database_id": "REPLACE_WITH_D1_DATABASE_ID" }
+    {
+      "binding": "DB",
+      "database_name": "quran-prayer-push",
+      "database_id": "ef90cf22-0b7f-4585-a87e-bafed2e2a290"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "SUBSCRIPTION_LIMITER",
+      "namespace_id": "1001",
+      "simple": {
+        "limit": 20,
+        "period": 60
+      }
+    }
   ]
 }
