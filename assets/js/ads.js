@@ -25,7 +25,7 @@ function mount(){
  }
  targets.forEach((target,i)=>{
   if(!target||!slots[i])return;
-  const aside=document.createElement('aside');aside.className='quran-ad-placement';aside.style.cssText='width:100%;min-width:300px;max-width:100%;';aside.dataset.quranAd=String(i);aside.setAttribute('aria-label','مساحة إعلانية');
+  const aside=document.createElement('aside');aside.className='quran-ad-placement';aside.style.cssText='width:100%;min-width:0;max-width:100%;';aside.dataset.quranAd=String(i);aside.setAttribute('aria-label','مساحة إعلانية');
   target.insertAdjacentElement('afterend',aside);
   observer?observer.observe(aside):show(aside);
  });
