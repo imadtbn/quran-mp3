@@ -1,0 +1,7 @@
+/* Unified breadcrumbs throughout Quran MP3 */
+.qmp3-breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:8px;min-height:48px;margin:14px auto 18px;padding:10px 16px;border:1px solid #d9e5de;border-radius:13px;background:#f6faf7;color:#365747;font-family:Tajawal,Arial,sans-serif;font-size:.9rem;line-height:1.6;direction:rtl;max-width:min(1180px,calc(100% - 32px));box-sizing:border-box}
+.qmp3-breadcrumb a{color:#225b45;text-decoration:none;font-weight:700;min-height:30px;display:inline-flex;align-items:center}
+.qmp3-breadcrumb a:hover{text-decoration:underline}.qmp3-breadcrumb a:focus-visible{outline:2px solid #c2a66b;outline-offset:3px;border-radius:3px}
+.qmp3-breadcrumb .bc-separator{color:#879b8e;user-select:none}
+.qmp3-breadcrumb [aria-current=page]{font-weight:700;color:#21382f;overflow-wrap:anywhere}
+@media(max-width:600px){.qmp3-breadcrumb{margin:10px 12px 14px;max-width:calc(100% - 24px);gap:6px;padding:9px 12px;font-size:.83rem;min-height:44px}}
