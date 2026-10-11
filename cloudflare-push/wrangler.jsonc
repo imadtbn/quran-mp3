@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "quran-prayer-push",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "workers_dev": true,
+  "triggers": { "crons": ["* * * * *"] },
+  "vars": {
+    "ALLOWED_ORIGIN": "https://imadtbn.github.io",
+    "VAPID_SUBJECT": "mailto:REPLACE_WITH_CONTACT_EMAIL"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "quran-prayer-push", "database_id": "REPLACE_WITH_D1_DATABASE_ID" }
+  ]
+}
