@@ -550,3 +550,20 @@ body .review-actions button:hover:not(:disabled){background:var(--brand-soft);bo
 .surah-grid>a.surah-card[href$="surah=112"] h2:after{content:"الإخلاص — 112"}
 .surah-grid>a.surah-card[href$="surah=113"] h2:after{content:"الفلق — 113"}
 .surah-grid>a.surah-card[href$="surah=114"] h2:after{content:"الناس — 114"}
+
+/* Unified catalogue/mushafs navigation and breadcrumbs. */
+body:has(.catalog-mushaf-nav){} /* Keep selector reserved for catalogue-specific extensions. */
+.site-header[data-catalog-nav-ready="1"] .header-inner{min-height:72px;height:auto;position:relative}
+.site-header[data-catalog-nav-ready="1"] .brand{flex-shrink:0;gap:8px}
+.site-header[data-catalog-nav-ready="1"] .brand-mark{display:grid;place-items:center;width:36px;height:36px;background:var(--ink-2);border-radius:10px;color:#e0b961;font-size:1.4rem}
+.site-header[data-catalog-nav-ready="1"] .brand-text{font-size:1rem}
+.site-header[data-catalog-nav-ready="1"] .main-nav{display:flex;gap:2px;align-items:center;flex-wrap:wrap;justify-content:center}
+.site-header[data-catalog-nav-ready="1"] .main-nav a{display:inline-flex;gap:5px;align-items:center;padding:7px 9px;font-size:.78rem;font-weight:700;white-space:nowrap}
+.site-header[data-catalog-nav-ready="1"] .main-nav a[aria-current="page"]{background:var(--brand-soft);color:var(--brand)}
+.site-header[data-catalog-nav-ready="1"] .nav-icon{display:inline-flex;align-items:center;justify-content:center;min-width:16px}
+.qmp3-breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:8px;min-height:48px;margin:14px auto 18px;padding:10px 16px;border:1px solid #d9e5de;border-radius:13px;background:#f6faf7;color:#365747;font-family:Tajawal,Arial,sans-serif;font-size:.9rem;line-height:1.6;direction:rtl;max-width:min(1180px,calc(100% - 32px));box-sizing:border-box}
+.qmp3-breadcrumb a{color:#225b45;text-decoration:none;font-weight:700;min-height:30px;display:inline-flex;align-items:center}
+.qmp3-breadcrumb a:hover{text-decoration:underline}.qmp3-breadcrumb a:focus-visible{outline:2px solid #c2a66b;outline-offset:3px;border-radius:3px}
+.qmp3-breadcrumb .bc-separator{color:#879b8e;user-select:none}.qmp3-breadcrumb [aria-current=page]{font-weight:700;color:#21382f;overflow-wrap:anywhere}
+@media(max-width:1100px){.site-header[data-catalog-nav-ready="1"] .header-inner{height:70px;min-height:70px;flex-wrap:nowrap}.site-header[data-catalog-nav-ready="1"] .nav-toggle{display:grid;place-items:center;flex:none}.site-header[data-catalog-nav-ready="1"] .main-nav{display:none;position:absolute;top:calc(100% + 6px);right:0;left:0;z-index:60;max-height:min(72vh,540px);overflow:auto;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.site-header[data-catalog-nav-ready="1"] .main-nav.catalog-nav-open{display:grid}.site-header[data-catalog-nav-ready="1"] .main-nav a{min-height:44px;padding:9px;font-size:.88rem;white-space:normal}}
+@media(max-width:600px){.site-header[data-catalog-nav-ready="1"] .header-inner{gap:8px}.site-header[data-catalog-nav-ready="1"] .brand-text{font-size:.85rem}.site-header[data-catalog-nav-ready="1"] .main-nav{grid-template-columns:1fr 1fr}.qmp3-breadcrumb{margin:10px 12px 14px;max-width:calc(100% - 24px);gap:6px;padding:9px 12px;font-size:.83rem;min-height:44px}}
