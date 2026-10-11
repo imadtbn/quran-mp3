@@ -16,7 +16,8 @@ async function boot(){
   const r=await fetch('assets/data/prayer-push-config.json',{cache:'no-store'});
   if(!r.ok)throw Error('config');
   const config=await r.json();if(testMode){config.enabled=true;config.apiBaseUrl='https://quran-prayer-push.imadtbn-prayer.workers.dev';}
-  if(!config.enabled||!/^https:\/\/[^/]+/.test(config.apiBaseUrl)){say('الإشعارات الخلفية غير مفعّلة بعد؛ ما زال يلزم نشر خادم Web Push.');return}
+  if(!config.enabled||!/^https:\/\/[^/]+/.test(config.apiBaseUrl)){say('نُشرت خدمة الإشعارات الخلفية وهي متاحة للاختبار؛ التفعيل العام ينتظر نجاح تجربة الهاتف.');
+const testLink=document.createElement('a');const testUrl=new URL(location.href);testUrl.searchParams.set('push-test','1');testUrl.hash='pushHeading';testLink.href=testUrl.href;testLink.className=enable.className;testLink.textContent='فتح اختبار إشعارات الخلفية';enable.parentElement.append(testLink);return}
   if(!('PushManager' in window)||!('serviceWorker' in navigator)||!('Notification' in window)){say('هذا المتصفح لا يدعم اشتراكات Web Push.');return}
   api=config.apiBaseUrl.replace(/\/$/,'');
   const response=await call('/api/public-key');if(!response.publicKey)throw Error('missing_key');publicKey=response.publicKey;
