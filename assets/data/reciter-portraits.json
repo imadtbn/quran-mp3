@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "readers": {
+    "118": {
+      "name": "محمود خليل الحصري",
+      "image": "assets/img/reciters/mahmoud-khalil-al-hussary.webp",
+      "source": "https://commons.wikimedia.org/wiki/File:Hussary.jpg",
+      "author": "Zubairkhan1",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "verified": true,
+      "reviewedAt": "2026-10-11"
+    },
+    "123": {
+      "name": "مشاري العفاسي",
+      "image": "assets/img/reciters/mishary-alafasy.webp",
+      "source": "https://commons.wikimedia.org/wiki/File:Мишари_Рашид.jpg",
+      "author": "quranic.ru",
+      "license": "Copyrighted free use",
+      "licenseUrl": null,
+      "verified": true,
+      "reviewedAt": "2026-10-11"
+    },
+    "51": {
+      "name": "عبدالباسط عبدالصمد",
+      "image": "assets/img/reciters/abdul-basit-abdul-samad.webp",
+      "source": "https://commons.wikimedia.org/wiki/File:Abdul_Basit_Abdul_Samad_at_Centenary_Celebration_Of_Darul_Uloom_Deoband_1980.jpg",
+      "author": "Prasar Bharati, Ministry of Information and Broadcasting, Government of India; 21 March 1980",
+      "license": "Government Open Data License – India",
+      "licenseUrl": "https://data.gov.in/government-open-data-license-india",
+      "verified": true,
+      "reviewedAt": "2026-10-11"
+    }
+  }
+}

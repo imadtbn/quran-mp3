@@ -1,0 +1,46 @@
+body[data-directory="readers"] .directory-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 290px), 1fr));
+  gap: 14px;
+}
+body[data-directory="readers"] .directory-tools input { min-width: 0; width: 100%; }
+body[data-directory="readers"] .reader-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  padding: 18px;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.reader-card:hover { box-shadow: 0 6px 20px rgb(0 0 0 / 6%); }
+.reader-card:focus-visible { outline: 3px solid var(--brand); outline-offset: 3px; }
+.reader-avatar {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  flex: 0 0 72px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  color: var(--brand);
+  background: var(--bg, #f3f7f5);
+}
+.reader-initials { font-size: 1.15rem; font-weight: 700; }
+.reader-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; opacity: 0; }
+.reader-avatar.has-portrait img { opacity: 1; }
+.reader-avatar.has-portrait .reader-initials { visibility: hidden; }
+.reader-card-content { display: grid; gap: 5px; flex: 1; min-width: 0; overflow-wrap: anywhere; }
+body[data-directory="readers"] .reader-card strong { font-size: 1.05rem; line-height: 1.65; }
+.reader-riwayat { font-size: .8rem; color: var(--muted); line-height: 1.6; }
+.reader-card-action { color: var(--brand); font-size: .8rem; font-weight: 700; margin-top: 3px; }
+.directory-more { grid-column: 1 / -1; justify-self: center; min-width: 160px; min-height: 44px; margin-top: 10px; }
+.directory-empty { grid-column: 1 / -1; padding: 24px; text-align: center; color: var(--muted); }
+.portrait-credits { margin-top: 28px; color: var(--muted); font-size: .8rem; line-height: 1.8; }
+.portrait-credits summary { cursor: pointer; padding: 10px 0; }
+.portrait-credits p { margin: 8px 0; overflow-wrap: anywhere; }
+@media (max-width: 420px) {
+  body[data-directory="readers"] .reader-card { padding: 14px; gap: 12px; }
+  .reader-avatar { width: 64px; height: 64px; flex-basis: 64px; }
+}
+@media (prefers-reduced-motion: reduce) { body[data-directory="readers"] .reader-card { transition: none; } }
