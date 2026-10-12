@@ -3,7 +3,7 @@
 const client='ca-pub-5656416032906373';
 const slots=[{id:'3143411927',format:'auto',type:'display'},{id:'7867079394',format:'fluid',layout:'-fr+57+4a-dc+8g',type:'native'},{id:'6528123169',format:'autorelaxed',type:'multiplex'}];
 function mount(){
- const style=document.createElement('style');style.textContent='.quran-ad-placement{display:block;max-width:100%;min-width:0;margin:20px auto;overflow:hidden;contain:layout style;min-height:1px}.quran-ad-placement[data-loaded="1"]{min-height:90px}.quran-ad-placement ins{width:100%;max-width:100%;overflow:hidden}@media(max-width:600px){.quran-ad-placement{margin:12px auto}.quran-ad-placement[data-loaded="1"]{min-height:70px}}';document.head.append(style);
+ const style=document.createElement('style');style.textContent='.quran-ad-placement{display:block;box-sizing:border-box;width:min(960px,calc(100% - 40px));max-width:100%;min-width:0;margin:20px auto;overflow:hidden;contain:layout style;min-height:1px;clear:both}.quran-ad-placement[data-loaded="1"]{min-height:90px}.quran-ad-placement ins{display:block;width:100%;max-width:100%;margin-inline:auto;overflow:hidden}@media(max-width:600px){.quran-ad-placement{width:calc(100% - 24px);margin:12px auto}.quran-ad-placement[data-loaded="1"]{min-height:70px}}';document.head.append(style);
  const main=document.querySelector('main');if(!main||document.querySelector('[data-quran-ad]'))return;
  const children=[...main.children].filter(el=>!el.matches('script,style'));
  const targets=[children[Math.min(1,children.length-1)],children[Math.max(1,Math.floor(children.length/2))],children[children.length-1]].filter(Boolean);
@@ -25,7 +25,7 @@ function mount(){
  }
  targets.forEach((target,i)=>{
   if(!target||!slots[i])return;
-  const aside=document.createElement('aside');aside.className='quran-ad-placement';aside.style.cssText='width:100%;min-width:0;max-width:100%;';aside.dataset.quranAd=String(i);aside.setAttribute('aria-label','مساحة إعلانية');
+  const aside=document.createElement('aside');aside.className='quran-ad-placement';aside.style.cssText='min-width:0;';aside.dataset.quranAd=String(i);aside.setAttribute('aria-label','مساحة إعلانية');
   target.insertAdjacentElement('afterend',aside);
   observer?observer.observe(aside):show(aside);
  });
