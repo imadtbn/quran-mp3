@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "https://www.mp3quran.net/api/v3/reciters?language=ar",
-  "createdAt": "2026-10-10T06:13:12.330Z",
+  "createdAt": "2026-10-12T11:59:41.006Z",
   "readers": {
     "إبراهيم الأخضر": "catalog/readers/1.html",
     "أكرم العلاقمي": "catalog/readers/10.html",
@@ -102,7 +102,7 @@
     "محمد ديبيروف": "catalog/readers/21200.html",
     "عاصم اللحیدان": "catalog/readers/21201.html",
     "محمود حرفوش": "catalog/readers/21202.html",
-    "أيمن رشدي": "catalog/readers/21203.html",
+    "أيمن رشدي سويد": "catalog/readers/21203.html",
     "عثمان الأنصاري": "catalog/readers/216.html",
     "بندر بليله": "catalog/readers/217.html",
     "خالد الشريمي": "catalog/readers/218.html",
