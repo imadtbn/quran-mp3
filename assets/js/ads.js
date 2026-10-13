@@ -34,4 +34,4 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 
 /* Shared navigation for all catalog pages (no duplicate header handlers). */
-(()=>{const s=document.createElement('script');s.src=new URL('site-shell.js',document.currentScript.src).href;s.defer=true;document.head.append(s)})();
+(()=>{if(document.querySelector('script[src*="site-shell.js"]'))return;const s=document.createElement('script');s.src=new URL('site-shell.js',document.currentScript.src).href;s.defer=true;document.head.append(s)})();
