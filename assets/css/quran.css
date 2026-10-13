@@ -8,3 +8,36 @@
 
 /* Mobile QA: prevent player controls and source text from pushing the viewport */
 .quran-audio,.qa-options,.qa-progress,.qa-heading,.qa-foot{min-width:0;max-width:100%}.qa-heading>div{min-width:0}.qa-heading small{overflow-wrap:anywhere}.qa-progress input{min-width:0}.reading,.verses,.ayah{max-width:100%}@media(max-width:400px){.qa-heading{flex-wrap:wrap}.qa-heading button{min-height:44px}.qa-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.qa-actions button{min-width:0;white-space:normal;overflow-wrap:anywhere}}
+
+/* Reader actions share a consistent icon, touch target and responsive layout. */
+main .quran-action{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;min-width:0;max-width:100%;line-height:1.5;white-space:normal}
+.quran-action-icon{display:block;width:18px;height:18px;flex:0 0 18px}
+.quran-action-label{min-width:0;overflow-wrap:anywhere}
+.controls>button{width:100%}
+.qa-actions{display:grid;grid-template-columns:1fr 1.3fr 1fr;gap:8px}
+.qa-actions button{width:100%;padding:10px 8px}
+.offline-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.offline-actions button{width:100%}
+.offline-actions #cancelOffline{grid-column:1/-1}
+.reading-foot{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:9px}
+.reading-foot button{width:100%}
+.ayah-tools{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.bookmark-row>span{flex:1 1 100%}
+.bookmark-row>button{flex:1 1 100px}
+@media(max-width:600px){
+ .controls>label{grid-column:1/-1}
+ .controls{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .controls>button{padding:10px 7px;font-size:.87rem}
+ .qa-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .qa-actions #qaPlay{grid-column:1/-1;grid-row:1;min-height:48px}
+ .qa-heading{flex-wrap:wrap;gap:10px}
+ .qa-heading>div{flex:1 1 180px}
+ .qa-heading button{margin-inline-start:auto}
+ .offline-actions{grid-template-columns:1fr}
+ .offline-actions button{padding:10px}
+ .ayah-tools{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .ayah-tools button{padding:9px 7px;font-size:.86rem}
+ .reading-foot button{padding:10px 7px;font-size:.84rem;gap:5px}
+ .search-line button{width:100%}
+}
+@media(max-width:350px){.reading-foot{grid-template-columns:1fr 1fr}.reading-foot #counter{grid-column:1/-1;grid-row:1}.controls>button{font-size:.8rem}.qa-actions button{font-size:.8rem}}
