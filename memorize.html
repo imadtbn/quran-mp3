@@ -28,7 +28,7 @@
         type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"أداة الحفظ والمراجعة القرآنية","url":"https://imadtbn.github.io/quran-mp3/memorize.html","description":"مراجعة آيات القرآن وتكرارها صوتيًا مع حفظ التقدم ومشاركة مقاطع المراجعة","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":"ar","isAccessibleForFree":true}</script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/details.css">
-    <link rel="stylesheet" href="assets/css/memorize.css">
+    <link rel="stylesheet" href="assets/css/memorize.css?v=20261013-icons">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5656416032906373"
         crossorigin="anonymous"></script>
 
@@ -99,7 +99,7 @@
                         <option value="5">5 ثوانٍ</option>
                         <option value="10">10 ثوانٍ</option>
                     </select></label>
-                <div class="review-actions"><button type="submit" class="chip-btn" id="startReview">ابدأ
+                <div class="review-actions review-setup-actions" role="group" aria-label="إجراءات إعداد جلسة المراجعة"><button type="submit" class="chip-btn" id="startReview">ابدأ
                         المراجعة</button><button type="button" class="chip-btn secondary-chip" id="saveReview">حفظ
                         الإعدادات</button><button type="button" class="chip-btn secondary-chip" id="shareReview">مشاركة
                         المقطع</button></div>
@@ -112,13 +112,13 @@
             <h2>جلسة الاستماع</h2>
             <p id="reviewStatus" role="status" aria-live="polite">اختر الآيات ثم اضغط «ابدأ المراجعة».</p>
             <p id="reviewProgress" class="review-progress"></p><audio id="verseAudio" controls preload="none"></audio>
-            <div class="review-actions"><button type="button" id="pauseReview">إيقاف مؤقت</button><button type="button"
+            <div class="review-actions review-playback-actions" role="group" aria-label="التحكم في التلاوة"><button type="button" id="pauseReview">إيقاف مؤقت</button><button type="button"
                     id="skipVerse">الآية التالية</button><button type="button" id="restartVerse">إعادة
                     الآية</button><button type="button" id="stopReview">إنهاء الجلسة</button></div>
             <section class="review-tracking">
                 <h3>تقدم المراجعة</h3>
                 <p id="reviewSavedProgress" aria-live="polite">لم تُحفظ جلسة بعد.</p>
-                <div class="review-actions"><button type="button" id="resumeSaved">استكمال آخر جلسة</button><button
+                <div class="review-actions review-progress-actions" role="group" aria-label="إدارة تقدم المراجعة"><button type="button" id="resumeSaved">استكمال آخر جلسة</button><button
                         type="button" id="resetSaved">مسح تقدم المراجعة</button></div>
             </section>
             <div id="reviewVerses" class="review-verses" aria-label="آيات المقطع"></div>
@@ -133,6 +133,7 @@
     </main>
     <script src="assets/js/data.js"></script>
     <script src="assets/js/memorize.js"></script>
+    <script defer src="assets/js/memorize-actions.js?v=20261013-icons"></script>
     <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(() => { });</script>
     <script defer src="assets/js/ads.js"></script>
   <script src="assets/js/footer.js" defer></script>
