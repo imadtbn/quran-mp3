@@ -10,7 +10,7 @@ function active(path){if(catalog)return location.pathname.includes('/readers/')?
 function initialize(){
  if(document.documentElement.dataset.shellReady)return;
  // One shared menu design for both existing and generated page headers.
- const navigationCss=href('assets/css/site-navigation.css?v=20261013-unified-nav');
+ const navigationCss=href('assets/css/site-navigation.css?v=20261013-nav-fix');
  let navigationLink=[...document.querySelectorAll('link[rel="stylesheet"]')].find(link=>link.href.split('?')[0]===href('assets/css/site-navigation.css'));
  if(!navigationLink){navigationLink=document.createElement('link');navigationLink.rel='stylesheet';document.head.append(navigationLink)}
  navigationLink.href=navigationCss;

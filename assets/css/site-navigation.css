@@ -1,14 +1,14 @@
 /* Shared, nonintrusive navigation styles */
 /* Match the homepage menu button, including shell-generated headers. */
-.site-header #navToggle{width:42px;height:42px;min-width:42px;flex:0 0 42px;padding:0;margin-inline-start:0;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);font-family:inherit;font-size:1.15rem;line-height:1;place-items:center;align-items:center;justify-content:center;box-shadow:none;touch-action:manipulation}
-.site-header #navToggle:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.site-header #navToggle{width:42px;height:42px;min-width:42px;flex:0 0 42px;padding:0;margin-inline-start:0;border:1px solid var(--line,#dbe7dd);border-radius:12px;background:var(--surface,#fff);color:var(--ink,#18332d);font-family:inherit;font-size:1.15rem;line-height:1;place-items:center;align-items:center;justify-content:center;box-shadow:none;touch-action:manipulation}
+.site-header #navToggle:focus-visible{outline:3px solid var(--gold,#b18b45);outline-offset:3px}
 @media(max-width:640px){
  .site-header #navToggle{display:inline-flex}
- .site-header #mainNav{position:absolute;top:100%;right:0;left:auto;inset-inline:auto;width:max-content;max-width:calc(100vw - 24px);height:auto;max-height:min(75dvh,480px);display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:3px;padding:9px;border:1px solid var(--line);border-radius:0 0 0 14px;box-shadow:-8px 14px 28px rgb(0 0 0 / 13%);background:var(--surface);transform:translateX(calc(100% + 15px));opacity:0;visibility:hidden;pointer-events:none;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;z-index:90;transition:transform .2s ease,opacity .2s ease,visibility .2s}
+ .site-header #mainNav{position:absolute;top:100%;right:0;left:auto;inset-inline:auto;width:max-content;max-width:calc(100vw - 24px);height:auto;max-height:min(75dvh,480px);display:flex;flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:3px;padding:9px;border:1px solid var(--line,#dbe7dd);border-radius:0 0 0 14px;box-shadow:-8px 14px 28px rgb(0 0 0 / 13%);background:var(--surface,#fff);transform:translateX(calc(100% + 15px));opacity:0;visibility:hidden;pointer-events:none;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;z-index:90;transition:transform .2s ease,opacity .2s ease,visibility .2s}
  .site-header #mainNav:is(.open,.qmp3-open){display:flex;transform:translateX(0);opacity:1;visibility:visible;pointer-events:auto}
- .site-header #mainNav a{display:flex;align-items:center;gap:9px;width:100%;min-height:42px;padding:7px 10px;white-space:nowrap;text-align:right;color:var(--ink);border-radius:9px;font-family:inherit;font-size:.9rem;font-weight:700}
- .site-header #mainNav a:hover,.site-header #mainNav a:focus-visible,.site-header #mainNav a[aria-current="page"]{background:var(--brand-soft);color:var(--brand)}
- .site-header #mainNav .nav-icon{width:24px;height:24px;min-width:24px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:7px;background:var(--brand-soft);color:var(--brand);font:14px/1 system-ui,sans-serif}
+ .site-header #mainNav a{display:flex;align-items:center;gap:9px;width:100%;min-height:42px;padding:7px 10px;white-space:nowrap;text-align:right;color:var(--ink,#18332d);border-radius:9px;font-family:inherit;font-size:.9rem;font-weight:700}
+ .site-header #mainNav a:hover,.site-header #mainNav a:focus-visible,.site-header #mainNav a[aria-current="page"]{background:var(--brand-soft,#e3f3ed);color:var(--brand,#0f766e)}
+ .site-header #mainNav .nav-icon{width:24px;height:24px;min-width:24px;flex:none;display:inline-flex;align-items:center;justify-content:center;border-radius:7px;background:var(--brand-soft,#e3f3ed);color:var(--brand,#0f766e);font:14px/1 system-ui,sans-serif}
 }
 @media(prefers-reduced-motion:reduce){.site-header #mainNav{transition:none}}
 .qmp3-global-nav{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:12px max(16px,calc((100vw - 1180px)/2));background:#f6faf7;border-bottom:1px solid #d8e5dc;font-family:Tajawal,Arial,sans-serif;direction:rtl}
