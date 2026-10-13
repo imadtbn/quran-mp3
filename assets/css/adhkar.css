@@ -53,3 +53,16 @@
 
 /* Keep the prayer dhikr controls legible at very narrow widths */
 .adhkar-page .adhkar-layout,.adhkar-page .adhkar-list,.adhkar-page .adhkar-card{min-width:0;max-width:100%}.adhkar-page .adhkar-text{overflow-wrap:anywhere}.adhkar-page .adhkar-progress>div{flex-wrap:wrap;gap:8px}.adhkar-page .adhkar-aside a{overflow-wrap:anywhere}@media(max-width:440px){.adhkar-page .adhkar-tools input{max-width:100%;width:100%}.adhkar-page .adhkar-actions button,.adhkar-page .adhkar-actions a{min-height:44px}}
+
+/* Compact card actions: primary count, paired utilities, paired reading links. */
+.adhkar-page .adhkar-action-icon{display:block;flex:0 0 18px;width:18px;height:18px}
+.adhkar-page .adhkar-action-label{min-width:0}
+.adhkar-page .adhkar-repeat-count{white-space:nowrap;font-variant-numeric:tabular-nums}
+@media(max-width:600px){
+ .adhkar-page .adhkar-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+ .adhkar-page .adhkar-actions .count{grid-column:1/-1;min-height:48px}
+ .adhkar-page .adhkar-actions :is(button,a){padding:10px 8px;gap:6px;font-size:.86rem;min-height:44px;line-height:1.5}
+ .adhkar-page .adhkar-actions .count{font-size:.94rem}
+ .adhkar-page .adhkar-actions .adhkar-quran-link:last-child:nth-child(4){grid-column:1/-1}
+}
+@media(max-width:350px){.adhkar-page .adhkar-actions :is(button,a){font-size:.8rem;padding-inline:6px}}
