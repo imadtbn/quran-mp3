@@ -70,6 +70,7 @@
     const setOpen = open => {
       nav.classList.toggle('open', open);
       nav.classList.toggle('qmp3-open', open);
+      if (!open) nav.classList.remove('is-open');
       toggle.setAttribute('aria-expanded', String(open));
       toggle.setAttribute('aria-label', open ? 'إغلاق قائمة التنقل' : 'فتح قائمة التنقل');
     };
@@ -92,7 +93,7 @@
       if (innerWidth > 1320 && nav.classList.contains('open')) setOpen(false);
     }, { passive: true });
     document.addEventListener('keydown', event => {
-      if (event.key === 'Escape') {
+      if (event.key === 'Escape' && nav.classList.contains('open')) {
         setOpen(false);
         toggle.focus();
       }
