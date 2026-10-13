@@ -1,0 +1,76 @@
+/* Quran MP3 | دعاء حفظ القرآن: scoped responsive visual system */
+.dua-hifz-page{background:#f6f8f3;color:#18332d;padding-bottom:0;overflow-x:clip;font-family:Tajawal,system-ui,sans-serif}
+.dua-hifz-page *{box-sizing:border-box}
+.dua-hifz-page .dh-wrap{width:min(1120px,calc(100% - 32px));margin-inline:auto}
+.dua-hifz-page .site-header{z-index:1100}
+.dh-skip{position:absolute;inset-inline-start:12px;top:-100px;z-index:1400;background:#fff;padding:11px;border:2px solid #b78b40;border-radius:9px}
+.dh-skip:focus{top:8px}
+.dua-hifz-page :is(button,a,select,input):focus-visible{outline:3px solid #b78b40;outline-offset:3px}
+.dh-hero{margin-block:17px 23px!important;min-height:unset;padding:clamp(25px,5vw,44px)!important;background:linear-gradient(120deg,#183b31,#245a4b)!important;color:#fff;border:1px solid #327260;border-radius:21px;box-shadow:0 12px 32px #203b3020}
+.dh-hero-copy{position:relative;z-index:1}
+.dh-eyebrow,.dh-overline{display:inline-block;color:#b18338;font-size:.85rem;letter-spacing:.025em;font-weight:800}
+.dh-hero .dh-eyebrow{color:#e5ca83}
+.dh-hero h1{max-width:850px;margin:9px 0 13px!important;color:#fff;font:700 clamp(2.05rem,4vw,3.3rem)/1.4 Amiri,serif}
+.dh-hero p{max-width:780px;margin:0;color:#e7f3ed;font-size:clamp(.96rem,1.4vw,1.1rem);line-height:1.9}
+.dh-hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:22px}
+.dua-hifz-page .dh-btn{appearance:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;max-width:100%;padding:10px 15px;border:1px solid #c9dace;border-radius:11px;background:#fff;color:#235043;text-decoration:none;font:700 .94rem/1.4 Tajawal,system-ui,sans-serif;text-align:center;white-space:normal;transition:background .16s,border-color .16s,transform .16s;cursor:pointer}
+.dua-hifz-page .dh-btn:hover{background:#e9f3ed;border-color:#8cab9d;transform:translateY(-1px)}
+.dua-hifz-page .dh-btn:disabled{cursor:not-allowed;opacity:.5;transform:none}
+.dua-hifz-page .dh-btn-primary{background:#0f766e;border-color:#0f766e;color:#fff}
+.dua-hifz-page .dh-btn-primary:hover{background:#095c55;border-color:#095c55}
+.dua-hifz-page .dh-btn-gold{background:#e5ca83;border-color:#e5ca83;color:#18332d}
+.dua-hifz-page .dh-btn-gold:hover{background:#f4dda0;border-color:#f4dda0}
+.dua-hifz-page .dh-btn-ghost{background:transparent;color:#fff;border-color:#aac7bb}
+.dua-hifz-page .dh-btn-ghost:hover{background:#ffffff20;border-color:#fff}
+.dh-notice{padding:17px 20px;border:1px solid #e7d8b6;border-inline-start:4px solid #b78b40;border-radius:14px;background:#fffdf5;margin-bottom:22px}
+.dh-notice h2{font:700 1.5rem Amiri,serif;color:#614a25;margin:0 0 7px}
+.dh-notice p{line-height:1.9;margin:5px 0;color:#4c574d}
+.dh-notice .dh-sources{font-size:.9rem;margin-top:11px}
+.dh-sources a,.dh-credit a{color:#0c7665;font-weight:700;text-underline-offset:3px}
+.dh-panel{background:#fff;border:1px solid #d9e6dc;border-radius:19px;padding:clamp(18px,2.6vw,28px);box-shadow:0 8px 24px #17382910;margin-block:20px 27px;scroll-margin-top:102px}
+.dh-section{margin-block:25px 35px;scroll-margin-top:105px}
+.dh-section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:17px}
+.dua-hifz-page h2{font:700 clamp(1.6rem,2.6vw,2.1rem)/1.45 Amiri,serif;color:#214639}
+.dh-section-head h2,.dh-general h2{margin:4px 0 5px}
+.dh-section-head p{color:#587166;font-size:.97rem;line-height:1.8;margin:0}
+.dh-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-block:14px}
+.dh-controls label{min-width:0;display:grid;gap:6px;color:#355b4c;font-size:.95rem;font-weight:800}
+.dh-controls select{display:block;min-width:0;width:100%;min-height:47px;padding:10px 12px;border:1px solid #b9cec2;border-radius:11px;background:#fff;color:#18332d;font:500 1rem Tajawal,system-ui,sans-serif}
+.dh-now{background:#f0f6f1;padding:11px 13px;border-radius:10px;color:#245642;font-weight:700;margin:12px 0}
+.dh-player audio{display:block;width:100%;min-height:52px;margin-block:10px 14px}
+.dh-player-buttons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.dh-player-buttons .dh-btn{width:100%;min-width:0}
+.dh-repeat{display:inline-flex;align-items:center;gap:9px;margin-top:15px;color:#365c4b;line-height:1.7;font-weight:700}
+.dh-repeat input{width:19px;height:19px;accent-color:#0f766e;flex-shrink:0}
+.dh-status{min-height:22px;margin:9px 0;color:#49685a;line-height:1.65}
+.dh-credit{color:#627668;font-size:.87rem;margin:4px 0 0}
+.dh-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.dh-card{background:#fff;border:1px solid #d9e6dc;border-radius:17px;padding:21px;box-shadow:0 7px 20px #153b2b0c;min-width:0;scroll-margin-top:105px}
+.dh-card.is-playing{border-color:#b78b40;box-shadow:0 0 0 2px #e5ca8366}
+.dh-tag{display:inline-flex;background:#e4f2e9;color:#28634d;border-radius:8px;padding:4px 9px;font-size:.83rem;font-weight:800}
+.dh-card h3{font:700 1.52rem/1.5 Amiri,serif;color:#214639;margin:12px 0 8px}
+.dh-arabic{font:400 var(--dh-text-size,1.54rem)/2.05 Amiri,serif;color:#1b352c;overflow-wrap:break-word;white-space:normal}
+.dh-card .dh-arabic{min-height:92px;margin-block:12px}
+.dh-ref{font-size:.91rem;color:#60756b;line-height:1.75;margin-block:12px}
+.dh-card-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin-top:16px}
+.dh-card-actions .dh-btn{flex:1 1 auto;padding:10px 12px;font-size:.88rem}
+.dh-type-actions{display:flex;gap:7px}
+.dh-type-actions button{min-width:44px;min-height:44px;background:#fff;color:#235043;border:1px solid #cbded0;border-radius:10px;font-weight:800;cursor:pointer}
+.dh-type-actions button:hover{border-color:#b78b40;background:#faf8ee}
+.dh-general{background:#fafcf8}
+.dh-general .dh-arabic{max-width:900px;margin:15px 0;font-size:calc(var(--dh-text-size,1.54rem) + .12rem)}
+.dh-related h2{margin-bottom:16px}
+.dh-related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.dh-related-grid a{display:grid;gap:8px;background:#fff;border:1px solid #d9e6dc;border-radius:14px;padding:17px;text-decoration:none;color:#214639}
+.dh-related-grid strong{font:700 1.3rem Amiri,serif}
+.dh-related-grid span{color:#597165;font-size:.91rem}
+.dh-related-grid a:hover{border-color:#b78b40;background:#fcfbf5}
+.dh-footer{background:#edf3ec;border-top:1px solid #d9e6dc;margin-top:40px;padding:22px 0}
+.dh-footer .dh-wrap{display:flex;gap:12px 20px;flex-wrap:wrap;align-items:center}
+.dh-footer a{color:#245844;font-weight:700;text-decoration:none}
+.dh-footer a:hover{text-decoration:underline}
+.dh-footer span{margin-inline-start:auto;color:#607567;font-size:.9rem}
+@media(max-width:800px){.dh-grid{grid-template-columns:1fr}.dh-related-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.dh-card .dh-arabic{min-height:0}}
+@media(max-width:640px){.dh-wrap{width:calc(100% - 24px)!important}.dh-hero{margin-inline:12px!important;width:calc(100% - 24px)!important;padding:23px 18px!important}.dh-hero-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.dh-hero-actions .dh-btn{min-width:0;padding:10px 8px;font-size:.86rem}.dh-hero-actions .dh-btn:last-child{grid-column:1/-1}.dh-controls{grid-template-columns:1fr}.dh-player-buttons{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.dh-card{padding:16px}.dh-card-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.dh-card-actions .dh-btn:first-child{grid-column:1/-1}.dh-card-actions .dh-btn{font-size:.86rem;padding:10px 8px}.dh-related-grid{grid-template-columns:1fr}.dh-footer span{margin-inline-start:0;width:100%}}
+@media(max-width:350px){.dh-hero-actions{grid-template-columns:1fr}.dh-hero-actions .dh-btn:last-child{grid-column:auto}.dh-player-buttons{grid-template-columns:1fr}.dh-card-actions{grid-template-columns:1fr}.dh-card-actions .dh-btn:first-child{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){.dua-hifz-page .dh-btn{transition:none}.dua-hifz-page .dh-btn:hover{transform:none}}
