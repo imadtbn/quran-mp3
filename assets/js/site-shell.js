@@ -16,7 +16,7 @@
     ['riwayat.html', '☷', 'الروايات'], ['quran.html', '﴿', 'المصحف الرقمي'],
     ['mushafs.html', '▤', 'المصاحف'], ['memorize.html', '◎', 'الحفظ والمراجعة'],
     ['adhkar.html', '☀', 'الأذكار'], ['prayer-times.html', '◷', 'مواقيت الصلاة'],
-    ['ruqyah.html', '✧', 'الرقية الشرعية']
+    ['ruqyah.html', '✧', 'الرقية الشرعية'], ['dua-hifz.html', '♧', 'دعاء حفظ القرآن']
   ];
   const url = path => new URL(path, base).href;
   const titleFor = path => pages.find(item => item[0] === path)?.[2] || 'المكتبة';
