@@ -26,7 +26,7 @@
     const target = url('assets/css/site-shell.css');
     const has = [...document.querySelectorAll('link[rel="stylesheet"]')]
       .some(link => link.href.split('?')[0] === target);
-    if (!has) {
+    if (!has && !getComputedStyle(document.documentElement).getPropertyValue('--qmp3-deep').trim()) {
       const link = document.createElement('link');
       link.rel = 'stylesheet';
       link.href = target + '?v=20261013-visual';
