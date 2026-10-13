@@ -41,3 +41,43 @@ body{overflow-x:clip}
 @media(prefers-reduced-motion:reduce){.review-actions button{transition:none}}
 
 .review-tracking{margin-top:20px;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface-2)}.review-tracking h3{font-size:1.08rem;color:var(--ink);margin:0 0 8px}.review-tracking p{color:var(--muted);line-height:1.8;overflow-wrap:anywhere}.review-tracking .review-actions{margin-top:12px}.review-tracking button:disabled{opacity:.5;cursor:not-allowed}@media(max-width:600px){.review-tracking{padding:12px}.review-tracking .review-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.review-tracking button{padding-inline:7px;font-size:.78rem}}@media(max-width:370px){.review-tracking .review-actions{grid-template-columns:1fr}}
+
+/* Memorization: icon-led, touch-friendly action groups (October 2026). */
+.memorize-main .review-actions{width:100%;min-width:0;margin-block-start:12px;gap:10px}
+.memorize-main .review-grid > .review-setup-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-column:1/-1;padding-top:14px;border-top:1px solid var(--line)}
+.memorize-main .player-review > .review-playback-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.memorize-main .review-tracking .review-progress-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+body .memorize-main .review-actions button{width:100%;max-width:100%;min-width:0;min-height:49px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 12px;background:#18332d;color:#fff;border:1.5px solid #b18b45;border-radius:12px;font-family:inherit;font-weight:800;font-size:clamp(.88rem,1.8vw,1rem);line-height:1.45;text-align:center;white-space:normal;overflow-wrap:normal;word-break:normal;box-shadow:0 3px 10px rgba(15,45,34,.09)}
+body .memorize-main .review-actions button:hover:not(:disabled){filter:none;background:#285448;border-color:#d9b96a;color:#fff;box-shadow:0 5px 14px rgba(15,45,34,.14)}
+body .memorize-main .review-actions button:focus-visible,.memorize-main .review-verses button:focus-visible{outline:3px solid #b18b45;outline-offset:3px}
+body .memorize-main .review-setup-actions #startReview{background:#d9b768;color:#18332d;border-color:#c7a457}
+body .memorize-main .review-setup-actions #startReview:hover:not(:disabled){background:#f0cf83;color:#18332d;border-color:#c7a457}
+body .memorize-main .review-setup-actions :is(#saveReview,#shareReview){background:#fff;color:#18332d}
+body .memorize-main .review-setup-actions :is(#saveReview,#shareReview):hover:not(:disabled){background:#f7f1e4;color:#18332d}
+body .memorize-main .review-actions :is(#stopReview,#resetSaved){background:#fff9f7;border-color:#c8887d;color:#8a352d}
+body .memorize-main .review-actions :is(#stopReview,#resetSaved):hover:not(:disabled){background:#fbe9e5;border-color:#b86053;color:#792a22}
+.memorize-main .memo-icon-button .memo-action-icon{display:block;flex:0 0 19px;width:19px;height:19px;pointer-events:none}
+.memorize-main .memo-icon-button .memo-action-label{display:block;min-width:0;max-width:100%;text-wrap:balance;overflow-wrap:normal;word-break:normal}
+.memorize-main .review-verses button.memo-icon-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;border-color:#cdb783;font-weight:700;min-width:0}
+.memorize-main .review-verses button.memo-icon-button .memo-action-icon{width:15px;height:15px;flex-basis:15px}
+.memorize-main .review-verses button.memo-icon-button:hover:not(:disabled){background:#e9efe7}
+.memorize-main .review-verses button.memo-icon-button:is(.active,[aria-current="true"]){background:#18332d;border-color:#b18b45;color:#fff}
+.memorize-main .review-verses button.memo-icon-button:is(.active,[aria-current="true"]):hover{background:#285448}
+@media(max-width:850px){
+ .memorize-main .review-grid > .review-setup-actions{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .memorize-main .player-review > .review-playback-actions{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:600px){
+ .memorize-main .review-grid > .review-setup-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding-top:12px}
+ .memorize-main .review-setup-actions #startReview{grid-column:1/-1;min-height:52px}
+ .memorize-main .player-review > .review-playback-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .memorize-main .review-tracking .review-progress-actions{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ body .memorize-main .review-actions button{font-size:clamp(.84rem,3.5vw,.97rem);padding:10px 7px;gap:6px;min-height:48px}
+ .memorize-main .memo-icon-button .memo-action-icon{width:18px;height:18px;flex-basis:18px}
+ .memorize-main .review-verses button.memo-icon-button{padding-inline:6px}
+}
+@media(max-width:370px){
+ .memorize-main .review-tracking .review-progress-actions{grid-template-columns:1fr}
+ body .memorize-main .review-actions button{padding-inline:6px;font-size:.83rem}
+}
+@media(prefers-reduced-motion:reduce){.memorize-main .review-actions button{transition:none}}
