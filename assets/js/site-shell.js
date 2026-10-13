@@ -90,7 +90,7 @@
       if (nav.classList.contains('open')) setOpen(false);
     }, { passive: true });
     window.addEventListener('resize', () => {
-      if (innerWidth > 1320 && nav.classList.contains('open')) setOpen(false);
+      if (innerWidth > 1480 && nav.classList.contains('open')) setOpen(false);
     }, { passive: true });
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape' && nav.classList.contains('open')) {
