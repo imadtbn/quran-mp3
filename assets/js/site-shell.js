@@ -191,8 +191,8 @@
   }
   function standardizeHero(main) {
     if (!main) return;
-    let hero = main.querySelector(':scope > .hero, :scope > .prayer-hero, :scope > .rq-hero, :scope > .adhkar-hero, :scope > .intro, :scope > .page-hero, :scope > .memorize-hero');
-    if (!hero) hero = main.querySelector('.hero, .prayer-hero, .rq-hero, .adhkar-hero, .memorize-hero, .intro, .page-hero, .details-hero, #detailsHero');
+    let hero = main.querySelector(':scope > .hero, :scope > .prayer-hero, :scope > .rq-hero, :scope > .adhkar-hero, :scope > .intro, :scope > .page-hero, :scope > .memorize-hero, :scope > .dh-hero');
+    if (!hero) hero = main.querySelector('.hero, .prayer-hero, .rq-hero, .adhkar-hero, .memorize-hero, .intro, .page-hero, .details-hero, #detailsHero, .dh-hero');
     if (!hero) {
       const h1 = main.querySelector(':scope > h1');
       hero = document.createElement('section');
