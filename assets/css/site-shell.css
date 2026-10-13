@@ -192,3 +192,16 @@ body.qmp3-site-page :is(button,a)[disabled]{cursor:not-allowed;opacity:.5}
   body.qmp3-site-page :is(.chip-btn,.back-link,.nav-back,.adhkar-return,
     .rq-button,.prayer-btn,.directory-nav a,.back,.qmp3-action){transition:none}
 }
+
+/* Keep return links visible after their old standalone headers become shared. */
+main .qmp3-unified-hero > .qmp3-hero-return{
+  display:flex;align-items:center;justify-content:center;
+  width:fit-content;max-width:100%;margin:18px auto 0;
+  padding:10px 20px;background:rgba(12,43,33,.18);
+  color:#fff;border:1.5px solid var(--qmp3-gold-light);
+  border-radius:12px;line-height:1.5;font-weight:800;
+  text-decoration:none
+}
+main .qmp3-unified-hero > .qmp3-hero-return:is(:hover,:focus-visible){
+  color:var(--qmp3-deep);background:var(--qmp3-gold-light)
+}
