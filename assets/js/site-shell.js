@@ -108,6 +108,11 @@
       document.body.prepend(header);
     }
     let nav = header.querySelector('#mainNav');
+    const oldBack = !nav ? header.querySelector('.back-link, .nav-back, .adhkar-return') : null;
+    if (oldBack?.getAttribute('href')) {
+      header.dataset.qmp3BackHref = oldBack.getAttribute('href');
+      header.dataset.qmp3BackText = oldBack.textContent.trim();
+    }
     if (!nav) {
       header.dataset.qmp3Generated = '1';
       header.innerHTML = '<div class="container header-inner"><a class="brand" href="' + url('index.html') +
@@ -207,6 +212,15 @@
       }
     }
     hero.classList.add('qmp3-unified-hero');
+    const header = document.querySelector('.qmp3-site-header');
+    const path = header?.dataset.qmp3BackHref;
+    if (path && !hero.querySelector('a.back, a.back-link, a.adhkar-return')) {
+      const back = document.createElement('a');
+      back.className = 'qmp3-action qmp3-hero-return';
+      back.href = path;
+      back.textContent = header.dataset.qmp3BackText || 'العودة إلى المكتبة ←';
+      hero.append(back);
+    }
   }
   function initialize() {
     if (document.documentElement.dataset.qmp3ShellReady === '1') return;
