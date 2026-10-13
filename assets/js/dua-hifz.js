@@ -7,7 +7,7 @@
     { id: 'mercy', title: 'ربنا آتنا من لدنك رحمة', surah: 18, surahName: 'الكهف', ayahs: [10] },
     { id: 'ease', title: 'رب اشرح لي صدري', surah: 20, surahName: 'طه', ayahs: [25,26,27,28] }
   ];
-  const allowedReciters = new Set(['Alafasy_128kbps','Husary_128kbps','MaherAlMuaiqly128kbps','Menshawi_32kbps']);
+  const allowedReciters = new Set(['Alafasy_128kbps','Husary_128kbps','MaherAlMuaiqly128kbps','Minshawy_Murattal_128kbps']);
   const verse = $('dhVerse'), reciter = $('dhReciter'), audio = $('dhAudio');
   const playBtn = $('dhPlay'), status = $('dhStatus'), now = $('dhNow');
   let groupIndex = 0, trackIndex = 0, loadedUrl = '', playRequested = false;
