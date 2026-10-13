@@ -220,3 +220,64 @@ main .details-hero + .qmp3-hero-return:hover{
 main #detailsHero.qmp3-unified-hero:empty{
   min-height:138px!important
 }
+
+
+/* Homepage header share: compact gold action with contextual encouragement. */
+body .qmp3-site-header .home-share{
+  position:relative;display:inline-flex;align-items:center;flex:0 0 auto;
+}
+body .qmp3-site-header .home-share-button{
+  display:inline-grid;place-items:center;flex:0 0 42px;
+  width:42px;height:42px;min-width:42px;padding:0;
+  border:1.5px solid var(--qmp3-gold);border-radius:12px;
+  background:#fffaf0;color:var(--qmp3-deep);cursor:pointer;
+  box-shadow:0 2px 8px rgba(183,139,64,.13);
+  transition:background-color .18s,border-color .18s,box-shadow .18s,transform .18s;
+}
+body .qmp3-site-header .home-share-button svg{width:20px;height:20px;display:block;pointer-events:none}
+body .qmp3-site-header .home-share-button:is(:hover,:focus-visible){
+  background:#f7ecd1;border-color:#a6782c;
+  box-shadow:0 0 0 3px rgba(183,139,64,.13),0 4px 13px rgba(22,70,55,.12);
+}
+body .qmp3-site-header .home-share-button:active{transform:scale(.96)}
+body .qmp3-site-header .home-share-tooltip,
+body .qmp3-site-header .home-share-status{
+  box-sizing:border-box;position:absolute;z-index:1250;
+  top:calc(100% + 11px);left:0;width:min(285px,calc(100vw - 26px));
+  padding:11px 13px;text-align:right;direction:rtl;
+  border:1px solid #c5aa71;border-radius:12px;
+  background:#fffdf6;color:#214438;
+  font:700 .82rem/1.8 Tajawal,Arial,sans-serif;
+  box-shadow:0 10px 25px rgba(15,55,43,.15);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transform:translateY(-4px);transition:opacity .16s,transform .16s,visibility .16s;
+}
+body .qmp3-site-header .home-share:is(:hover,:focus-within) .home-share-tooltip,
+body .qmp3-site-header .home-share-status.is-visible{
+  opacity:1;visibility:visible;transform:translateY(0)
+}
+body .qmp3-site-header .home-share.is-copied .home-share-tooltip{opacity:0;visibility:hidden}
+body .qmp3-site-header .home-share-status{background:#e9f5ed;border-color:#8db69d}
+@media(hover:none){
+ body .qmp3-site-header .home-share-tooltip{display:none}
+}
+@media(max-width:480px){
+ body .qmp3-site-header .brand{flex:0 1 auto;min-width:0}
+ body .qmp3-site-header .brand-text{min-width:0;overflow:hidden;text-overflow:ellipsis}
+ body .qmp3-site-header .header-tools{gap:4px}
+}
+@media(max-width:380px){
+ body .qmp3-site-header .brand{gap:5px}
+ body .qmp3-site-header .brand-text{max-width:clamp(60px,calc(100vw - 248px),125px)}
+ body .qmp3-site-header .qmp3-brand-icon{width:30px!important;height:30px!important}
+ body .qmp3-site-header .header-tools{gap:3px}
+ body .qmp3-site-header .home-share-button{width:38px;min-width:38px;height:38px;flex-basis:38px}
+ body .qmp3-site-header #themeToggle{width:37px;height:38px}
+ body .qmp3-site-header #navToggle{width:40px;height:40px;flex-basis:40px}
+ body .qmp3-site-header .install-toggle{padding-inline:6px;font-size:.64rem;min-height:38px}
+}
+@media(prefers-reduced-motion:reduce){
+ body .qmp3-site-header .home-share-button,
+ body .qmp3-site-header .home-share-tooltip,
+ body .qmp3-site-header .home-share-status{transition:none}
+}
