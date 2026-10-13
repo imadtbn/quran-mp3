@@ -9,6 +9,11 @@ function href(path){return new URL(path,base).href}
 function active(path){if(catalog)return location.pathname.includes('/readers/')?path==='readers.html':location.pathname.includes('/riwayat/')?path==='riwayat.html':path==='mushafs.html';return page===path}
 function initialize(){
  if(document.documentElement.dataset.shellReady)return;
+ // One shared menu design for both existing and generated page headers.
+ const navigationCss=href('assets/css/site-navigation.css?v=20261013-unified-nav');
+ let navigationLink=[...document.querySelectorAll('link[rel="stylesheet"]')].find(link=>link.href.split('?')[0]===href('assets/css/site-navigation.css'));
+ if(!navigationLink){navigationLink=document.createElement('link');navigationLink.rel='stylesheet';document.head.append(navigationLink)}
+ navigationLink.href=navigationCss;
  // Existing interactive headers own their controls and handlers; never replace them.
  if(document.querySelector('.site-header #mainNav'))return;
  document.documentElement.dataset.shellReady='1';
