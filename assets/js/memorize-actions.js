@@ -31,7 +31,7 @@
 
   function paint(button, kind) {
     if (!button || !strokes[kind]) return;
-    const label = button.textContent.replace(/\\s+/g, ' ').trim();
+    const label = button.textContent.replace(/\s+/g, ' ').trim();
     if (!label) return;
     if (button.dataset.memoActionIcon === kind &&
         button.querySelector(':scope > .memo-action-icon') &&
