@@ -12,7 +12,7 @@ function initialize(){
  // Existing interactive headers own their controls and handlers; never replace them.
  if(document.querySelector('.site-header #mainNav'))return;
  document.documentElement.dataset.shellReady='1';
- const css=document.createElement('link');css.rel='stylesheet';css.href=href('assets/css/site-shell.css');document.head.append(css);
+ const css=document.createElement('link');css.rel='stylesheet';css.href=href('assets/css/site-shell.css?v=20261013-nav');document.head.append(css);
  let header=document.querySelector('.site-header,header.top');
  if(!header)return;
  header.className='site-header qmp3-site-header';
@@ -20,8 +20,8 @@ function initialize(){
  header.innerHTML='<div class="container header-inner"><a class="brand" href="'+href('index.html')+'" aria-label="مكتبة القرآن الصوتية - الرئيسية"><img class="qmp3-brand-icon" src="'+href('assets/icons/quran.png')+'" width="40" height="40" alt=""><span class="brand-text">مكتبة القرآن <b>الصوتية</b></span></a><nav class="main-nav" id="mainNav" aria-label="التنقل الرئيسي">'+links+'</nav><button class="nav-toggle" id="navToggle" type="button" aria-controls="mainNav" aria-expanded="false" aria-label="فتح قائمة التنقل">☰</button></div>';
  const extra=document.querySelector('.qmp3-global-nav');if(extra)extra.remove();
  const nav=header.querySelector('#mainNav'),toggle=header.querySelector('#navToggle');
- const close=()=>{nav.classList.remove('qmp3-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','فتح قائمة التنقل')};
- toggle.addEventListener('click',e=>{e.stopPropagation();const open=nav.classList.toggle('qmp3-open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'إغلاق قائمة التنقل':'فتح قائمة التنقل')});
+ const close=()=>{nav.classList.remove('qmp3-open','open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','فتح قائمة التنقل')};
+ toggle.addEventListener('click',e=>{e.stopPropagation();const open=nav.classList.toggle('qmp3-open');nav.classList.toggle('open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'إغلاق قائمة التنقل':'فتح قائمة التنقل')});
  document.addEventListener('pointerdown',e=>{if(!header.contains(e.target))close()});
  document.addEventListener('scroll',close,{passive:true});
  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});

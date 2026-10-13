@@ -24,7 +24,8 @@ html{overflow-x:clip}
 .qmp3-site-header .header-inner{min-height:62px;flex-wrap:nowrap}
 .qmp3-site-header .nav-toggle{display:inline-flex;position:relative;z-index:2}
 .qmp3-site-header .main-nav{position:absolute;inset-inline:12px;top:calc(100% + 4px);max-height:min(72vh,540px);overflow-y:auto;display:none;flex-direction:column;flex-wrap:nowrap;align-items:stretch;padding:10px;background:#fff;border:1px solid #dbe7dd;border-radius:14px;box-shadow:0 16px 30px rgba(15,40,30,.18)}
-.qmp3-site-header .main-nav.qmp3-open{display:flex}
+.qmp3-site-header .main-nav{width:auto;transform:none;opacity:0;visibility:hidden;pointer-events:none}
+.qmp3-site-header .main-nav.qmp3-open{display:flex;transform:none;opacity:1;visibility:visible;pointer-events:auto}
 .qmp3-site-header .main-nav a{width:100%;min-height:43px;font-size:.92rem;padding-inline:13px}
 }
 @media(max-width:600px){
