@@ -192,7 +192,7 @@
   function standardizeHero(main) {
     if (!main) return;
     let hero = main.querySelector(':scope > .hero, :scope > .prayer-hero, :scope > .rq-hero, :scope > .adhkar-hero, :scope > .intro, :scope > .page-hero, :scope > .memorize-hero');
-    if (!hero) hero = main.querySelector('.hero, .prayer-hero, .rq-hero, .adhkar-hero, .memorize-hero, .intro, .page-hero');
+    if (!hero) hero = main.querySelector('.hero, .prayer-hero, .rq-hero, .adhkar-hero, .memorize-hero, .intro, .page-hero, .details-hero, #detailsHero');
     if (!hero) {
       const h1 = main.querySelector(':scope > h1');
       hero = document.createElement('section');
@@ -220,7 +220,8 @@
       back.className = 'qmp3-action qmp3-hero-return';
       back.href = path;
       back.textContent = header.dataset.qmp3BackText || 'العودة إلى المكتبة ←';
-      hero.append(back);
+      if (hero.id === 'detailsHero') hero.after(back);
+      else hero.append(back);
     }
   }
   function initialize() {
