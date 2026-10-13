@@ -205,3 +205,18 @@ main .qmp3-unified-hero > .qmp3-hero-return{
 main .qmp3-unified-hero > .qmp3-hero-return:is(:hover,:focus-visible){
   color:var(--qmp3-deep);background:var(--qmp3-gold-light)
 }
+
+/* Dynamic detail pages replace their hero HTML; return actions stay outside that region. */
+main .details-hero + .qmp3-hero-return{
+  display:flex;align-items:center;justify-content:center;
+  width:fit-content;max-width:100%;margin:0 auto 20px;
+  padding:10px 20px;background:#fff;color:var(--qmp3-deep);
+  border:1.5px solid var(--qmp3-gold);border-radius:12px;
+  text-align:center;font-weight:800;text-decoration:none
+}
+main .details-hero + .qmp3-hero-return:hover{
+  background:#eaf4ee;border-color:var(--qmp3-gold)
+}
+main #detailsHero.qmp3-unified-hero:empty{
+  min-height:138px!important
+}
