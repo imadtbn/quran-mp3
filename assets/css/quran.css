@@ -41,3 +41,39 @@ main .quran-action{display:inline-flex;align-items:center;justify-content:center
  .search-line button{width:100%}
 }
 @media(max-width:350px){.reading-foot{grid-template-columns:1fr 1fr}.reading-foot #counter{grid-column:1/-1;grid-row:1}.controls>button{font-size:.8rem}.qa-actions button{font-size:.8rem}}
+
+/* Quran action palette and responsive page navigation (2026-10-13). */
+.layout :is(button,.back){background:#18332d;color:#fff;border:1.5px solid #b18b45;border-radius:12px;min-height:44px;box-shadow:0 2px 7px rgb(17 48 37 / 9%);transition:background-color .18s ease,border-color .18s ease,color .18s ease}
+.layout button:not(:disabled):hover{background:#285648;border-color:#d7b669;filter:none}
+.layout button:disabled{opacity:.5;box-shadow:none}
+.layout .results .result{background:#f7f4eb;color:#21342c;border-color:#c8aa70;text-align:start}
+.layout .results .result:hover{background:#ede3cb;color:#173c33}
+.layout .quran-audio .qa-heading button{background:#18332d;color:#fff;border-color:#b18b45}
+.layout .quran-audio .qa-heading button:hover{background:#285648;color:#fff}
+
+/* Keep hero copy RTL-aligned, but center the appropriately sized return link. */
+.layout .intro.qmp3-unified-hero{flex-direction:column;align-items:stretch;justify-content:center;gap:20px;text-align:start}
+.layout .intro.qmp3-unified-hero > div{width:100%;min-width:0}
+.layout .intro.qmp3-unified-hero .back{display:inline-flex;align-items:center;justify-content:center;align-self:center;gap:9px;width:fit-content;max-width:100%;min-height:49px;padding:11px clamp(18px,4vw,32px);background:rgb(9 38 30 / 18%);border:2px solid #d8b663;border-radius:12px;color:#fff;font-weight:800;font-size:clamp(.94rem,2.7vw,1.05rem);line-height:1.5;text-decoration:none;text-align:center;box-shadow:0 4px 14px rgb(5 29 22 / 14%)}
+.layout .intro.qmp3-unified-hero .back:hover{background:#d8b663;color:#18332d}
+.layout .intro.qmp3-unified-hero .back .quran-action-label{white-space:normal;overflow-wrap:normal;word-break:normal}
+.layout .intro.qmp3-unified-hero .back:focus-visible{outline:3px solid #fff;outline-offset:3px}
+
+/* Never allow the current-page counter to collide with previous/next buttons. */
+.reading-foot{grid-template-columns:minmax(0,1fr) max-content minmax(0,1fr);align-items:center;gap:12px}
+.reading-foot #counter{min-width:0;white-space:nowrap;font-variant-numeric:tabular-nums;text-align:center}
+.reading-foot button.quran-action{width:100%;min-width:0;max-width:100%;min-height:48px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 10px;line-height:1.4}
+.reading-foot button .quran-action-label{min-width:0;white-space:normal;overflow-wrap:normal;word-break:normal;text-wrap:balance;text-align:center}
+.reading-foot button .quran-action-icon{flex:0 0 18px}
+@media(max-width:600px){
+ .reading-foot{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-areas:"counter counter" "prev next";gap:10px 8px}
+ .reading-foot #counter{grid-area:counter;justify-self:center;background:#efe9d9;border-radius:9px;padding:6px 14px;font-size:.9rem;color:#365247}
+ .reading-foot #prev{grid-area:prev}
+ .reading-foot #next{grid-area:next}
+ .reading-foot button.quran-action{font-size:clamp(.83rem,3.4vw,1rem);padding:11px 8px}
+}
+@media(max-width:360px){
+ .reading-foot button.quran-action{flex-direction:column;gap:4px;min-height:70px;padding:9px 5px}
+ .reading-foot button .quran-action-label{font-size:.9rem}
+}
+@media(prefers-reduced-motion:reduce){.layout :is(button,.back){transition:none}}
