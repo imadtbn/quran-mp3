@@ -28,10 +28,10 @@ const reader=()=>readers.find(r=>r.id===state.reader)||readers[0];
 function updatePlay(){const b=$('#qsaPlay');b.textContent=audio.paused?'▶':'Ⅱ';b.setAttribute('aria-pressed',String(!audio.paused))}
 function saveProgress(){if(index<0||!queue[index])return;const track=queue[index];state.last={story:track.story,surah:track.surah,name:track.name,index,position:Number.isFinite(audio.currentTime)?audio.currentTime:0,reader:state.reader,at:Date.now()};persist()}
 function renderQueue(){const list=$('#qsaQueueItems');list.replaceChildren();queue.forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.textContent=(i+1)+' — '+t.name+' · '+t.storyName;b.setAttribute('aria-current',String(i===index));b.addEventListener('click',()=>load(i,true));list.appendChild(b)});}
-async function load(i,autoplay=false,remember=false){const track=queue[i];if(!track)return;saveProgress();index=i;
+async function load(i,autoplay=false,remember=false){const track=queue[i];if(!track)return;const checkpoint=remember?state.last:null;if(!remember)saveProgress();index=i;
 const reciter=reader();if(!core.load(reciter,track.surah)){status('لا يوجد تسجيل متاح لهذا الاختيار.');return}
 const title=$('#qsaCurrentTitle'),sub=$('#qsaCurrentSub');title.textContent=track.name;sub.textContent=track.storyName+' · '+reciter.name+' · تلاوة السورة كاملة';
-restoreTime=remember&&state.last&&state.last.surah===track.surah&&state.last.reader===state.reader?Math.max(0,Number(state.last.position)||0):0;
+restoreTime=remember&&checkpoint&&checkpoint.surah===track.surah&&checkpoint.reader===state.reader?Math.max(0,Number(checkpoint.position)||0):0;
 audio.playbackRate=state.speed;renderQueue();updatePlay();if(autoplay)await core.play();}
 function trackFromCard(story){const item=catalog.find(x=>x.id===story);if(!item)return null;const v=item.verses[0];if(!v)return null;return {story:item.id,storyName:item.title,surah:v.surah,name:'سورة '+v.name}}
 function makeIndexQueue(selected){const visible=$$('.qsa-card').filter(c=>!c.hidden);const items=visible.map(c=>trackFromCard(c.dataset.prophet)).filter(Boolean);
@@ -66,7 +66,7 @@ $('#qsaOnlySaved')?.addEventListener('change',results);
 $('#qsaSort')?.addEventListener('change',e=>{const grid=$('#qsaCards'),cards=$$('.qsa-card');if(e.target.value==='alpha')cards.sort((a,b)=>a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent,'ar'));else cards.sort((a,b)=>Number(a.dataset.index)-Number(b.dataset.index));cards.forEach(c=>grid.append(c));results()});
 $('#qsaFilters')?.addEventListener('reset',()=>requestAnimationFrame(()=>{$('#qsaSort').dispatchEvent(new Event('change'));results()}));
 function initialPlayback(){if(document.body.dataset.qsaStory){makeDetailQueue();$$('[data-audio-surah]').forEach(b=>b.addEventListener('click',()=>{const pos=queue.findIndex(t=>t.surah===Number(b.dataset.audioSurah));if(pos>=0)load(pos,true)}))}
-else{$$('[data-play-first]').forEach(b=>b.addEventListener('click',()=>makeIndexQueue(b.dataset.playFirst)));results()}
+else{queue=catalog.map(item=>trackFromCard(item.id)).filter(Boolean);renderQueue();$('[data-play-first]').forEach(b=>b.addEventListener('click',()=>makeIndexQueue(b.dataset.playFirst)));results()}
 const remembered=state.last;if(remembered){const desired=queue.findIndex(t=>t.surah===remembered.surah&&t.story===remembered.story);if(desired>=0){load(desired,false,true);status('يمكنك متابعة الاستماع من آخر موضع محفوظ.')}}}
 async function init(){
 try{const result=await fetch(root+'assets/data/stories-audio.json',{cache:'force-cache'});if(!result.ok)throw new Error('catalog unavailable');const doc=await result.json();if(doc.version!==1||!Array.isArray(doc.items))throw new Error('Invalid catalog');catalog=doc.items; /* only known, existing reciter endpoints from the main library */
