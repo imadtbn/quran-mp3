@@ -28,7 +28,7 @@
         type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"أداة الحفظ والمراجعة القرآنية","url":"https://imadtbn.github.io/quran-mp3/memorize.html","description":"مراجعة آيات القرآن وتكرارها صوتيًا مع حفظ التقدم ومشاركة مقاطع المراجعة","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":"ar","isAccessibleForFree":true}</script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/details.css">
-    <link rel="stylesheet" href="assets/css/memorize.css?v=20261013-icons">
+    <link rel="stylesheet" href="assets/css/memorize.css?v=20261015-surah-search">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5656416032906373"
         crossorigin="anonymous"></script>
 
@@ -79,7 +79,19 @@
             <h2>إعداد جلسة المراجعة</h2>
             <form id="reviewForm" class="review-grid"><label>القارئ<select id="verseReciter">
                         <option value="alafasy">مشاري راشد العفاسي — مرتل (حفص)</option>
-                    </select></label><label>السورة<select id="verseSurah"></select></label><label>من الآية<input
+                    </select></label><div class="surah-picker">
+                    <label for="verseSurahSearch">ابحث عن السورة</label>
+                    <div class="surah-search">
+                        <input id="verseSurahSearch" type="search" placeholder="اكتب اسم السورة أو رقمها"
+                            autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list"
+                            aria-haspopup="listbox" aria-controls="surahSearchResults" aria-expanded="false">
+                        <div id="surahSearchResults" class="surah-search-results" role="listbox"
+                            aria-label="نتائج البحث عن السور" hidden></div>
+                    </div>
+                    <label for="verseSurah">أو اختر من القائمة المنسدلة</label>
+                    <select id="verseSurah"></select>
+                    <p class="surah-search-hint" id="surahSearchHint" role="status" aria-live="polite">اختر السورة من القائمة أو ابحث باسمها.</p>
+                </div><label>من الآية<input
                         id="fromVerse" type="number" min="1" value="1" required></label><label>إلى الآية<input
                         id="toVerse" type="number" min="1" value="7" required></label><label>تكرار كل آية<select
                         id="verseRepeat">
@@ -132,7 +144,7 @@
         </section>
     </main>
     <script src="assets/js/data.js"></script>
-    <script src="assets/js/memorize.js"></script>
+    <script src="assets/js/memorize.js?v=20261015-surah-search"></script>
     <script defer src="assets/js/memorize-actions.js?v=20261013-icons"></script>
     <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(() => { });</script>
     <script defer src="assets/js/ads.js"></script>
