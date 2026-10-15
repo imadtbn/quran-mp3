@@ -93,3 +93,7 @@ body .memorize-main .review-actions :is(#stopReview,#resetSaved):hover:not(:disa
 .review-grid .surah-search-hint{margin:0;min-height:1.3em;color:var(--muted);font-size:.78rem;line-height:1.6}
 @media(max-width:850px){.review-grid>.surah-picker{grid-column:span 1}}
 @media(max-width:600px){.review-grid>.surah-picker{grid-column:1/-1}}
+/* Reciter selection with readable descriptive text and mobile-safe widths. */
+.review-grid #verseReciter{width:100%;min-width:0;min-height:48px;max-width:100%;text-overflow:ellipsis}
+.review-grid .reciter-help{display:block;min-height:2.5em;font-weight:500;font-size:.8rem;line-height:1.7;color:var(--muted);overflow-wrap:anywhere}
+@media(max-width:600px){.review-grid #verseReciter{font-size:16px}.review-grid .reciter-help{font-size:.79rem}}
