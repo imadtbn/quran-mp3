@@ -86,3 +86,10 @@
 @media(max-width:950px){.qsa-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.qsa-detail-layout{grid-template-columns:minmax(0,1fr)}.qsa-side{position:static}}
 @media(max-width:650px){.qsa-page{padding-bottom:340px!important}.qsa-grid{grid-template-columns:1fr}.qsa-filters{align-items:stretch}.qsa-filters>label:not(.qsa-fav-label){flex:1 1 100%}.qsa-filters input[type=search],.qsa-filters select{flex:1 1 100%}.qsa-card{padding:16px}.qsa-player{padding:8px 12px max(9px,env(safe-area-inset-bottom));max-height:min(60dvh,315px)}.qsa-player-main{gap:6px}.qsa-player-meta{flex:1 1 100%;line-height:1.3}.qsa-player-controls{flex:1;gap:5px}.qsa-player-controls button{min-width:41px;min-height:41px}.qsa-player-controls .qsa-big-play{width:46px;height:46px}.qsa-player-options{gap:5px}.qsa-player-options label{font-size:.73rem}.qsa-player-options select{max-width:155px;padding:4px}.qsa-bottom-nav .qsa-btn{flex:1 1 100%}}
 @media(prefers-reduced-motion:reduce){.qsa-player *{transition:none!important}}
+
+/* Dark header enhancement without altering other pages. */
+body.qsa-page.dark .qmp3-site-header{background:#152a24!important;border-color:#2d4a40;color:#e9f3ee}
+body.qsa-page.dark .qmp3-site-header .brand-text{color:#e9f3ee}
+body.qsa-page.dark .qmp3-site-header #mainNav a{color:#e9f3ee}
+body.qsa-page.dark .qmp3-site-header #mainNav{background:#152a24}
+body.qsa-page.dark .qmp3-site-header :is(#themeToggle,#navToggle){color:#e9f3ee;background:#1d3a31;border-color:#2d4a40}
