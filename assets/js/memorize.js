@@ -20,10 +20,70 @@ function syncBounds(){
  $('#toVerse').value=String(Math.min(count,Math.max(Number($('#fromVerse').value),Number($('#toVerse').value)||count)));
 }
 for(const s of SURAHS){const o=document.createElement('option');o.value=String(s.n);o.textContent=s.n+' — '+s.name;$('#verseSurah').append(o)}
-$('#verseSurah').addEventListener('change',()=>{$('#fromVerse').value='1';$('#toVerse').value=String(selectedSurah().ayahs);syncBounds()});
+const surahSelect=$('#verseSurah'),surahSearch=$('#verseSurahSearch'),surahResults=$('#surahSearchResults'),surahHint=$('#surahSearchHint');
+let surahMatches=[],surahActive=-1,surahSearchPending=false;
+const normalizeSurahName=value=>String(value).normalize('NFKD')
+ .replace(/[\u064B-\u065F\u0670\u06D6-\u06ED]/g,'').replace(/[أإآٱ]/g,'ا')
+ .replace(/ى/g,'ي').replace(/ـ/g,'')
+ .replace(/[\u0660-\u0669]/g,d=>String(d.charCodeAt(0)-0x660))
+ .replace(/[\u06F0-\u06F9]/g,d=>String(d.charCodeAt(0)-0x6f0))
+ .replace(/\s+/g,' ').trim();
+function closeSurahMatches(){
+ surahMatches=[];surahActive=-1;surahResults.hidden=true;surahResults.replaceChildren();
+ surahSearch.setAttribute('aria-expanded','false');surahSearch.removeAttribute('aria-activedescendant');
+}
+function showSelectedSurah(){surahHint.textContent='السورة المختارة: '+(selectedSurah()?.name||'—')}
+function commitSurah(s){
+ surahSelect.value=String(s.n);surahSelect.dispatchEvent(new Event('change',{bubbles:true}));
+ surahSearch.value=s.name;surahSearchPending=false;showSelectedSurah();closeSurahMatches();
+}
+function highlightSurah(index){
+ surahActive=index;
+ for(const [i,node] of [...surahResults.children].entries())node.setAttribute('aria-selected',String(i===index));
+ const active=surahResults.children[index];
+ if(active){surahSearch.setAttribute('aria-activedescendant',active.id);active.scrollIntoView({block:'nearest'});}
+ else surahSearch.removeAttribute('aria-activedescendant');
+}
+surahSearch.addEventListener('input',()=>{
+ const query=normalizeSurahName(surahSearch.value).replace(/^سورة\s*/, '').trim();
+ if(!query){surahSearchPending=false;closeSurahMatches();showSelectedSurah();return}
+ const matches=SURAHS.filter(s=>normalizeSurahName(s.name).includes(query)||String(s.n)===query)
+  .sort((a,b)=>{
+   const rank=s=>normalizeSurahName(s.name).startsWith(query)?0:1;
+   return rank(a)-rank(b)||a.n-b.n;
+  });
+ const exact=matches.find(s=>normalizeSurahName(s.name)===query||String(s.n)===query);
+ if(exact){commitSurah(exact);return}
+ surahSearchPending=true;closeSurahMatches();
+ if(!matches.length){surahHint.textContent='لا توجد سورة مطابقة. جرّب كتابة جزء من الاسم.';return}
+ surahMatches=matches.slice(0,10);
+ for(const s of surahMatches){
+  const option=document.createElement('button');option.type='button';option.id='surah-search-option-'+s.n;
+  option.className='surah-search-option';option.setAttribute('role','option');
+  option.setAttribute('aria-selected','false');option.textContent=s.n+' — '+s.name;
+  option.addEventListener('click',()=>commitSurah(s));surahResults.append(option);
+ }
+ surahResults.hidden=false;surahSearch.setAttribute('aria-expanded','true');
+ surahHint.textContent=matches.length>10?'توجد '+matches.length+' سورة مطابقة؛ تظهر أول 10 نتائج. واصل الكتابة لتضييق البحث.':'اختر السورة من '+matches.length+' نتيجة مطابقة.';
+});
+surahSearch.addEventListener('keydown',event=>{
+ if(event.key==='Escape'){if(!surahResults.hidden||surahSearchPending){event.preventDefault();surahSearch.value='';surahSearchPending=false;closeSurahMatches();showSelectedSurah()}return}
+ if((event.key==='ArrowDown'||event.key==='ArrowUp')&&surahMatches.length){
+  event.preventDefault();highlightSurah(event.key==='ArrowDown'?Math.min(surahActive+1,surahMatches.length-1):Math.max(surahActive-1,0));return;
+ }
+ if(event.key==='Enter'&&surahSearchPending){
+  event.preventDefault();
+  if(surahMatches.length)commitSurah(surahMatches[Math.max(surahActive,0)]);
+  else surahHint.textContent='لم يُعثر على سورة. عدّل اسم البحث أو استخدم القائمة المنسدلة.';
+ }
+});
+surahSearch.addEventListener('focus',()=>surahSearch.select());
+document.addEventListener('pointerdown',event=>{if(!event.target.closest('.surah-search'))closeSurahMatches()});
+$('#verseSurah').addEventListener('change',()=>{$('#fromVerse').value='1';$('#toVerse').value=String(selectedSurah().ayahs);syncBounds();surahSearch.value='';surahSearchPending=false;closeSurahMatches();showSelectedSurah()});
 $('#fromVerse').addEventListener('change',syncBounds);
 const statusError=text=>{$('#validation').hidden=false;$('#validation').textContent=text};
 function getPlan(){
+ if(surahSearchPending){statusError('اختر السورة من نتائج البحث أو القائمة المنسدلة أولًا.');surahSearch.focus();return null}
  const surah=Number($('#verseSurah').value),from=Number($('#fromVerse').value),to=Number($('#toVerse').value),max=SURAHS[surah-1]?.ayahs;
  if(!max||!Number.isInteger(from)||!Number.isInteger(to)||from<1||to>max||from>to){statusError('حدد نطاقًا صحيحًا من آيات السورة.');return null}
  if(to-from+1>60){statusError('لضمان سهولة المراجعة، اختر مقطعًا لا يتجاوز 60 آية في الجلسة.');return null}
@@ -94,7 +154,7 @@ function readSharedPlan(){
  if(!max||!keys.every(k=>q.get(k)!==''&&Number.isInteger(p[k]))||p.from<1||p.to>max||p.from>p.to||p.to-p.from+1>60||![1,2,3,5,10].includes(p.verseRepeat)||![1,2,3,5].includes(p.segmentRepeat)||![0,2,5,10].includes(p.gap))return null;
  return p;
 }
-function applyPlan(p){for(const [id,v] of Object.entries({verseSurah:p.surah,fromVerse:p.from,toVerse:p.to,verseRepeat:p.verseRepeat,segmentRepeat:p.segmentRepeat,pauseBetween:p.gap}))$('#'+id).value=String(v);syncBounds()}
+function applyPlan(p){for(const [id,v] of Object.entries({verseSurah:p.surah,fromVerse:p.from,toVerse:p.to,verseRepeat:p.verseRepeat,segmentRepeat:p.segmentRepeat,pauseBetween:p.gap}))$('#'+id).value=String(v);surahSearch.value='';surahSearchPending=false;closeSurahMatches();showSelectedSurah();syncBounds()}
 $('#shareReview').addEventListener('click',async()=>{
  const p=getPlan();if(!p)return;
  const link=new URL(location.pathname,location.origin);
@@ -120,5 +180,5 @@ $('#saveReview').addEventListener('click',()=>{
  try{localStorage.setItem(settingsKey,JSON.stringify(p));message('حُفظت إعدادات المراجعة على هذا الجهاز.')}catch{message('تعذر حفظ الإعدادات في المتصفح.')}
 });
 try{const saved=JSON.parse(localStorage.getItem(settingsKey)||'null');if(saved&&SURAHS[saved.surah-1]){for(const [id,val] of Object.entries({verseSurah:saved.surah,fromVerse:saved.from,toVerse:saved.to,verseRepeat:saved.verseRepeat,segmentRepeat:saved.segmentRepeat,pauseBetween:saved.gap})){const el=$('#'+id);if(el)el.value=String(val)}}}catch{}
-const shared=readSharedPlan();if(shared){applyPlan(shared);message('تم تحميل إعدادات المقطع المشترك. اضغط ابدأ المراجعة.')}else syncBounds();renderSaved();
+const shared=readSharedPlan();if(shared){applyPlan(shared);message('تم تحميل إعدادات المقطع المشترك. اضغط ابدأ المراجعة.')}else syncBounds();showSelectedSurah();renderSaved();
 })();
