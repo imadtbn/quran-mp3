@@ -1,19 +1,127 @@
 {
-  "version": 1,
-  "notice": "نصوص القصص مكتوبة بتلخيص الآيات. الروابط الخارجية لسرد القصص لا تُضمّن داخل الموقع قبل التحقق من الترخيص. مشغل الموقع خاص بتلاوات السور.",
-  "sourceCollection": "https://audio.islamweb.com/audio/index.php?page=lecview&sid=402&lg=1341",
-  "reciters": [
+  "version": 2,
+  "title": "قصص الأنبياء المسموعة — نبيل العوضي",
+  "description": "سلسلة من عشر حلقات قصصية مسموعة بصوت الشيخ نبيل العوضي من مكتبة إسلام ويب، وليست تلاوات للقرآن الكريم.",
+  "sourceCollection": "https://audio.islamweb.net/audio/index.php?kh=0&lg=439&page=lecview&read=0&sid=78",
+  "speaker": "نبيل العوضي",
+  "playback": "publisher-page",
+  "licenseNotice": "تفتح الحلقات على صفحاتها الرسمية في إسلام ويب. لا تُستخدم روابط تخمينية للملفات الصوتية ولا يُدّعى توفر تشغيل داخلي دون رابط مباشر وترخيص مناسب.",
+  "episodes": [
     {
-      "id": "akdr",
-      "name": "إبراهيم الأخضر",
-      "riwaya": "حفص عن عاصم",
-      "base": "https://server6.mp3quran.net/akdr/"
+      "id": "118695",
+      "position": 1,
+      "title": "قصة آدم عليه السلام",
+      "speaker": "نبيل العوضي",
+      "topic": "البداية والتوبة",
+      "stories": [
+        "adam"
+      ],
+      "source": "إسلام ويب — سلسلة قصص الأنبياء",
+      "url": "https://audio.islamweb.net/audio/index.php?audioid=118695&kh=0&lg=439&page=audioinfo&read=0"
     },
     {
-      "id": "deban",
-      "name": "أحمد دبان",
-      "riwaya": "قالون عن نافع",
-      "base": "https://server16.mp3quran.net/deban/Rewayat-Qalon-A-n-Nafi/"
+      "id": "118696",
+      "position": 2,
+      "title": "قصة نوح عليه السلام",
+      "speaker": "نبيل العوضي",
+      "topic": "الدعوة والصبر",
+      "stories": [
+        "nuh"
+      ],
+      "source": "إسلام ويب — سلسلة قصص الأنبياء",
+      "url": "https://audio.islamweb.net/audio/index.php?audioid=118696&kh=0&lg=439&page=audioinfo&read=0"
+    },
+    {
+      "id": "118697",
+      "position": 3,
+      "title": "قصة هود وصالح عليهما السلام",
+      "speaker": "نبيل العوضي",
+      "topic": "التوحيد وعاقبة التكذيب",
+      "stories": [],
+      "source": "إسلام ويب — سلسلة قصص الأنبياء",
+      "url": "https://audio.islamweb.net/audio/index.php?audioid=118697&kh=0&lg=439&page=audioinfo&read=0"
+    },
+    {
+      "id": "118698",
+      "position": 4,
+      "title": "قصة إبراهيم عليه السلام",
+      "speaker": "نبيل العوضي",
+      "topic": "التوحيد والثبات",
+      "stories": [
+        "ibrahim"
+      ],
+      "source": "إسلام ويب — سلسلة قصص الأنبياء",
+      "url": "https://audio.islamweb.net/audio/index.php?audioid=118698&kh=0&lg=439&page=audioinfo&read=0"
+    },
+    {
+      "id": "118699",
+      "position": 5,
+      "title": "قصة لوط وشعيب وإسماعيل وإسحاق عليهم السلام",
+      "speaker": "نبيل العوضي",
+      "topic": "الدعوة والابتلاء",
+      "stories": [
+        "ibrahim"
+      ],
+      "source": "إسلام ويب — سلسلة قصص الأنبياء",
+      "url": "https://audio.islamweb.net/audio/index.php?audioid=118699&kh=0&lg=439&page=audioinfo&read=0"
+    },
+    {
+      "id": "118700",
+      "position": 6,
+      "title": "قصة يوسف عليه السلام",
+      "speaker": "نبيل العوضي",
+      "topic": "الصبر والعفو",
+      "stories": [
+        "yusuf"
+      ],
+      "source": "إسلام ويب — سلسلة قصص الأنبياء",
+      "url": "https://audio.islamweb.net/audio/index.php?audioid=118700&kh=0&lg=439&page=audioinfo&read=0"
+    },
+    {
+      "id": "118701",
+      "position": 7,
+      "title": "قصة أيوب ويونس وموسى عليهم السلام",
+      "speaker": "نبيل العوضي",
+      "topic": "الابتلاء والنجاة",
+      "stories": [
+        "musa"
+      ],
+      "source": "إسلام ويب — سلسلة قصص الأنبياء",
+      "url": "https://audio.islamweb.net/audio/index.php?audioid=118701&kh=0&lg=439&page=audioinfo&read=0"
+    },
+    {
+      "id": "118702",
+      "position": 8,
+      "title": "بقية قصة موسى عليه السلام",
+      "speaker": "نبيل العوضي",
+      "topic": "الرسالة والثبات",
+      "stories": [
+        "musa"
+      ],
+      "source": "إسلام ويب — سلسلة قصص الأنبياء",
+      "url": "https://audio.islamweb.net/audio/index.php?audioid=118702&kh=0&lg=439&page=audioinfo&read=0"
+    },
+    {
+      "id": "118703",
+      "position": 9,
+      "title": "قصة يوشع وداود وسليمان وزكريا ويحيى عليهم السلام",
+      "speaker": "نبيل العوضي",
+      "topic": "النبوة والحكمة",
+      "stories": [],
+      "source": "إسلام ويب — سلسلة قصص الأنبياء",
+      "url": "https://audio.islamweb.net/audio/index.php?audioid=118703&kh=0&lg=439&page=audioinfo&read=0"
+    },
+    {
+      "id": "118704",
+      "position": 10,
+      "title": "قصة عيسى عليه السلام",
+      "speaker": "نبيل العوضي",
+      "topic": "الميلاد والدعوة",
+      "stories": [
+        "isa"
+      ],
+      "source": "إسلام ويب — سلسلة قصص الأنبياء",
+      "url": "https://audio.islamweb.net/audio/index.php?audioid=118704&kh=0&lg=439&page=audioinfo&read=0"
     }
   ],
   "items": [
@@ -44,23 +152,10 @@
           "to": 123
         }
       ],
-      "sources": [
-        {
-          "title": "قصة آدم عليه السلام",
-          "speaker": "نبيل العوضي",
-          "url": "https://audio.islamweb.net/audio/index.php?audioid=118695&kh=0&lg=439&page=audioinfo&read=0"
-        },
-        {
-          "title": "بداية الخلق وآدم عليه السلام في الجنة",
-          "speaker": "طارق السويدان",
-          "url": "https://audio.islamweb.com/audio/index.php?audioid=207331&page=audioinfo"
-        },
-        {
-          "title": "آدم في الأرض وقصص متصلة بها",
-          "speaker": "طارق السويدان",
-          "url": "https://audio.islamweb.com/audio/index.php?audioid=207329&page=audioinfo"
-        }
+      "episodeIds": [
+        "118695"
       ],
+      "related": null,
       "lesson": "التوبة والرجوع إلى الله، والحذر من وساوس الشيطان."
     },
     {
@@ -84,18 +179,10 @@
           "to": 49
         }
       ],
-      "sources": [
-        {
-          "title": "قصة نوح عليه السلام",
-          "speaker": "نبيل العوضي",
-          "url": "https://audio.islamweb.net/audio/index.php?audioid=118696&kh=0&lg=439&page=audioinfo&read=0"
-        },
-        {
-          "title": "آدم في الأرض وإدريس ونوح عليهم السلام",
-          "speaker": "طارق السويدان",
-          "url": "https://audio.islamweb.com/audio/index.php?audioid=207329&page=audioinfo"
-        }
+      "episodeIds": [
+        "118696"
       ],
+      "related": null,
       "lesson": "طول الدعوة لا يعني اليأس، والنجاة تكون باتباع أمر الله."
     },
     {
@@ -125,18 +212,11 @@
           "to": 129
         }
       ],
-      "sources": [
-        {
-          "title": "قصة إبراهيم عليه السلام",
-          "speaker": "نبيل العوضي",
-          "url": "https://audio.islamweb.net/audio/index.php?audioid=118698&kh=0&lg=439&page=audioinfo&read=0"
-        },
-        {
-          "title": "إبراهيم في فلسطين وبناء الكعبة وإسماعيل وإسحاق",
-          "speaker": "طارق السويدان",
-          "url": "https://audio.islamweb.com/audio/index.php?audioid=207328&page=audioinfo"
-        }
+      "episodeIds": [
+        "118698",
+        "118699"
       ],
+      "related": null,
       "lesson": "الثبات على التوحيد، وإخلاص العمل، والامتثال لأمر الله."
     },
     {
@@ -154,17 +234,8 @@
           "to": 101
         }
       ],
-      "sources": [
-        {
-          "title": "قصة يوسف عليه السلام",
-          "speaker": "نبيل العوضي",
-          "url": "https://audio.islamweb.net/audio/index.php?audioid=118700&kh=0&lg=439&page=audioinfo&read=0"
-        },
-        {
-          "title": "قصة يوسف عليه السلام",
-          "speaker": "طارق السويدان",
-          "url": "https://audio.islamweb.com/audio/index.php?audioid=207335&page=audioinfo"
-        }
+      "episodeIds": [
+        "118700"
       ],
       "related": "../yusuf.html",
       "lesson": "العفو والصبر والإحسان وحسن الظن برب العالمين."
@@ -190,22 +261,9 @@
           "to": 98
         }
       ],
-      "sources": [
-        {
-          "title": "بقية قصة موسى عليه السلام",
-          "speaker": "نبيل العوضي",
-          "url": "https://audio.islamweb.net/audio/index.php?audioid=118702&kh=0&lg=439&page=audioinfo&read=0"
-        },
-        {
-          "title": "قصة أيوب ويونس وموسى عليهم السلام",
-          "speaker": "نبيل العوضي",
-          "url": "https://audio.islamweb.net/audio/index.php?audioid=118701&kh=0&lg=439&page=audioinfo&read=0"
-        },
-        {
-          "title": "حلقتا موسى مع فرعون وموسى مع قومه ضمن السلسلة",
-          "speaker": "طارق السويدان",
-          "url": "https://audio.islamweb.com/audio/index.php?page=lecview&sid=402&lg=1341"
-        }
+      "episodeIds": [
+        "118701",
+        "118702"
       ],
       "related": "../musa.html",
       "lesson": "تأييد الله للمؤمنين وفضل الصبر والتوكل."
@@ -237,18 +295,10 @@
           "to": 118
         }
       ],
-      "sources": [
-        {
-          "title": "قصة عيسى عليه السلام",
-          "speaker": "نبيل العوضي",
-          "url": "https://audio.islamweb.net/audio/index.php?audioid=118704&kh=0&lg=439&page=audioinfo&read=0"
-        },
-        {
-          "title": "زكريا ويحيى وعيسى عليهم السلام ضمن حلقة ختامية",
-          "speaker": "طارق السويدان",
-          "url": "https://audio.islamweb.com/audio/index.php?audioid=207337&page=audioinfo"
-        }
+      "episodeIds": [
+        "118704"
       ],
+      "related": null,
       "lesson": "الدعوة إلى التوحيد، والتسليم بقدرة الله ورحمته."
     }
   ]
