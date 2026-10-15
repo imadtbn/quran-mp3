@@ -52,6 +52,18 @@
       ]
     },
     {
+      "name": "قصص الأنبياء المسموعة",
+      "short_name": "قصص مسموعة",
+      "url": "./stories/audio.html",
+      "icons": [
+        {
+          "src": "./assets/icons/quran.png",
+          "sizes": "any",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "أذكار الصباح والمساء",
       "short_name": "الأذكار",
       "url": "./adhkar.html",
