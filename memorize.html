@@ -28,7 +28,7 @@
         type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"أداة الحفظ والمراجعة القرآنية","url":"https://imadtbn.github.io/quran-mp3/memorize.html","description":"مراجعة آيات القرآن وتكرارها صوتيًا مع حفظ التقدم ومشاركة مقاطع المراجعة","applicationCategory":"EducationalApplication","operatingSystem":"Web","inLanguage":"ar","isAccessibleForFree":true}</script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/details.css">
-    <link rel="stylesheet" href="assets/css/memorize.css?v=20261015-surah-search">
+    <link rel="stylesheet" href="assets/css/memorize.css?v=20261015-reciters">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5656416032906373"
         crossorigin="anonymous"></script>
 
@@ -77,9 +77,12 @@
         </section>
         <section class="memorize-card">
             <h2>إعداد جلسة المراجعة</h2>
-            <form id="reviewForm" class="review-grid"><label>القارئ<select id="verseReciter">
-                        <option value="alafasy">مشاري راشد العفاسي — مرتل (حفص)</option>
-                    </select></label><div class="surah-picker">
+            <form id="reviewForm" class="review-grid"><label for="verseReciter">القارئ ونوع التلاوة
+                    <select id="verseReciter" required aria-describedby="reciterHelp">
+                        <option value="alafasy">مشاري راشد العفاسي — مرتل</option>
+                    </select>
+                    <span id="reciterHelp" class="reciter-help" aria-live="polite">اختر القارئ المناسب لجلسة المراجعة.</span>
+                </label><div class="surah-picker">
                     <label for="verseSurahSearch">ابحث عن السورة</label>
                     <div class="surah-search">
                         <input id="verseSurahSearch" type="search" placeholder="اكتب اسم السورة أو رقمها"
@@ -118,7 +121,7 @@
             </form>
             <p id="validation" class="review-message" role="alert" hidden></p>
             <p class="review-note">يستخدم المشغل تسجيلات الآيات المنفصلة من EveryAyah. توفر الرابط لا يضمن تشغيله قبل
-                استجابة المصدر. لا يُحمّل الصوت مسبقًا لجميع الآيات.</p>
+                استجابة المصدر. لا يُحمّل الصوت مسبقًا لجميع الآيات. يتغير القارئ عند بدء جلسة جديدة، وتبقى إعداداته محفوظة مع المقطع.</p>
         </section>
         <section class="memorize-card player-review" aria-label="مشغل مراجعة الآيات">
             <h2>جلسة الاستماع</h2>
@@ -137,14 +140,14 @@
         </section>
         <section class="memorize-card">
             <h2>المصدر والتنبيه</h2>
-            <p>التلاوة: مشاري راشد العفاسي، ملفات آية بآية، برواية حفص عن عاصم. المصدر: <a href="https://everyayah.com/"
+            <p>تسجيلات لعدة قراء وأنماط من التلاوة، بملفات منفصلة لكل آية، من المصدر: <a href="https://everyayah.com/"
                     target="_blank" rel="noopener noreferrer">EveryAyah</a>. يتم حفظ إعدادات جلسة المراجعة على هذا
                 الجهاز فقط.</p>
             <p>هذه أداة للمراجعة الصوتية وليست بديلًا عن المصحف المعتمد أو التلقي من معلم.</p>
         </section>
     </main>
     <script src="assets/js/data.js"></script>
-    <script src="assets/js/memorize.js?v=20261015-surah-search"></script>
+    <script src="assets/js/memorize.js?v=20261015-reciters"></script>
     <script defer src="assets/js/memorize-actions.js?v=20261013-icons"></script>
     <script>if ("serviceWorker" in navigator) navigator.serviceWorker.register("./sw.js").catch(() => { });</script>
     <script defer src="assets/js/ads.js"></script>
