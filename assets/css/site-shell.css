@@ -281,3 +281,10 @@ body .qmp3-site-header .home-share-status{background:#e9f5ed;border-color:#8db69
  body .qmp3-site-header .home-share-tooltip,
  body .qmp3-site-header .home-share-status{transition:none}
 }
+
+
+/* Footer navigation: concise, consistent links across all Quran MP3 pages. */
+.duaa-footer .duaa-links{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:9px 14px;margin:14px auto 18px;max-width:1000px}
+.duaa-footer .duaa-links a{display:inline-flex;justify-content:center;align-items:center;min-height:44px;padding:8px 13px;border:1px solid var(--qmp3-gold);border-radius:11px;background:rgba(255,255,255,.08);color:inherit;font:700 .86rem/1.45 Tajawal,Arial,sans-serif;text-decoration:none;white-space:normal;text-align:center}
+.duaa-footer .duaa-links a:hover,.duaa-footer .duaa-links a:focus-visible{border-color:var(--qmp3-gold-light);background:rgba(229,202,131,.14)}
+@media(max-width:480px){.duaa-footer .duaa-links{gap:8px}.duaa-footer .duaa-links a{flex:1 1 calc(50% - 8px);min-width:0;font-size:.8rem}}
