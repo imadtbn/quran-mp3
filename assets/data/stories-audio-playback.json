@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "publisher": "إسلام ويب",
+  "pilotEpisodeId": "118700",
+  "authorization": {
+    "status": "pending",
+    "publicPlaybackAllowed": false,
+    "grantReference": null,
+    "approvedOrigins": []
+  },
+  "tracks": [],
+  "notes": "تفعيل المشغل الداخلي يتطلب إذنًا كتابيًا من مالك المحتوى ورابط بث مباشر مصرحًا به. لا تُدخل روابط مستنتجة من أكواد الموقع أو مسارات تخمينية. التسجيلات الأصلية متاحة عبر روابط الناشر في stories-audio.json."
+}
