@@ -1,0 +1,47 @@
+/* AdSense placements for Quran and narrated prophet stories.
+   Reserved space keeps advertisements away from the header, players, and controls. */
+.qmp3-story-ad {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: min(960px, calc(100% - 32px));
+  max-width: 100%;
+  min-width: 0;
+  min-height: 292px;
+  margin: 28px auto;
+  padding: 10px 12px 14px;
+  clear: both;
+  border: 1px solid var(--line, #d9e6dc);
+  border-radius: 14px;
+  background: var(--surface, #fff);
+  text-align: center;
+  contain: layout style;
+}
+.qmp3-story-ad--inline {
+  width: 100%;
+  margin-block: 12px 18px;
+}
+.qmp3-story-ad__label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--muted, #546c60);
+  font: 500 11px/18px Tajawal, Arial, sans-serif;
+  letter-spacing: .03em;
+}
+.qmp3-story-ad .adsbygoogle {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 240px;
+  margin-inline: auto;
+}
+@media (max-width: 600px) {
+  .qmp3-story-ad { min-height: 286px; margin-block: 20px; padding-inline: 9px; }
+  .qmp3-story-ad .adsbygoogle { min-height: 235px; }
+  .qmp3-story-ad--inline { margin-block: 12px 18px; }
+}
+/* AdSense has no supported responsive width below 300px; never ask it to size there. */
+@media (max-width: 359px) {
+  .qmp3-story-ad { display: none; }
+}
