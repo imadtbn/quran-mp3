@@ -8,7 +8,7 @@
       <p class="duaa-heading">دعاء وأجر نرجوه من الله</p>
       <p class="duaa-text">اللهم اغفر لوالدينا وارحمهما وبارك في أعمار الأحياء منهم، وارحم من توفي منهم، واغفر لمصمم هذه المكتبة ولوالديه، ولجميع المسلمين والمسلمات، الأحياء منهم والأموات.</p>
       <p class="duaa-text">اللهم تقبّل هذا العمل واجعله صدقةً جاريةً ينتفع بها المسلمون والمسلمات، واكتب أجره لكل من ساهم في إنشائه وتطويره ونشره والدلالة عليه، واجعله خالصًا لوجهك الكريم.</p>
-      <nav class="duaa-links" aria-label="أقسام المكتبة"><a href="${homeUrl}stories.html">قصص القرآن الكريم</a><a href="${homeUrl}quran.html">المصحف الرقمي</a><a href="${homeUrl}readers.html">دليل القراء</a></nav>
+      <nav class="duaa-links" aria-label="أقسام المكتبة"><a href="${homeUrl}stories.html">قصص القرآن الكريم</a><a href="${homeUrl}stories/audio.html">قصص الأنبياء المسموعة</a><a href="${homeUrl}quran.html">المصحف الرقمي</a><a href="${homeUrl}readers.html">دليل القراء</a></nav>
       <div class="duaa-share">
         <button type="button" class="duaa-share-button" id="footerShareSite">↗ انشر الموقع وساهم في نشر الخير</button>
         <span class="duaa-share-status" id="footerShareStatus" role="status" aria-live="polite"></span>
