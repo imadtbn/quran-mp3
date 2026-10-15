@@ -40,6 +40,18 @@
       "url": "./mushafs.html"
     },
     {
+      "name": "قصص القرآن الكريم",
+      "short_name": "القصص",
+      "url": "./stories.html",
+      "icons": [
+        {
+          "src": "./assets/icons/quran.png",
+          "sizes": "any",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
       "name": "أذكار الصباح والمساء",
       "short_name": "الأذكار",
       "url": "./adhkar.html",
