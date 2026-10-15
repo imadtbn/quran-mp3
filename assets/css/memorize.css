@@ -81,3 +81,15 @@ body .memorize-main .review-actions :is(#stopReview,#resetSaved):hover:not(:disa
  body .memorize-main .review-actions button{padding-inline:6px;font-size:.83rem}
 }
 @media(prefers-reduced-motion:reduce){.memorize-main .review-actions button{transition:none}}
+
+/* Searchable surah choice: native select stays available with all 114 chapters. */
+.review-grid>.surah-picker{grid-column:span 2;display:flex;flex-direction:column;gap:8px;min-width:0}
+.review-grid .surah-picker>label{display:block;min-width:0;color:var(--ink);font-size:.86rem;font-weight:700}
+.review-grid .surah-search{position:relative;min-width:0}
+.review-grid .surah-search-results{position:absolute;inset-inline:0;top:calc(100% + 5px);z-index:30;max-height:240px;overflow-y:auto;overscroll-behavior:contain;background:var(--surface);border:1px solid #b18b45;border-radius:12px;box-shadow:0 12px 25px #122e2640;padding:5px}
+.review-grid .surah-search-results[hidden]{display:none}
+.review-grid .surah-search-option{display:block;width:100%;min-height:44px;padding:10px 12px;border:0;border-radius:8px;background:transparent;color:var(--ink);font:inherit;text-align:start;cursor:pointer;touch-action:manipulation}
+.review-grid .surah-search-option:is(:hover,:focus-visible,[aria-selected="true"]){background:var(--brand-soft);outline:2px solid #b18b45;outline-offset:-2px}
+.review-grid .surah-search-hint{margin:0;min-height:1.3em;color:var(--muted);font-size:.78rem;line-height:1.6}
+@media(max-width:850px){.review-grid>.surah-picker{grid-column:span 1}}
+@media(max-width:600px){.review-grid>.surah-picker{grid-column:1/-1}}
