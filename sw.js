@@ -15,6 +15,8 @@ self.addEventListener('fetch',e=>{
  const req=e.request;if(req.method!=='GET')return;
  const u=new URL(req.url);
  if(u.origin!==self.location.origin||!u.pathname.startsWith(BASE.pathname))return;
+ // License manifest must never be served from a stale offline cache.
+ if(u.pathname.endsWith('/assets/data/stories-audio-playback.json'))return;
  if(req.destination==='audio'||req.headers.has('range'))return;
  if(u.pathname.includes('/catalog/')||u.pathname.endsWith('/recordings.json'))return;
  const isNav=req.mode==='navigate';
