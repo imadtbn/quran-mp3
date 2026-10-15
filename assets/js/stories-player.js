@@ -3,6 +3,20 @@
 (()=>{'use strict';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const audio=$('#qsaAudio');if(!audio||!window.QuranAudio)return;
+
+/* Add the same explicit light/dark control used by the home page.
+ * Site shell may generate the header after this script is evaluated. */
+function initTheme(){
+ const header=document.querySelector('.qmp3-site-header');if(!header)return;
+ let toggle=header.querySelector('#themeToggle');
+ if(!toggle){toggle=document.createElement('button');toggle.id='themeToggle';toggle.type='button';toggle.className='theme-toggle';
+ const navToggle=header.querySelector('#navToggle');if(navToggle)navToggle.before(toggle);else header.querySelector('.header-inner')?.append(toggle)}
+ function setMode(on){document.body.classList.toggle('dark',on);toggle.textContent=on?'☀':'◐';toggle.setAttribute('aria-label',on?'تفعيل الوضع النهاري':'تفعيل الوضع الليلي');try{localStorage.setItem('qmp3-theme',on?'dark':'light')}catch{}}
+ let prior=false;try{prior=localStorage.getItem('qmp3-theme')==='dark'}catch{}
+ setMode(prior);toggle.addEventListener('click',()=>setMode(!document.body.classList.contains('dark')));
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>requestAnimationFrame(initTheme),{once:true});else requestAnimationFrame(initTheme);
+
 const root=document.body.dataset.qsaRoot||'../';
 const storeKey='qmp3-prophet-audio-v1',readerStore='qmp3-reciter';
 const fallbackReaders=[
@@ -34,7 +48,7 @@ const title=$('#qsaCurrentTitle'),sub=$('#qsaCurrentSub');title.textContent=trac
 restoreTime=remember&&checkpoint&&checkpoint.surah===track.surah&&checkpoint.reader===state.reader?Math.max(0,Number(checkpoint.position)||0):0;
 audio.playbackRate=state.speed;renderQueue();updatePlay();if(autoplay)await core.play();}
 function trackFromCard(story){const item=catalog.find(x=>x.id===story);if(!item)return null;const v=item.verses[0];if(!v)return null;return {story:item.id,storyName:item.title,surah:v.surah,name:'سورة '+v.name}}
-function makeIndexQueue(selected){const visible=$$('.qsa-card').filter(c=>!c.hidden);const items=visible.map(c=>trackFromCard(c.dataset.prophet)).filter(Boolean);
+function makeIndexQueue(selected){if(!catalog.length){location.href='audio/'+encodeURIComponent(selected)+'.html';return}const visible=$$('.qsa-card').filter(c=>!c.hidden);const items=visible.map(c=>trackFromCard(c.dataset.prophet)).filter(Boolean);
 const start=items.findIndex(t=>t.story===selected);queue=items;if(start>=0)load(start,true);}
 function makeDetailQueue(){const slug=document.body.dataset.qsaStory,story=catalog.find(x=>x.id===slug),storyName=story?.title||document.querySelector('h1')?.textContent||'قصص الأنبياء';
 const tracks=$$('[data-audio-surah]');queue=tracks.map(b=>({story:slug,storyName,surah:Number(b.dataset.audioSurah),name:b.dataset.trackName}));
