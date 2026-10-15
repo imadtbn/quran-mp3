@@ -5,7 +5,7 @@
   const base = new URL('../../', script?.src || document.baseURI);
   const parts = location.pathname.replace(base.pathname, '').split('/').filter(Boolean);
   const page = parts.at(-1) || 'index.html';
-  const section = parts[0] === 'catalog'
+  const section = parts[0] === 'stories' ? 'stories.html' : parts[0] === 'catalog'
     ? (parts[1] === 'readers' ? 'readers.html' : parts[1] === 'riwayat' ? 'riwayat.html' : 'mushafs.html')
     : parts[0] === 'readers' || page === 'reciter.html' ? 'readers.html'
     : parts[0] === 'riwayat' || page === 'riwaya.html' ? 'riwayat.html'
@@ -15,7 +15,7 @@
     ['index.html', '⌂', 'الرئيسية'], ['readers.html', '♫', 'القراء'],
     ['riwayat.html', '☷', 'الروايات'], ['quran.html', '﴿', 'المصحف الرقمي'],
     ['mushafs.html', '▤', 'المصاحف'], ['memorize.html', '◎', 'الحفظ والمراجعة'],
-    ['adhkar.html', '☀', 'الأذكار'], ['prayer-times.html', '◷', 'مواقيت الصلاة'],
+    ['stories.html', '▧', 'قصص القرآن'], ['adhkar.html', '☀', 'الأذكار'], ['prayer-times.html', '◷', 'مواقيت الصلاة'],
     ['ruqyah.html', '✧', 'الرقية الشرعية'], ['dua-hifz.html', '♧', 'دعاء حفظ القرآن']
   ];
   const url = path => new URL(path, base).href;
