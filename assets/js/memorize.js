@@ -2,16 +2,41 @@
 'use strict';
 const $=s=>document.querySelector(s);
 const audio=$('#verseAudio');
-const BASE='https://everyayah.com/data/Alafasy_128kbps/';
+// Verse-by-verse recitations from EveryAyah; folder names are explicitly allowlisted.
+const RECITERS=[{"id":"alafasy","name":"مشاري راشد العفاسي","folder":"Alafasy_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"husary","name":"محمود خليل الحصري","folder":"Husary_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"minshawy","name":"محمد صديق المنشاوي","folder":"Minshawy_Murattal_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"abdulbasit","name":"عبد الباسط عبد الصمد","folder":"Abdul_Basit_Murattal_192kbps","kbps":192,"type":"مرتل","group":"murattal"},{"id":"maher","name":"ماهر المعيقلي","folder":"MaherAlMuaiqly128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"hudhaify","name":"علي الحذيفي","folder":"Hudhaify_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"ayyoub","name":"محمد أيوب","folder":"Muhammad_Ayyoub_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"sudais","name":"عبد الرحمن السديس","folder":"Abdurrahmaan_As-Sudais_192kbps","kbps":192,"type":"مرتل","group":"murattal"},{"id":"shuraym","name":"سعود الشريم","folder":"Saood_ash-Shuraym_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"shaatree","name":"أبو بكر الشاطري","folder":"Abu_Bakr_Ash-Shaatree_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"basfar","name":"عبد الله بصفر","folder":"Abdullah_Basfar_192kbps","kbps":192,"type":"مرتل","group":"murattal"},{"id":"fares","name":"فارس عباد","folder":"Fares_Abbad_64kbps","kbps":64,"type":"مرتل","group":"murattal"},{"id":"hani","name":"هاني الرفاعي","folder":"Hani_Rifai_192kbps","kbps":192,"type":"مرتل","group":"murattal"},{"id":"dussary","name":"ياسر الدوسري","folder":"Yasser_Ad-Dussary_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"qatami","name":"ناصر القطامي","folder":"Nasser_Alqatami_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"ajamy","name":"أحمد العجمي","folder":"ahmed_ibn_ali_al_ajamy_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"ghamadi","name":"سعد الغامدي","folder":"Ghamadi_40kbps","kbps":40,"type":"مرتل","group":"murattal"},{"id":"ali-jaber","name":"علي جابر","folder":"Ali_Jaber_64kbps","kbps":64,"type":"مرتل","group":"murattal"},{"id":"juhany","name":"عبد الله عواد الجهني","folder":"Abdullaah_3awwaad_Al-Juhaynee_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"tablawi","name":"محمد محمود الطبلاوي","folder":"Mohammad_al_Tablaway_128kbps","kbps":128,"type":"تلاوة","group":"murattal"},{"id":"muhsin","name":"محسن القاسم","folder":"Muhsin_Al_Qasim_192kbps","kbps":192,"type":"مرتل","group":"murattal"},{"id":"bukhatir","name":"صلاح بو خاطر","folder":"Salaah_AbdulRahman_Bukhatir_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"jibreel","name":"محمد جبريل","folder":"Muhammad_Jibreel_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"budair","name":"صلاح البدير","folder":"Salah_Al_Budair_128kbps","kbps":128,"type":"مرتل","group":"murattal"},{"id":"husary-teacher","name":"محمود خليل الحصري","folder":"Husary_Muallim_128kbps","kbps":128,"type":"المعلم","group":"teacher"},{"id":"minshawy-teacher","name":"محمد صديق المنشاوي","folder":"Minshawy_Teacher_128kbps","kbps":128,"type":"المعلم","group":"teacher"},{"id":"husary-mujawwad","name":"محمود خليل الحصري","folder":"Husary_128kbps_Mujawwad","kbps":128,"type":"مجود","group":"mujawwad"},{"id":"minshawy-mujawwad","name":"محمد صديق المنشاوي","folder":"Minshawy_Mujawwad_192kbps","kbps":192,"type":"مجود","group":"mujawwad"},{"id":"abdulbasit-mujawwad","name":"عبد الباسط عبد الصمد","folder":"Abdul_Basit_Mujawwad_128kbps","kbps":128,"type":"مجود","group":"mujawwad"}];
+const RECITER_BY_ID=new Map(RECITERS.map(reciter=>[reciter.id,reciter]));
+const DEFAULT_RECITER='alafasy';
+const reciterFor=id=>RECITER_BY_ID.get(id)||RECITER_BY_ID.get(DEFAULT_RECITER);
+const reciterSelect=$('#verseReciter');
+const RECITER_GROUPS=[['murattal','التلاوات المرتلة'],['teacher','تلاوات التعليم'],['mujawwad','التلاوات المجودة']];
+reciterSelect.replaceChildren();
+for(const [group,label] of RECITER_GROUPS){
+ const optgroup=document.createElement('optgroup');optgroup.label=label;
+ for(const reader of RECITERS.filter(r=>r.group===group)){
+  const option=document.createElement('option');
+  option.value=reader.id;option.textContent=reader.name+' — '+reader.type+' · '+reader.kbps+'kbps';
+  optgroup.append(option);
+ }
+ reciterSelect.append(optgroup);
+}
+reciterSelect.value=DEFAULT_RECITER;
+const reciterHelp=$('#reciterHelp');
+function updateReciterHelp(){
+ const reader=reciterFor(reciterSelect.value);
+ reciterHelp.textContent=reader.name+' · '+reader.type+' · جودة '+reader.kbps+'kbps'+
+  (active?' — يبدأ تطبيق الاختيار الجديد عند بدء جلسة أخرى.':' — يمكنك بدء المراجعة بهذا القارئ.');
+}
+reciterSelect.addEventListener('change',updateReciterHelp);
+const BASE='https://everyayah.com/data/';
 const pad=n=>String(n).padStart(3,'0');
-const url=(s,a)=>BASE+pad(s)+pad(a)+'.mp3';
+const url=(reciter,s,a)=>BASE+reciterFor(reciter).folder+'/'+pad(s)+pad(a)+'.mp3';
 const settingsKey='qmp3-review-settings-v1',progressKey='qmp3-review-progress-v1';
 const saveProgress=()=>{if(!plan||!active)return;try{localStorage.setItem(progressKey,JSON.stringify({plan,verseIndex,verseRound,segmentRound,updatedAt:Date.now()}))}catch{};renderSaved()};
-function renderSaved(){let x=null;try{x=JSON.parse(localStorage.getItem(progressKey)||'null')}catch{};$('#reviewSavedProgress').textContent=x&&x.plan?'آخر جلسة: سورة '+(SURAHS[x.plan.surah-1]?.name||x.plan.surah)+'، الآية '+(x.plan.from+x.verseIndex)+'، المقطع '+(x.segmentRound+1):'لم تُحفظ جلسة بعد.';$('#resumeSaved').disabled=!x};
+function renderSaved(){let x=null;try{x=JSON.parse(localStorage.getItem(progressKey)||'null')}catch{};$('#reviewSavedProgress').textContent=x&&x.plan?'آخر جلسة: '+reciterFor(x.plan.reciter).name+' · سورة '+(SURAHS[x.plan.surah-1]?.name||x.plan.surah)+'، الآية '+(x.plan.from+x.verseIndex)+'، المقطع '+(x.segmentRound+1):'لم تُحفظ جلسة بعد.';$('#resumeSaved').disabled=!x};
 let run=0,active=false,paused=false,plan=null,verseIndex=0,verseRound=0,segmentRound=0,delayId=null,loadId=null,delayRemaining=0,delayStarted=0,loadSerial=0;
 const message=text=>{$('#reviewStatus').textContent=text};
 function cancelTimers(){clearTimeout(delayId);clearTimeout(loadId);delayId=null;loadId=null;loadSerial++}
-function stop(show=true){if(active)saveProgress();run++;active=false;paused=false;delayRemaining=0;cancelTimers();audio.pause();audio.removeAttribute('src');audio.load();$('#pauseReview').textContent='إيقاف مؤقت';if(show)message('انتهت جلسة المراجعة. يمكنك بدء جلسة جديدة.')}
+function stop(show=true){if(active)saveProgress();run++;active=false;paused=false;delayRemaining=0;cancelTimers();audio.pause();audio.removeAttribute('src');audio.load();$('#pauseReview').textContent='إيقاف مؤقت';updateReciterHelp();if(show)message('انتهت جلسة المراجعة. يمكنك بدء جلسة جديدة.')}
 function selectedSurah(){return SURAHS[Number($('#verseSurah').value)-1]}
 function syncBounds(){
  const count=selectedSurah()?.ayahs||7;
@@ -84,11 +109,13 @@ $('#fromVerse').addEventListener('change',syncBounds);
 const statusError=text=>{$('#validation').hidden=false;$('#validation').textContent=text};
 function getPlan(){
  if(surahSearchPending){statusError('اختر السورة من نتائج البحث أو القائمة المنسدلة أولًا.');surahSearch.focus();return null}
+ const reciter=reciterSelect.value;
+ if(!RECITER_BY_ID.has(reciter)){statusError('اختر قارئًا متاحًا من القائمة.');return null}
  const surah=Number($('#verseSurah').value),from=Number($('#fromVerse').value),to=Number($('#toVerse').value),max=SURAHS[surah-1]?.ayahs;
  if(!max||!Number.isInteger(from)||!Number.isInteger(to)||from<1||to>max||from>to){statusError('حدد نطاقًا صحيحًا من آيات السورة.');return null}
  if(to-from+1>60){statusError('لضمان سهولة المراجعة، اختر مقطعًا لا يتجاوز 60 آية في الجلسة.');return null}
  $('#validation').hidden=true;
- return {surah,from,to,verseRepeat:Number($('#verseRepeat').value),segmentRepeat:Number($('#segmentRepeat').value),gap:Number($('#pauseBetween').value)};
+ return {reciter,surah,from,to,verseRepeat:Number($('#verseRepeat').value),segmentRepeat:Number($('#segmentRepeat').value),gap:Number($('#pauseBetween').value)};
 }
 function renderVerses(){
  const host=$('#reviewVerses');host.replaceChildren();
@@ -110,9 +137,9 @@ async function playVerse(token){
  const serial=loadSerial;
  const current=plan.from+verseIndex;
  renderVerses();saveProgress();
- $('#reviewProgress').textContent='الآية '+current+' من '+plan.to+' · تكرار الآية '+(verseRound+1)+' من '+plan.verseRepeat+' · المقطع '+(segmentRound+1)+' من '+plan.segmentRepeat;
+ $('#reviewProgress').textContent=reciterFor(plan.reciter).name+' · الآية '+current+' من '+plan.to+' · تكرار الآية '+(verseRound+1)+' من '+plan.verseRepeat+' · المقطع '+(segmentRound+1)+' من '+plan.segmentRepeat;
  message('جارٍ تحميل الآية '+current+'…');
- audio.src=url(plan.surah,current);
+ audio.src=url(plan.reciter,plan.surah,current);
  audio.load();arm(token,serial);
  try{await audio.play();if(token===run&&serial===loadSerial&&!paused){clearTimeout(loadId);message('الاستماع إلى الآية '+current)}}
  catch(e){if(token!==run||serial!==loadSerial||paused)return;clearTimeout(loadId);message(e?.name==='NotAllowedError'?'اضغط تشغيل في المشغل للسماح بالاستماع.':'تعذر تشغيل ملف الآية. جرّب الآية التالية أو تحقق من المصدر.')}
@@ -133,7 +160,7 @@ audio.addEventListener('error',()=>{if(active)message('تعذر تحميل ال�
 audio.addEventListener('loadedmetadata',()=>clearTimeout(loadId));
 $('#reviewForm').addEventListener('submit',e=>{
  e.preventDefault();const next=getPlan();if(!next)return;
- stop(false);try{localStorage.removeItem(progressKey)}catch{};plan=next;verseIndex=0;verseRound=0;segmentRound=0;active=true;paused=false;
+ stop(false);try{localStorage.removeItem(progressKey)}catch{};plan=next;verseIndex=0;verseRound=0;segmentRound=0;active=true;paused=false;updateReciterHelp();
  playVerse(run);
 });
 $('#pauseReview').addEventListener('click',()=>{
@@ -152,15 +179,15 @@ function readSharedPlan(){
  const p=Object.fromEntries(keys.map(k=>[k,Number(q.get(k))]));
  const max=SURAHS[p.surah-1]?.ayahs;
  if(!max||!keys.every(k=>q.get(k)!==''&&Number.isInteger(p[k]))||p.from<1||p.to>max||p.from>p.to||p.to-p.from+1>60||![1,2,3,5,10].includes(p.verseRepeat)||![1,2,3,5].includes(p.segmentRepeat)||![0,2,5,10].includes(p.gap))return null;
- return p;
+ return {...p,reciter:reciterFor(q.get('reciter')).id};
 }
-function applyPlan(p){for(const [id,v] of Object.entries({verseSurah:p.surah,fromVerse:p.from,toVerse:p.to,verseRepeat:p.verseRepeat,segmentRepeat:p.segmentRepeat,pauseBetween:p.gap}))$('#'+id).value=String(v);surahSearch.value='';surahSearchPending=false;closeSurahMatches();showSelectedSurah();syncBounds()}
+function applyPlan(p){for(const [id,v] of Object.entries({verseReciter:reciterFor(p.reciter).id,verseSurah:p.surah,fromVerse:p.from,toVerse:p.to,verseRepeat:p.verseRepeat,segmentRepeat:p.segmentRepeat,pauseBetween:p.gap}))$('#'+id).value=String(v);surahSearch.value='';surahSearchPending=false;closeSurahMatches();showSelectedSurah();syncBounds();updateReciterHelp()}
 $('#shareReview').addEventListener('click',async()=>{
  const p=getPlan();if(!p)return;
  const link=new URL(location.pathname,location.origin);
  for(const [k,v] of Object.entries(p))link.searchParams.set(k,String(v));
  try{
-  if(navigator.share)await navigator.share({title:'مقطع للمراجعة القرآنية',text:'راجع هذا المقطع من القرآن الكريم',url:link.href});
+  if(navigator.share)await navigator.share({title:'مقطع للمراجعة القرآنية',text:'راجع هذا المقطع من القرآن الكريم بصوت '+reciterFor(p.reciter).name,url:link.href});
   else if(navigator.clipboard?.writeText){await navigator.clipboard.writeText(link.href);message('تم نسخ رابط المراجعة')}
   else{message('رابط المشاركة: '+link.href)}
  }catch(e){if(e?.name!=='AbortError')message('تعذرت المشاركة؛ يمكنك نسخ رابط الصفحة يدويًا.')}
@@ -172,13 +199,13 @@ $('#resumeSaved').addEventListener('click',()=>{
  stop(false);plan=p;verseIndex=Math.max(0,Math.min(p.to-p.from,Number(x.verseIndex)||0));
  verseRound=Math.max(0,Math.min(p.verseRepeat-1,Number(x.verseRound)||0));
  segmentRound=Math.max(0,Math.min(p.segmentRepeat-1,Number(x.segmentRound)||0));
- active=true;paused=false;playVerse(run);
+ active=true;paused=false;updateReciterHelp();playVerse(run);
 });
 $('#resetSaved').addEventListener('click',()=>{try{localStorage.removeItem(progressKey)}catch{};renderSaved();message('تم مسح تقدم المراجعة المحفوظ.')});
 $('#saveReview').addEventListener('click',()=>{
  const p=getPlan();if(!p)return;
  try{localStorage.setItem(settingsKey,JSON.stringify(p));message('حُفظت إعدادات المراجعة على هذا الجهاز.')}catch{message('تعذر حفظ الإعدادات في المتصفح.')}
 });
-try{const saved=JSON.parse(localStorage.getItem(settingsKey)||'null');if(saved&&SURAHS[saved.surah-1]){for(const [id,val] of Object.entries({verseSurah:saved.surah,fromVerse:saved.from,toVerse:saved.to,verseRepeat:saved.verseRepeat,segmentRepeat:saved.segmentRepeat,pauseBetween:saved.gap})){const el=$('#'+id);if(el)el.value=String(val)}}}catch{}
-const shared=readSharedPlan();if(shared){applyPlan(shared);message('تم تحميل إعدادات المقطع المشترك. اضغط ابدأ المراجعة.')}else syncBounds();showSelectedSurah();renderSaved();
+try{const saved=JSON.parse(localStorage.getItem(settingsKey)||'null');if(saved&&SURAHS[saved.surah-1]){for(const [id,val] of Object.entries({verseReciter:reciterFor(saved.reciter).id,verseSurah:saved.surah,fromVerse:saved.from,toVerse:saved.to,verseRepeat:saved.verseRepeat,segmentRepeat:saved.segmentRepeat,pauseBetween:saved.gap})){const el=$('#'+id);if(el)el.value=String(val)}}}catch{}
+const shared=readSharedPlan();if(shared){applyPlan(shared);message('تم تحميل إعدادات المقطع المشترك. اضغط ابدأ المراجعة.')}else syncBounds();showSelectedSurah();updateReciterHelp();renderSaved();
 })();
