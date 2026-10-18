@@ -13,6 +13,12 @@
   --qmp3-radius:12px;
 }
 .qmp3-site-page{color-scheme:light;overflow-x:clip}
+/* AdSense safety: keep ad widths inside the viewport without shifting RTL layout. */
+html,body.qmp3-site-page{max-width:100%;overflow-x:clip}
+body.qmp3-site-page main,body.qmp3-site-page main>*{min-width:0;max-width:100%}
+body.qmp3-site-page .quran-ad-placement{position:relative;inset:auto;float:none;clear:both;box-sizing:border-box;max-width:calc(100% - 24px);min-width:0;margin-inline:auto;overflow:hidden;transform:none!important}
+body.qmp3-site-page .quran-ad-placement ins.adsbygoogle{box-sizing:border-box;max-width:100%!important;min-width:0!important;margin-inline:auto;overflow:hidden}
+body.qmp3-site-page .quran-ad-placement iframe{max-width:100%!important}
 .qmp3-site-page:not(.dark){background:var(--qmp3-paper)}
 .qmp3-site-page button,.qmp3-site-page a,.qmp3-site-page input,
 .qmp3-site-page select{touch-action:manipulation}
