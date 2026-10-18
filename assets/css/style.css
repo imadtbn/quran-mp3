@@ -568,3 +568,43 @@ body:has(.catalog-mushaf-nav){} /* Keep selector reserved for catalogue-specific
 .qmp3-breadcrumb .bc-separator{color:#879b8e;user-select:none}.qmp3-breadcrumb [aria-current=page]{font-weight:700;color:#21382f;overflow-wrap:anywhere}
 @media(max-width:1100px){.site-header[data-catalog-nav-ready="1"] .header-inner{height:70px;min-height:70px;flex-wrap:nowrap}.site-header[data-catalog-nav-ready="1"] .nav-toggle{display:grid;place-items:center;flex:none}.site-header[data-catalog-nav-ready="1"] .main-nav{display:none;position:absolute;top:calc(100% + 6px);right:0;left:0;z-index:60;max-height:min(72vh,540px);overflow:auto;padding:12px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}.site-header[data-catalog-nav-ready="1"] .main-nav.catalog-nav-open{display:grid}.site-header[data-catalog-nav-ready="1"] .main-nav a{min-height:44px;padding:9px;font-size:.88rem;white-space:normal}}
 @media(max-width:600px){.site-header[data-catalog-nav-ready="1"] .header-inner{gap:8px}.site-header[data-catalog-nav-ready="1"] .brand-text{font-size:.85rem}.site-header[data-catalog-nav-ready="1"] .main-nav{grid-template-columns:1fr 1fr}.qmp3-breadcrumb{margin:10px 12px 14px;max-width:calc(100% - 24px);gap:6px;padding:9px 12px;font-size:.83rem;min-height:44px}}
+
+/* Home page: orderly, touch-friendly section links on mobile. */
+#libraryAboutTitle + p{max-width:900px}
+section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"]{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  align-items:stretch;
+  gap:12px;
+}
+section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"] > .chip-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;min-width:0;min-height:52px;padding:12px 14px;
+  border:1.5px solid #c3a66a;border-radius:14px;
+  background:var(--surface);color:var(--ink-2);
+  font-weight:800;line-height:1.5;text-align:center;text-decoration:none;
+  white-space:normal;overflow-wrap:anywhere;word-break:normal;
+  box-shadow:0 3px 10px rgba(24,55,43,.045);
+  transition:background .18s,border-color .18s,box-shadow .18s,transform .18s;
+}
+section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"] > .chip-btn:hover{
+  background:var(--brand-soft);border-color:var(--brand);box-shadow:0 5px 14px rgba(15,118,110,.1);transform:translateY(-1px)
+}
+section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"] > .chip-btn:focus-visible{
+  outline:3px solid var(--brand-2);outline-offset:3px
+}
+@media(max-width:900px){
+ section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"]{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+}
+@media(max-width:640px){
+ section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"]{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:18px!important}
+ section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"] > .chip-btn{min-height:54px;padding:11px 9px;font-size:.94rem;border-radius:13px}
+ section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"] > .chip-btn:nth-child(n+5){grid-column:1/-1}
+}
+@media(max-width:360px){
+ section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"]{grid-template-columns:1fr}
+ section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"] > .chip-btn:nth-child(n){grid-column:auto}
+}
+@media(prefers-reduced-motion:reduce){
+ section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"] > .chip-btn{transition:none}
+}
