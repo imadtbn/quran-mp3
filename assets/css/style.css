@@ -629,3 +629,8 @@ section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أق
  body section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"] > a.chip-btn:nth-child(6),
  body section[aria-labelledby="libraryAboutTitle"] > nav[aria-label="استكشف أقسام مكتبة القرآن الكريم"] > a.chip-btn:nth-child(7){grid-column:auto!important}
 }
+/* Searchable surah shortcut beside the view selector. */
+.toolbar-actions .surah-quick-search{display:block;min-width:150px;max-width:210px;flex:1 1 170px}
+.toolbar-actions .surah-quick-search input{width:100%;min-width:0;max-width:100%;font:inherit}
+.toolbar-actions .surah-quick-search input::placeholder{color:var(--muted);opacity:1}
+@media(max-width:640px){.toolbar-actions .surah-quick-search{min-width:0;max-width:none;flex:1 1 100%}.toolbar-actions #viewSelect{flex:1 1 calc(50% - 6px)}}
