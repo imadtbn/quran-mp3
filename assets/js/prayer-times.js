@@ -112,6 +112,6 @@ $('testPrayerAlarms').addEventListener('click',async()=>{
 $('testNotification').addEventListener('click',()=>runNotificationTest(false));
 $('testDelayedNotification').addEventListener('click',()=>runNotificationTest(true));
 
-const nav=$('mainNav'),toggle=$('navToggle');function close(){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false')}toggle.addEventListener('click',()=>{const o=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(o))});document.addEventListener('pointerdown',e=>{if(!nav.contains(e.target)&&!toggle.contains(e.target))close()});window.addEventListener('scroll',close,{passive:true});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+const nav=$('mainNav'),toggle=$('navToggle');function close(){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false')}toggle.addEventListener('click',()=>{const o=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(o))});document.addEventListener('pointerdown',e=>{if(!nav.contains(e.target)&&!toggle.contains(e.target))close()});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
 refresh();setInterval(tick,1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden){tick();if(day&&dateInZone()!==currentDate)refresh()}});
 })();
