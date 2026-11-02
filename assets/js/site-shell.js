@@ -87,9 +87,6 @@
     document.addEventListener('pointerdown', event => {
       if (!header.contains(event.target) && nav.classList.contains('open')) setOpen(false);
     });
-    window.addEventListener('scroll', () => {
-      if (nav.classList.contains('open')) setOpen(false);
-    }, { passive: true });
     window.addEventListener('resize', () => {
       if (innerWidth > 1480 && nav.classList.contains('open')) setOpen(false);
     }, { passive: true });
