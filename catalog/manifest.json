@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "https://www.mp3quran.net/api/v3/reciters?language=ar",
-  "createdAt": "2026-10-26T10:07:59.322Z",
+  "createdAt": "2026-11-02T12:25:17.132Z",
   "readers": {
     "إبراهيم الأخضر": "catalog/readers/1.html",
     "أكرم العلاقمي": "catalog/readers/10.html",
@@ -103,6 +103,7 @@
     "عاصم اللحیدان": "catalog/readers/21201.html",
     "محمود حرفوش": "catalog/readers/21202.html",
     "أيمن رشدي سويد": "catalog/readers/21203.html",
+    "مصطفى غربي": "catalog/readers/21204.html",
     "عثمان الأنصاري": "catalog/readers/216.html",
     "بندر بليله": "catalog/readers/217.html",
     "خالد الشريمي": "catalog/readers/218.html",
@@ -249,8 +250,6 @@
   },
   "riwayat": {
     "حفص عن عاصم": "catalog/riwayat/حفص-عن-عاصم.html",
-    "المصحف المجود - المصحف المجود": "catalog/riwayat/المصحف-المجود-المصحف-المجود.html",
-    "المصحف المعلم - المصحف المعلم": "catalog/riwayat/المصحف-المعلم-المصحف-المعلم.html",
     "ورش عن نافع": "catalog/riwayat/ورش-عن-نافع.html",
     "الدوري عن الكسائي - مرتل": "catalog/riwayat/الدوري-عن-الكسائي-مرتل.html",
     "البزي وقنبل عن ابن كثير - مرتل": "catalog/riwayat/البزي-وقنبل-عن-ابن-كثير-مرتل.html",
@@ -264,7 +263,9 @@
     "السوسي عن أبي عمرو - مرتل": "catalog/riwayat/السوسي-عن-أبي-عمرو-مرتل.html",
     "البزي عن ابن كثير - مرتل": "catalog/riwayat/البزي-عن-ابن-كثير-مرتل.html",
     "قنبل عن ابن كثير - مرتل": "catalog/riwayat/قنبل-عن-ابن-كثير-مرتل.html",
-    "قراءة يعقوب الحضرمي بروايتي رويس وروح - مرتل": "catalog/riwayat/قراءة-يعقوب-الحضرمي-بروايتي-رويس-وروح-مرتل.html"
+    "قراءة يعقوب الحضرمي بروايتي رويس وروح - مرتل": "catalog/riwayat/قراءة-يعقوب-الحضرمي-بروايتي-رويس-وروح-مرتل.html",
+    "برواية الدوري عن أبي عمرو - بالجمع- - المصحف المجود": "catalog/riwayat/برواية-الدوري-عن-أبي-عمرو-بالجمع-المصحف-المجود.html",
+    "الدوري عن أبي عمرو -التوسط- - مرتل": "catalog/riwayat/الدوري-عن-أبي-عمرو-التوسط-مرتل.html"
   },
   "mushafs": {
     "mp3-1-1": "catalog/mushafs/mp3-1-1.html",
@@ -389,6 +390,7 @@
     "mp3-21201-10922": "catalog/mushafs/mp3-21201-10922.html",
     "mp3-21202-10923": "catalog/mushafs/mp3-21202-10923.html",
     "mp3-21203-10925": "catalog/mushafs/mp3-21203-10925.html",
+    "mp3-21204-10926": "catalog/mushafs/mp3-21204-10926.html",
     "mp3-216-216": "catalog/mushafs/mp3-216-216.html",
     "mp3-217-217": "catalog/mushafs/mp3-217-217.html",
     "mp3-218-218": "catalog/mushafs/mp3-218-218.html",
@@ -487,6 +489,15 @@
     "mp3-36-36": "catalog/mushafs/mp3-36-36.html",
     "mp3-37-37": "catalog/mushafs/mp3-37-37.html",
     "mp3-38-38": "catalog/mushafs/mp3-38-38.html",
+    "mp3-39-330": "catalog/mushafs/mp3-39-330.html",
+    "mp3-39-329": "catalog/mushafs/mp3-39-329.html",
+    "mp3-39-328": "catalog/mushafs/mp3-39-328.html",
+    "mp3-39-327": "catalog/mushafs/mp3-39-327.html",
+    "mp3-39-326": "catalog/mushafs/mp3-39-326.html",
+    "mp3-39-325": "catalog/mushafs/mp3-39-325.html",
+    "mp3-39-324": "catalog/mushafs/mp3-39-324.html",
+    "mp3-39-323": "catalog/mushafs/mp3-39-323.html",
+    "mp3-39-322": "catalog/mushafs/mp3-39-322.html",
     "mp3-39-39": "catalog/mushafs/mp3-39-39.html",
     "mp3-4-4": "catalog/mushafs/mp3-4-4.html",
     "mp3-40-40": "catalog/mushafs/mp3-40-40.html",
